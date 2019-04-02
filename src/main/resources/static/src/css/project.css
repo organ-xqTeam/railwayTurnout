@@ -1,0 +1,26 @@
+.main .main-header {
+    width: 100%;
+    /* border: 1px solid #fff; */
+    height: 50px;
+}
+.main .main-header p {
+    display: inline-block;
+}
+.main .main-header select {
+    background: none;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    width: 150px;
+}
+
+/* project-wrap */
+.main .project-wrap {
+    border: 1px solid red;
+}
+.main .project-wrap li {
+    background-color: #fff;
+    width: 300px;
+    height: 400px;
+}
+

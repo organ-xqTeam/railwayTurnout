@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xq.Railway.dao.measurementprojectMapper" >
+  <resultMap id="BaseResultMap" type="com.xq.Railway.model.measurementproject" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="tid" property="tid" jdbcType="VARCHAR" />
+    <result column="lid" property="lid" jdbcType="VARCHAR" />
+    <result column="aid" property="aid" jdbcType="VARCHAR" />
+    <result column="pname" property="pname" jdbcType="VARCHAR" />
+    <result column="ptime" property="ptime" jdbcType="VARCHAR" />
+    <result column="warningstatistics" property="warningstatistics" jdbcType="VARCHAR" />
+    <result column="datasources" property="datasources" jdbcType="VARCHAR" />
+    <result column="isdelete" property="isdelete" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, tid, lid,aid, pname, ptime, warningstatistics, datasources,distance,lAltitude,rAltitude, isdelete
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from measurementproject
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  
+  
+  <select id="selectGetEchar" resultType="java.util.Map" parameterType="java.lang.Integer" >
+    	select distinct
+    m.lid, m.ptime,ROUND(a.HC/b.count*100,2) as failrate 
+    from measurementproject m ,
+    (select id,mid,count(mid) as HC   from detectionresult where measuredresults  ='合格'  group by mid) a, 
+    (select mid,count(ID) as count   from detectionresult group by mid) b 
+		where m.id = a.mid and m.id = b.mid and m.lid=  #{id}
+  </select>
+  
+  <select id="GetPageECharts" resultType="java.util.Map" parameterType="java.lang.Integer" >
+    	select distinct
+      m.tid, m.lid, m.ptime,ROUND(a.HC/b.count*100,2) as failrate 
+    from measurementproject m ,
+    (select id,mid,count(mid) as HC   from detectionresult where measuredresults  ='合格'  group by mid) a,
+     (select mid,count(ID) as count   from detectionresult group by mid) b 
+		where m.id = a.mid and m.id = b.mid and m.tid=  #{id}
+  </select>
+  
+  
+  
+  <select id="selectAll" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from measurementproject ORDER BY id DESC
+     LIMIT #{pageNum} ,#{pageSize}
+  </select>
+  
+  <select id="selectAllCount" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from measurementproject 
+  </select>
+  
+  <select id="selectbymid" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from measurementproject where lid = #{mid}  ORDER BY id DESC limit #{pageNum} ,#{pageSize};
+  </select>
+  
+  <select id="selectbymidCount" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from measurementproject where lid = #{mid}  
+  </select>
+  
+  
+  <select id="selectBy" resultType="java.util.Map" parameterType="java.util.Map" >
+  
+  
+  	<!-- select l.id as lid ,l.sitename ,t.id as id , t.routename from linesite l LEFT JOIN trainroute t  on t.id = l.routeid  -->
+    select 
+    m.id, m.tid, m.lid,m.aid, m.pname, m.ptime, m.warningstatistics, m.datasources,m.distance,m.lAltitude,m.rAltitude,a.ausername,a.aphonenum
+    from measurementproject m  LEFT JOIN administrator a on a.aid = m.aid where 
+    <if test="mid != null" >
+    	m.lid = #{mid}  
+     </if>
+    <if test="mName != null" >
+    	and m.pname = #{mName}  
+     </if>
+    
+    ORDER BY m.id DESC limit #{pageNum} ,#{pageSize};
+  </select>
+  
+  <select id="selectByCount" resultType="java.util.Map" parameterType="java.lang.String" >
+   select 
+    m.id, m.tid, m.lid,m.aid, m.pname, m.ptime, m.warningstatistics, m.datasources,a.ausername,a.aphonenum
+    from measurementproject m  LEFT JOIN administrator a on a.aid = m.aid where 
+    <if test="mid != null" >
+    	m.lid = #{mid}  
+     </if>
+    <if test="mName != null" >
+    	and m.pname = #{mName}  
+     </if> 
+  </select>
+  
+  <select id="selectAllpName" resultType="java.lang.String" parameterType="java.lang.String" >
+    select 
+    pname
+    from measurementproject where 
+    	lid = #{id}  Group By pname 
+  </select>
+  
+  
+  
+  <select id="selectByName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from measurementproject where pname = #{mName,jdbcType=VARCHAR}  ORDER BY id DESC limit #{pageNum} ,#{pageSize};
+  </select>
+  
+  <select id="selectByNameCount" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from measurementproject where pname = #{mName,jdbcType=VARCHAR}  ORDER BY id DESC
+  </select>
+  
+  
+  
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from measurementproject
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.xq.Railway.model.measurementproject" >
+    insert into measurementproject (id, tid, lid, 
+      pname, ptime, warningstatistics, 
+      datasources, isdelete)
+    values (#{id,jdbcType=VARCHAR}, #{tid,jdbcType=VARCHAR}, #{lid,jdbcType=VARCHAR}, 
+      #{pname,jdbcType=VARCHAR}, #{ptime,jdbcType=VARCHAR}, #{warningstatistics,jdbcType=VARCHAR}, 
+      #{datasources,jdbcType=VARCHAR}, #{isdelete,jdbcType=VARCHAR})
+  </insert>
+  
+  <!-- 查询上条插入动作产生的id -->
+	<select id="selectLastId" resultType="int">
+		SELECT LAST_INSERT_ID()
+	</select>
+  
+  <insert id="insertSelective" parameterType="com.xq.Railway.model.measurementproject" >
+    insert into measurementproject
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="tid != null" >
+        tid,
+      </if>
+      <if test="lid != null" >
+        lid,
+      </if>
+      <if test="aid != null" >
+        aid,
+      </if>
+      <if test="pname != null" >
+        pname,
+      </if>
+      <if test="ptime != null" >
+        ptime,
+      </if>
+      <if test="warningstatistics != null" >
+        warningstatistics,
+      </if>
+      <if test="datasources != null" >
+        datasources,
+      </if>
+      <if test="distance != null" >
+        distance,
+      </if>
+      <if test="lAltitude != null" >
+        lAltitude,
+      </if>
+      <if test="rAltitude != null" >
+        rAltitude,
+      </if>
+      <if test="isdelete != null" >
+        isdelete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="tid != null" >
+        #{tid,jdbcType=VARCHAR},
+      </if>
+      <if test="lid != null" >
+        #{lid,jdbcType=VARCHAR},
+      </if>
+      <if test="aid != null" >
+        #{aid,jdbcType=VARCHAR},
+      </if>
+      <if test="pname != null" >
+        #{pname,jdbcType=VARCHAR},
+      </if>
+      <if test="ptime != null" >
+        #{ptime,jdbcType=VARCHAR},
+      </if>
+      <if test="warningstatistics != null" >
+        #{warningstatistics,jdbcType=VARCHAR},
+      </if>
+      <if test="datasources != null" >
+        #{datasources,jdbcType=VARCHAR},
+      </if>
+      <if test="distance != null" >
+        #{distance,jdbcType=VARCHAR},
+      </if>
+      <if test="lAltitude != null" >
+        #{lAltitude,jdbcType=VARCHAR},
+      </if>
+      <if test="rAltitude != null" >
+        #{rAltitude,jdbcType=VARCHAR},
+      </if>
+      
+      <if test="isdelete != null" >
+        #{isdelete,jdbcType=VARCHAR},
+      </if>
+    </trim>
+   
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER">
+	      	SELECT LAST_INSERT_ID()
+	</selectKey>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xq.Railway.model.measurementproject" >
+    update measurementproject
+    <set >
+      <if test="tid != null" >
+        tid = #{tid,jdbcType=VARCHAR},
+      </if>
+      <if test="lid != null" >
+        lid = #{lid,jdbcType=VARCHAR},
+      </if>
+      <if test="aid != null" >
+        aid = #{aid,jdbcType=VARCHAR},
+      </if>
+      <if test="pname != null" >
+        pname = #{pname,jdbcType=VARCHAR},
+      </if>
+      <if test="ptime != null" >
+        ptime = #{ptime,jdbcType=VARCHAR},
+      </if>
+      <if test="warningstatistics != null" >
+        warningstatistics = #{warningstatistics,jdbcType=VARCHAR},
+      </if>
+      <if test="datasources != null" >
+        datasources = #{datasources,jdbcType=VARCHAR},
+      </if>
+      <if test="distance != null" >
+        distance= #{distance,jdbcType=VARCHAR},
+      </if>
+      <if test="lAltitude != null" >
+        lAltitude= #{lAltitude,jdbcType=VARCHAR},
+      </if>
+      <if test="rAltitude != null" >
+        rAltitude= #{rAltitude,jdbcType=VARCHAR},
+      </if>
+      <if test="isdelete != null" >
+        isdelete = #{isdelete,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xq.Railway.model.measurementproject" >
+    update measurementproject
+    set tid = #{tid,jdbcType=VARCHAR},
+      lid = #{lid,jdbcType=VARCHAR},
+      pname = #{pname,jdbcType=VARCHAR},
+      ptime = #{ptime,jdbcType=VARCHAR},
+      warningstatistics = #{warningstatistics,jdbcType=VARCHAR},
+      datasources = #{datasources,jdbcType=VARCHAR},
+      distance = #{distance,jdbcType=VARCHAR},
+      lAltitude = #{lAltitude,jdbcType=VARCHAR},
+      rAltitude = #{rAltitude,jdbcType=VARCHAR},
+      isdelete = #{isdelete,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

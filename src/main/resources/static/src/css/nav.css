@@ -1,0 +1,72 @@
+.center .left-nav {
+    /* border: 1px solid red; */
+    width: 270px;
+}
+.center .left-nav ul.wrap {
+    padding-left: 20px;
+    box-sizing: border-box;
+}
+.center .left-nav li {
+    margin: 5px 0;
+    padding: 5px 0px 5px 20px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 200px;
+}
+.center .left-nav li.active {
+    background-color: rgb(49, 128, 255);
+}
+.center .left-nav p {
+    margin-left: 5px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.icon-shouye {
+    vertical-align: middle;
+    background-image: url('../images/shouye.png');
+}
+.icon-project {
+    vertical-align: middle;
+    background-image: url('../images/celiangxiangmu.png');
+}
+.icon-dangan {
+    vertical-align: middle;
+    background-image: url('../images/celiangdangan.png');
+}
+.icon-biaozun {
+    vertical-align: middle;
+    background-image: url('../images/celiangbiaozhun.png');
+}
+.icon-tongji {
+    vertical-align: middle;
+    background-image: url('../images/celiangtongji.png');
+}
+.icon-guanli {
+    vertical-align: middle;
+    background-image: url('../images/xitongguanli.png');
+}
+.icon-title {
+    float: right;
+    margin-top: 5px;
+    vertical-align: middle;
+    background-image: url('../images/title-V.png');
+    transform:rotate(-90deg);
+    width: 15px;
+    height: 15px;
+}
+.icon-title.active {
+    transform:rotate(0deg);
+}
+.icon-shouye {
+    vertical-align: middle;
+    background-image: url('../images/shouye.png');
+}
+
+
+.center .left-nav .wrap .child-wrap {
+    padding-left: 25px;
+    box-sizing: border-box;
+    /* border: 1px solid red; */
+}

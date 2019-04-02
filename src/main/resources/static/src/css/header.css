@@ -1,0 +1,53 @@
+.header div {
+    display: inline-block;
+}
+.header i {
+    position: absolute;
+    left: 0;
+    top: 22px;
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    /* border: 1px solid red; */
+}
+.header p {
+    margin-left: 40px;
+    display: inline-block;
+    line-height: 80px;
+}
+.header .right {
+    float: right;
+}
+.header .logo-wrap,
+.header .user,
+.header .out {
+    position: relative;
+}
+.header .out::after {
+    display: block;
+    content: "";
+    width: 1px;
+    height: 25px;
+    background: rgba(255,255,255,.5);
+    position: absolute;
+    left: -50px;
+    top: 28px;
+}
+.header .user {
+    margin-right: 100px;
+}
+.icon-logo {
+    background-image: url('../images/logo.png');
+    background-size: contain;
+}
+.icon-user {
+    background-image: url('../images/zhanghuzhongxin.png');
+    background-size: contain;
+}
+.icon-out {
+    background-image: url('../images/tuichudenglu.png');
+    background-size: contain;
+}
+.header .user {
+    display: none;
+}

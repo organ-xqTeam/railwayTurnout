@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>用户登陆</title>
+    <link rel="stylesheet" href="./src/css/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="./src/css/main.css">
+    <style>
+        body {
+            background-image: url('./src/img/bg3.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .user-name-input,
+        .user-password-inp {
+            position: relative;
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px 12px;
+            border: none;
+        }
+        .login-ok {
+            display: block;
+            width: 80%;
+            margin: 0 auto;
+            background: #3B99FB;
+            color: #fff;
+            border: none;
+            padding: 11px 0;
+            border-radius: 5px;
+        }
+        .user-name-input::before {
+            content: '用户';
+            display: block;
+            width: 50px;
+            height: 30px;
+            border: 1px solid red;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .footer {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            font-size: 12px;
+            bottom: 25px;
+        }
+        .footer-con {
+            display: flex;
+            justify-content: left;
+            white-space: nowrap;
+            margin: 0 auto;
+            line-height: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container text-center" style="margin-top:40%">
+        <img src="./src/img/logo.png" alt="">
+        <div>欢迎登陆</div>
+    </div>
+
+
+    <form class="login-wrapper">
+        <div class="form-group">
+            <input type="input" class="form-control user-name-input" id="exampleInputEmail1" placeholder="请输入用户名">
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control user-password-inp" id="exampleInputPassword1" placeholder="请输入密码">
+        </div>
+        <button type="submit" class="login-ok">确定</button>
+        <!-- <button type="submit" class="btn btn-default login-ret">返回</button> -->
+    </form>
+
+    <div class="footer">
+        <div class="footer-con">
+            <div class="left">
+                开发单位：
+            </div>
+            <div class="right">
+                <p>中体第五勘察设计院集团有限公司 </p>
+                <p>中体三局集团有限公司</p>
+            </div>
+        </div>
+        <p>Copyright @ 2018 SINOMIS. ALL Rights Reserved</p>
+    </div>
+
+
+
+    <script src="./src/js/jquery.js"></script>
+    <script src="./src/css/bootstrap/js/bootstrap.min.js"></script>
+    <script>
+        $('.login-ok').on('click', function (e) {
+            e.preventDefault();
+            console.log($("#exampleInputEmail1").val())
+            console.log($("#exampleInputPassword1").val())
+            myCheck()
+        })
+        $('.login-ret').on('click', function (e) {
+            e.preventDefault();
+            console.log($("#exampleInputPassword1").val())
+            window.location.href = './index.html'
+        })
+
+        var Global = (function () {
+            var host = "http://120.92.10.2:81/railwayTurnout/";
+            var url = "http://120.92.10.2:81/railwayTurnout/";
+            return {
+                host: host,
+                url: url
+            }
+        })()
+        function myCheck() {
+            // 验证一下
+            // 用户名
+            if ($("#exampleInputEmail1").val().trim() == "") {
+                alert("请输入用户名")
+                return
+            }
+            // 密码
+            if ($("#exampleInputPassword1").val().trim() == "") {
+                alert("请输入密码")
+                return
+            }
+            // 验证一下 end
+            $.ajax({
+                type: "post",
+                url: Global.host + "administrator/adminlogin",
+                data: {
+                    ausername: $("#exampleInputEmail1").val(),
+                    apwd: $("#exampleInputPassword1").val(),
+                },
+                success: function (obj) {
+                    console.log(obj)
+                    if (obj.stats == 'fail') {
+                        alert("账号密码错误")
+                    } else if (obj.stats == 'success') {
+                        // 超级管理员
+                        if (obj.message == '1') {
+                            console.log("超级管理员******登陆成功")
+                            $('.login-btn-w').css('display', 'none')
+                            window.location.href = './index.html'
+                            // 普通用户
+                        } else if (obj.message == '2') {
+                            console.log("普通用户******登陆成功")
+                            $('.login-btn-w').css('display', 'none')
+                            window.location.href = './index.html'
+                        }
+                    }
+                    localStorage.setItem('line', obj.obj.line);
+                    localStorage.setItem('site', obj.obj.site);
+                    localStorage.setItem('aid', obj.obj.aid);
+                    localStorage.setItem('user', obj.message);
+                    setCookie('user', obj.message)
+                }
+            });
+        }
+
+
+
+
+
+
+
+
+
+
+        //设置cookie
+        function setCookie(cname, cvalue, exdays) {
+            var d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            var expires = "expires=" + d.toUTCString();
+            document.cookie = cname + "=" + cvalue + "; " + expires + "; path=/"; //path=/是根路径
+        }
+        //获取cookie
+        function getCookie(cname) {
+            var name = cname + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') c = c.substring(1);
+                if (c.indexOf(name) != -1) return c.substring(name.length, c.length);
+            }
+            return "";
+        }
+        //清除cookie
+        function clearCookie(name) {
+            setCookie(name, "", -1);
+        }
+    </script>
+</body>
+
+</html>

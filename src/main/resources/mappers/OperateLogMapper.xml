@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!--日志 -->
+<mapper namespace="com.xq.Railway.dao.OperateLogMapper">
+
+	<resultMap id="BaseResultMap" type="com.xq.Railway.model.Syslog" >
+    <id column="optId" property="optId" jdbcType="VARCHAR" />
+    <result column="loginId" property="loginId" jdbcType="VARCHAR" />
+    <result column="loginName" property="loginName" jdbcType="VARCHAR" />
+    <result column="ipAddress" property="ipAddress" jdbcType="VARCHAR" />
+    <result column="methodName" property="methodName" jdbcType="VARCHAR" />
+    <result column="methodRemark" property="methodRemark" jdbcType="VARCHAR" />
+    <result column="operatingcontent" property="operatingcontent" jdbcType="VARCHAR" />
+    <result column="optDate" property="optDate" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    optId, loginId, loginName, ipAddress, methodName, methodRemark, operatingcontent, 
+    optDate
+  </sql>
+  
+  <insert id="saveSysLog" parameterType="com.xq.Railway.model.Syslog" >
+    insert into Syslog (optId, loginId, loginName, 
+      ipAddress, methodName, methodRemark, 
+      operatingcontent, optDate)
+    values (#{optId,jdbcType=VARCHAR}, #{loginId,jdbcType=VARCHAR}, #{loginName,jdbcType=VARCHAR}, 
+      #{ipAddress,jdbcType=VARCHAR}, #{methodName,jdbcType=VARCHAR}, #{methodRemark,jdbcType=VARCHAR}, 
+      #{operatingcontent,jdbcType=VARCHAR}, #{optDate,jdbcType=VARCHAR})
+  </insert>
+  
+  <select id="selectAll" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from Syslog order by optId DESC
+    LIMIT #{pageNum} ,#{pageSize}
+  </select>
+  
+  <select id="selectAlls" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from Syslog 
+  </select>
+ 
+  
+
+</mapper>

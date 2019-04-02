@@ -1,0 +1,113 @@
+.main .content {
+    width: 1620px;
+    background: #fff;
+    color: #222;
+    height: 650px;
+    border-radius: 10px;
+    margin-top: 10px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.main .content h4 {
+    line-height: 40px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+.main .content div {
+    margin: 15px 0;
+    /* border: 1px solid red; */
+}
+.main .content div p {
+    margin-left: 100px;
+    display: inline-block;
+    /* border: 1px solid red; */
+    width: 100px;
+    text-align: right;
+}
+.main .content div select {
+    width: 80%;
+    padding: 10px;
+    box-sizing: content-box;
+    border-radius: 2px;
+    border: 1px solid rgba(0,0,0,0.3);
+    margin-left: 10px;    
+}
+.main .content div input {
+    width: 80%;
+    padding: 10px;
+    border-radius: 2px;
+    border: 1px solid rgba(0,0,0,0.3);
+    margin-left: 10px;
+}
+.main .content div textarea {
+    display: inline-block;
+    width: 80%;
+    height: 100px;
+    padding: 10px;
+    border-radius: 2px;
+    border: 1px solid rgba(0,0,0,0.3);
+    margin-left: 10px;
+}
+
+
+
+
+.main .content .ctrl-wrap {
+    float: right;
+    margin-right: 20px;
+    /* border: 1px solid red; */
+}
+.main .content .ctrl-wrap span {
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.main .content .ctrl-wrap span:first-child {
+    background: rgb(51, 125, 253);
+    color: #fff;
+}
+.main .content .ctrl-wrap span:last-child {
+    background: none;
+    border: 1px solid rgb(201, 201, 201);
+}
+
+
+
+
+
+
+@media screen and (min-width:1680px) and (max-width:1900px){
+    .main .content {
+        width: 1400px;
+    }
+    .main .content div p {
+        width: 70px;
+        margin-left: 60px;
+    }
+}
+@media screen and (min-width:1440px) and (max-width:1675px){
+    .main .content {
+        width: 1150px;
+    }
+    .main .content div p {
+        width: 70px;
+        margin-left: 40px;
+    }
+}
+@media screen and (min-width:1280px) and (max-width:1435px){
+    .main .content {
+        width: 1000px;
+    }
+    .main .content div p {
+        width: 70px;
+        margin-left: 30px;
+    }
+}
+@media screen and (min-width:900px) and (max-width:1275px){
+    .main .content {
+        width: 625px;
+    }
+    .main .content div p {
+        width: 70px;
+        margin-left: 10px;
+    }
+}

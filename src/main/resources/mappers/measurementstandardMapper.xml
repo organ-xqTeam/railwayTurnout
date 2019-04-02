@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xq.Railway.dao.measurementstandardMapper" >
+  <resultMap id="BaseResultMap" type="com.xq.Railway.model.measurementstandard" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="measurementitem" property="measurementitem" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="VARCHAR" />
+    <result column="ranges" property="ranges" jdbcType="VARCHAR" />
+    <result column="standard" property="standard" jdbcType="VARCHAR" />
+    <result column="range1" property="range1" jdbcType="VARCHAR" />
+    <result column="standard1" property="standard1" jdbcType="VARCHAR" />
+    <result column="isdelete" property="isdelete" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, measurementitem,state,ranges,standard,range1,standard1, isdelete
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+     <include refid="Base_Column_List" /> 
+    <!--  measurementitem,state,range,standard,range1,standard1, isdelete -->
+    from measurementstandard
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+     <include refid="Base_Column_List" /> 
+    <!--  measurementitem,state,range,standard,range1,standard1, isdelete -->
+    from measurementstandard where state != 1 limit #{pageNum} ,#{pageSize};
+  </select>
+  <select id="selectAllCount" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+     <include refid="Base_Column_List" /> 
+    <!--  measurementitem,state,range,standard,range1,standard1, isdelete -->
+    from measurementstandard where state != 1
+  </select>
+  <select id="selectAll1" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+     <include refid="Base_Column_List" /> 
+    <!--  measurementitem,state,range,standard,range1,standard1, isdelete -->
+    from measurementstandard  limit #{pageNum} ,#{pageSize};
+  </select>
+  <select id="selectAllCount1" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+     <include refid="Base_Column_List" /> 
+    <!--  measurementitem,state,range,standard,range1,standard1, isdelete -->
+    from measurementstandard 
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from measurementstandard
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.xq.Railway.model.measurementstandard" >
+    insert into measurementstandard (id, measurementitem, standard, 
+      isdelete)
+    values (#{id,jdbcType=VARCHAR}, #{measurementitem,jdbcType=VARCHAR}, #{standard,jdbcType=VARCHAR}, 
+      #{isdelete,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xq.Railway.model.measurementstandard" >
+    insert into measurementstandard
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="measurementitem != null" >
+        measurementitem,
+      </if>
+       <if test="state != null" >
+        state,
+      </if>
+      <if test="standard != null" >
+        standard,
+      </if>
+       <if test="standard1 != null" >
+        standard1,
+      </if>
+      <if test="isdelete != null" >
+        isdelete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="measurementitem != null" >
+        #{measurementitem,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="standard != null" >
+        #{standard,jdbcType=VARCHAR},
+      </if>
+      <if test="standard1 != null" >
+        #{standard1,jdbcType=VARCHAR},
+      </if>
+      
+      <if test="isdelete != null" >
+        #{isdelete,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xq.Railway.model.measurementstandard" >
+    update measurementstandard
+    <set >
+      <if test="measurementitem != null" >
+        measurementitem = #{measurementitem,jdbcType=VARCHAR},
+      </if>
+      <if test="standard != null" >
+        standard = #{standard,jdbcType=VARCHAR},
+      </if>
+      <if test="standard1 != null" >
+        standard1 = #{standard1,jdbcType=VARCHAR},
+      </if>
+      <if test="isdelete != null" >
+        isdelete = #{isdelete,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xq.Railway.model.measurementstandard" >
+    update measurementstandard
+    set measurementitem = #{measurementitem,jdbcType=VARCHAR},
+      standard = #{standard,jdbcType=VARCHAR},
+      isdelete = #{isdelete,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

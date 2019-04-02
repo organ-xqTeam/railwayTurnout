@@ -1,0 +1,333 @@
+.main .main-header {
+    width: 100%;
+    /* border: 1px solid #fff; */
+    height: 50px;
+}
+.main .main-header p {
+    display: inline-block;
+}
+.main .main-header select {
+    background: none;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    -ms-border-radius: 5px;
+    width: 150px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+/* table-wrap */
+.main .table-wrap {
+    position: absolute;
+    color: #222;
+    padding: 20px;
+    box-sizing: border-box;
+    display: inline-block;
+    background-color: #fff;
+    width: 1620px;
+    border-radius: 10px;
+    -ms-border-radius: 10px;
+    height: 700px;
+}
+.main .table-wrap table.gridtable {
+    margin-top: 10px;
+    font-size:12px;
+    width: 100%;
+    text-align: left;
+    border: 1px solid rgb(235, 236, 240);
+    -ms-border: 1px solid rgb(235, 236, 240);
+}
+.main .table-wrap table.gridtable th {
+	border-width: 1px;
+	-ms-border-width: 1px;
+    padding: 8px;
+    background-color: rgb(235, 236, 240);
+}
+.main .table-wrap table.gridtable tr {
+    height: 50px;
+}
+.main .table-wrap table.gridtable tr td {
+	border-width: 1px;
+	-ms-border-width: 1px;
+    padding: 8px;
+    border-bottom: 1px solid rgb(235, 236, 240);
+    -ms-border-bottom: 1px solid rgb(235, 236, 240);
+}
+.main .table-wrap table.gridtable tr:last-child td {
+    border: none;
+    -ms-border: none;
+}
+.main .table-wrap .see-btn ,
+.main .table-wrap .download-btn,
+.main .table-wrap .printing-btn {
+    background: rgb(49, 128, 255);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    -ms-border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+.main .table-wrap .zxf_pagediv {
+    margin: 0 auto;
+    /* margin-top: 20px; */
+}
+
+/* table-wrap END */
+
+
+
+
+/* 弹窗 */
+.alert-wrapper {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+}
+.alert-wrapper .add-alert {
+    padding: 20px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    /* height: 400px; */
+    background: #fff;
+    border-radius: 10px;
+    -ms-border-radius: 10px;
+    color: #222;
+}
+.alert-wrapper .add-alert .header  {
+    position: relative;
+    width: 100%;
+    /* border: 1px solid red; */
+    padding: 0;
+}
+.alert-wrapper .add-alert .header h4 {
+    display: inline-block;
+    vertical-align: middle;
+}
+.alert-wrapper .add-alert .header .close {
+    display: inline-block;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    /* border: 1px solid red; */
+    cursor: pointer;
+    float: right;
+    vertical-align: middle;
+}
+.alert-wrapper .add-alert .item-inp {
+    text-align: center;
+    margin-bottom: 20px;
+    /* border: 1px solid red; */
+}
+.alert-wrapper .add-alert .item-inp input {
+    width: 220px;
+    padding: 10px;
+    border-radius: 4px;
+    -ms-border-radius: 4px;
+    border: 1px solid rgba(0,0,0,.3);
+    -ms-border: 1px solid rgba(0,0,0,.3);
+}
+.alert-wrapper .add-alert .item-inp .add-shuju {
+    margin-right: 10px;
+    border: none;
+    -ms-border: none;
+}
+.alert-wrapper .add-alert .ctrl-wrap {
+    float: right;
+    margin-top: 50px;
+    margin-bottom: 10px;
+}
+.alert-wrapper .add-alert .ctrl-wrap span {
+    padding: 10px 15px;
+    border-radius: 5px;
+    -ms-border-radius: 5px;
+    cursor: pointer;
+}
+.alert-wrapper .add-alert .ctrl-wrap span:first-child {
+    background: rgb(51, 125, 253);
+    color: #fff;
+}
+.alert-wrapper .add-alert .ctrl-wrap span:last-child {
+    background: none;
+    border: 1px solid rgb(201, 201, 201);
+    -ms-border: 1px solid rgb(201, 201, 201);
+}
+/* 弹窗 END */
+
+
+/* table-wrap */
+.alert-see .header  {
+    position: relative;
+    width: 100%;
+    /* border: 1px solid red; */
+    padding: 0;
+    height: 30px;
+}
+.alert-see .header h4 {
+    display: inline-block;
+    vertical-align: middle;
+}
+.alert-see .header .close {
+    display: inline-block;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    /* border: 1px solid red; */
+    cursor: pointer;
+    float: right;
+    vertical-align: middle;
+}
+.alert-see {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    border-radius: 10px;
+    -ms-border-radius: 10px;
+    display: inline-block;
+    color: #222;
+    width: 300px;
+    background: #fff;
+}
+.alert-see {
+    position: absolute;
+    color: #222;
+    padding: 20px;
+    box-sizing: border-box;
+    display: inline-block;
+    width: 700px;
+    border-radius: 10px;
+    -ms-border-radius: 10px;
+}
+.alert-see table.gridtable {
+    margin-top: 10px;
+    font-size:12px;
+    width: 100%;
+    text-align: left;
+    border: 1px solid rgb(235, 236, 240);
+    -ms-border: 1px solid rgb(235, 236, 240);
+    background: #fff;
+}
+.alert-see table.gridtable th {
+	border-width: 1px;
+	-ms-border-width: 1px;
+    padding: 8px;
+    background-color: rgb(235, 236, 240);
+}
+.alert-see table.gridtable tr {
+    height: 50px;
+}
+.alert-see table.gridtable tr td {
+	border-width: 1px;
+	-ms-border-width: 1px;
+    padding: 8px;
+    border-bottom: 1px solid rgb(235, 236, 240);
+    -ms-border-bottom: 1px solid rgb(235, 236, 240);
+}
+.alert-see table.gridtable tr:last-child td {
+    border: none;
+    -ms-border: none;
+}
+.alert-see .hege {
+    background: rgb(49, 128, 255);
+    color: #fff;
+    border-radius: 5px;
+    -ms-border-radius: 5px;
+    cursor: pointer;
+    width: 75px;
+    text-align: center;
+    line-height: 40px;
+    display: inline-block;
+}
+.alert-see .hege-no {
+    background: rgb(237, 28, 36);
+    color: #fff;
+    border-radius: 5px;
+    -ms-border-radius: 5px;
+    cursor: pointer;
+    width: 75px;
+    text-align: center;
+    line-height: 40px;
+    display: inline-block;
+}
+.alert-see table tbody {
+    display: block;
+    height: 150px;
+    overflow-y: scroll;
+}
+
+.alert-see table thead {
+   display: table;
+}
+.alert-see tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+.alert-see table thead {
+    width: calc( 100%)
+}
+.alert-see table thead th {
+    background: #ccc;
+}
+
+/* table-wrap END */
+
+
+.pagination {
+    margin: 10px auto;
+    text-align: center;
+}
+#xianlu-choose option,
+#zhandian-choose option,
+#project-choose option {
+    background: transparent;
+    color: #222;
+}
+
+#pagination {
+    text-align: center;
+    margin: 10px auto;
+    margin-top: 20px;
+}
+
+@media screen and (min-width:1680px) and (max-width:1900px){
+    .main .table-wrap {
+        width: 1400px;
+    }
+}
+@media screen and (min-width:1440px) and (max-width:1675px){
+    .main .table-wrap {
+        width: 1150px;
+    }
+}
+@media screen and (min-width:1280px) and (max-width:1435px){
+    .main .table-wrap {
+        width: 1000px;
+    }
+}
+@media screen and (min-width:900px) and (max-width:1275px){
+    .main .table-wrap {
+        width: 625px;
+    }
+}
+
+
+/**
+ * 打印表格样式
+ */
+
+.alert-table-wrap table{
+    border:1px solid #EBECF0;
+    border-collapse: collapse
+}
+.alert-table-wrap table td{
+    border:1px solid #EBECF0;
+}

@@ -1,0 +1,158 @@
+<!-- 线路与站点 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>高速铁路道岔参数管理系统</title>
+    <link rel="stylesheet" href="../src/css/main.css">
+    <link rel="stylesheet" href="../src/css/header.css">
+    <link rel="stylesheet" href="../src/css/nav.css">
+    <link rel="stylesheet" href="../src/css/pagination.css">
+    <link rel="stylesheet" href="../src/css/main-site.css">
+    <link rel="stylesheet" href="../src/css/page.css">
+</head>
+<body>
+    <div id="wrapper">
+        <!-- header -->
+        <div class="header">
+            <div class="left logo-wrap">
+                <i class="icon-logo"></i>
+                <p>高速铁路道岔参数管理系统</p>
+            </div>
+            <div class="right">
+                <div class="user">
+                    <i class="icon-user"></i>
+                    <p>账户中心</p>
+                </div>
+                <div id="dropout" class="out">
+                    <i class="icon-out"></i>
+                    <p>退出登陆</p>
+                </div>
+            </div>
+        </div>
+        <!-- header END -->
+        <!-- center -->
+        <div class="center">
+            <div class="left-nav">
+                <ul class="wrap">
+                    <li id="shouye"><i class="icon icon-shouye"></i><p>首页</p></li>
+                    <li id="project"><i class="icon icon-project"></i><p>测量项目</p></li>
+                    <li id="archives"><i class="icon icon-dangan"></i><p>测量档案</p></li>
+                    <li id="standard"><i class="icon icon-biaozun"></i><p>测量标准</p></li>
+                    <li id="count"><i class="icon icon-tongji"></i><p>测量统计</p></li>
+                    <ul>
+                        <li class="title"><i class="icon icon-guanli"></i><p>系统管理</p><i class="icon icon-title"></i></li>
+                        <ul class="child-wrap">
+                            <li id="line" class="active"><p>线路</p></li>
+                            <li id="site"><p>站点</p></li>
+                            <!-- <li id="jianche"><p>检测数据</p></li> -->
+                            <li id="setup"><p>站点设置</p></li>
+                            <li id="manage"><p>人员管理</p></li>
+                            <li id="log"><p>系统日记</p></li>
+                        </ul>
+                    </ul>
+                </ul>
+            </div> 
+            <!-- main -->
+            <div class="main">
+                <div class="header">
+                    <div class="add-line-btn">+ 添加线路</div>
+                    <!-- <div class="add-site-btn">+ 添加站点</div> -->
+                </div>
+                
+                <div class="table-wrap">
+                    <!-- <div class="line-wrap">
+                        <h4>线路</h4>
+                        <div class="line-con"></div>
+                    </div> -->
+                    <div class="si-wrap">
+                        <h4>线路</h4>
+                        <div class="table-con"></div>
+                        <!-- <div class="zxf_pagediv"></div> -->
+                        <div id="pagination" class="pagination"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- main END -->
+        </div>
+        <!-- center END -->
+    </div>
+    <div class="alert-wrapper" style="display:none">
+        <div class="add-line" style="display:none">
+            <div class="header">
+                <h4>添加线路</h4>
+                <b class="close">
+                    <img src="../src/images/close.png" alt="">
+                </b>
+            </div>
+            <div class="item-inp">
+                路线： 
+                <input type="text" class="add-line-con">
+            </div>
+            <!-- <div class="item-inp">
+                路线站点： 
+                <select name="" id="">
+                    <option value="">请选择</option>
+                </select>
+            </div> -->
+            <div class="ctrl-wrap">
+                <span class="ok">确认</span>
+                <span class="close">关闭</span>
+            </div>
+        </div>
+
+        <div class="add-site" style="display:none">
+            <div class="header">
+                <h4>添加站点</h4>
+                <b class="close">
+                    <img src="../src/images/close.png" alt="">
+                </b>
+            </div>
+            <div class="item-inp">
+                路线： 
+                <select name="" id="zhandian">
+                    <option value="">请选择</option>
+                </select>
+            </div>
+            <div class="item-inp">
+                站点： 
+                <input type="text" class="sitename">
+            </div>
+            <div class="ctrl-wrap">
+                <span class="ok">确认</span>
+                <span class="close">关闭</span>
+            </div>
+        </div>
+
+        <div class="edit-wrap" style="display:none">
+            <div class="header">
+                <h4>修改</h4>
+                <b class="close">
+                    <img src="../src/images/close.png" alt="">
+                </b>
+            </div>
+            <div>
+                <p>线路:</p>
+                <input type="text" class="line">
+            </div>
+            <!-- <div>
+                <p>站点:</p>
+                <input type="text" class="zhandian">
+            </div> -->
+            <div class="ctrl-wrap">
+                <span class="edit-ok">确认</span>
+                <span class="close">关闭</span>
+            </div>
+        </div> 
+    </div>
+
+    <script src="../src/js/jquery.js"></script>
+    <script src="../src/js/page.js"></script>
+    <script src="../src/js/main.js"></script>
+    <script src="../src/js/Global.js"></script>
+    <script src="../src/js/pagination.js"></script>
+    <script src="../src/js/measure-line.js"></script>
+</body>
+</html>

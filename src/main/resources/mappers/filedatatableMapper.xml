@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xq.Railway.dao.filedatatableMapper" >
+  <resultMap id="BaseResultMap" type="com.xq.Railway.model.filedatatable" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="origin_name" property="originName" jdbcType="VARCHAR" />
+    <result column="filepath" property="filepath" jdbcType="VARCHAR" />
+    <result column="thumb" property="thumb" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="createtime" property="createtime" jdbcType="VARCHAR" />
+    <result column="Abbreviated_name" property="abbreviatedName" jdbcType="VARCHAR" />
+    <result column="createNameId" property="createnameid" jdbcType="VARCHAR" />
+    <result column="Remarks" property="remarks" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, origin_name, filepath, thumb, type, createtime, Abbreviated_name, createNameId, 
+    Remarks
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from filedatatable
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="getfileByid" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from filedatatable
+    where Abbreviated_name = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from filedatatable
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insertSelectives" parameterType="java.util.List">
+		insert into filedatatable (id, origin_name, filepath, 
+      thumb, type, createtime, 
+      Abbreviated_name, createNameId, Remarks)
+    values
+		<foreach collection="list" item="item" index="index" separator="," >  
+			(#{item.id,jdbcType=INTEGER}, #{item.originName,jdbcType=VARCHAR}, #{item.filepath,jdbcType=VARCHAR}, 
+      #{item.thumb,jdbcType=VARCHAR}, #{item.type,jdbcType=VARCHAR}, #{item.createtime,jdbcType=VARCHAR}, 
+      #{item.abbreviatedName,jdbcType=VARCHAR}, #{item.createnameid,jdbcType=VARCHAR}, #{item.remarks,jdbcType=VARCHAR}
+      )
+		</foreach>
+	</insert>
+  
+  
+  
+  
+  <insert id="insert" parameterType="com.xq.Railway.model.filedatatable" >
+    insert into filedatatable (id, origin_name, filepath, 
+      thumb, type, createtime, 
+      Abbreviated_name, createNameId, Remarks
+      )
+    values (#{id,jdbcType=INTEGER}, #{originName,jdbcType=VARCHAR}, #{filepath,jdbcType=VARCHAR}, 
+      #{thumb,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR}, 
+      #{abbreviatedName,jdbcType=VARCHAR}, #{createnameid,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xq.Railway.model.filedatatable" >
+    insert into filedatatable
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="originName != null" >
+        origin_name,
+      </if>
+      <if test="filepath != null" >
+        filepath,
+      </if>
+      <if test="thumb != null" >
+        thumb,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="abbreviatedName != null" >
+        Abbreviated_name,
+      </if>
+      <if test="createnameid != null" >
+        createNameId,
+      </if>
+      <if test="remarks != null" >
+        Remarks,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="originName != null" >
+        #{originName,jdbcType=VARCHAR},
+      </if>
+      <if test="filepath != null" >
+        #{filepath,jdbcType=VARCHAR},
+      </if>
+      <if test="thumb != null" >
+        #{thumb,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="abbreviatedName != null" >
+        #{abbreviatedName,jdbcType=VARCHAR},
+      </if>
+      <if test="createnameid != null" >
+        #{createnameid,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xq.Railway.model.filedatatable" >
+    update filedatatable
+    <set >
+      <if test="originName != null" >
+        origin_name = #{originName,jdbcType=VARCHAR},
+      </if>
+      <if test="filepath != null" >
+        filepath = #{filepath,jdbcType=VARCHAR},
+      </if>
+      <if test="thumb != null" >
+        thumb = #{thumb,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="abbreviatedName != null" >
+        Abbreviated_name = #{abbreviatedName,jdbcType=VARCHAR},
+      </if>
+      <if test="createnameid != null" >
+        createNameId = #{createnameid,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        Remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xq.Railway.model.filedatatable" >
+    update filedatatable
+    set origin_name = #{originName,jdbcType=VARCHAR},
+      filepath = #{filepath,jdbcType=VARCHAR},
+      thumb = #{thumb,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=VARCHAR},
+      Abbreviated_name = #{abbreviatedName,jdbcType=VARCHAR},
+      createNameId = #{createnameid,jdbcType=VARCHAR},
+      Remarks = #{remarks,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

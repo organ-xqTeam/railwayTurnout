@@ -1,0 +1,461 @@
+.main .main-header {
+    width: 100%;
+    /* border: 1px solid #fff; */
+    height: 50px;
+}
+.main .main-header p {
+    display: inline-block;
+}
+.main .main-header select {
+    background: none;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    width: 150px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+/* project-wrap */
+.main .project-wrap {
+    /* border: 1px solid red; */
+}
+.main .project-wrap li.add-project {
+    text-align: center;
+    color: #222;
+    vertical-align: top;
+    background-color: #fff;
+    width: 250px;
+    height: 350px;
+    border-radius: 10px;
+    display: inline-block;
+    margin-left: 15px;
+    margin-top: 15px;
+}
+.main .project-wrap li.add-project div:first-child {
+    margin-top: 50px;
+}
+.main .project-wrap li.add-project div {
+    margin-bottom: 10px;
+}
+.main .project-wrap li.add-project i {
+    /* border: 1px solid red; */
+    width: 40px;
+    height: 40px;
+    margin-right: 20px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.main .project-wrap li.add-project i img {
+    width: 100%;
+    height: 100%;
+}
+.main .project-wrap li.add-project span {
+    display: inline-block;
+    vertical-align: middle;
+    font-weight: 600;
+}
+.main .project-wrap li.add-project .add-btn {
+    background: rgb(49, 128, 255);
+    color: #fff;
+    border: none;
+    width: 100px;
+    line-height: 35px;
+    border-radius: 20px;
+    margin-top: 40px;
+    cursor: pointer;
+}
+
+
+
+.main .project-wrap li.edit-project {
+    text-align: center;
+    color: #222;
+    vertical-align: top;
+    background-color: #fff;
+    width: 250px;
+    height: 350px;
+    border-radius: 10px;
+    display: inline-block;
+    margin-left: 15px;
+    margin-top: 15px;
+}
+.main .project-wrap li.edit-project div:first-child {
+    margin-top: 20px;
+}
+.main .project-wrap li.edit-project div {
+    margin-bottom: 10px;
+    /* border: 1px solid red; */
+    position: relative;
+    height: 40px;
+}
+.main .project-wrap li.edit-project i {
+    position: absolute;
+    left: 30px;
+    width: 40px;
+    height: 40px;
+    margin-right: 20px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.project-name em {
+    display: inline-block;
+    font-style: normal;
+}
+
+.main .project-wrap li.edit-project .edit-icon {
+    position: initial;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    /* border: 1px solid red !important; */
+    margin-left: 7px;
+    background-image: url('../images/edit.png');
+    background-size: contain;
+}
+
+.main .project-wrap li.edit-project i img {
+    width: 100%;
+    height: 100%;
+}
+
+.main .project-wrap li.edit-project span {
+    position: absolute;
+    /* border: 1px solid red; */
+    left: 80px;
+    top: 8px;
+    width: 160px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-align: left;
+}
+
+.main .project-wrap li.edit-project .edit-btn {
+    background: rgb(49, 128, 255);
+    color: #fff;
+    border: none;
+    width: 100px;
+    line-height: 35px;
+    border-radius: 20px;
+    margin-top: 0px;
+    cursor: pointer;
+}
+
+
+
+
+
+.add-project-wrap {
+    display: inline-block;
+    border: 1px solid #222;
+    width: 90px;
+    cursor: pointer;
+}
+.add-project-file {
+    display: inline-block;
+    /* border: 1px solid red; */
+    width: 0px;
+}
+
+
+/* 弹窗 */
+.alert-wrapper {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+}
+.alert-wrapper .add-alert {
+    padding: 20px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    /* height: 400px; */
+    background: #fff;
+    border-radius: 10px;
+    color: #222;
+}
+.alert-wrapper .add-alert .header  {
+    position: relative;
+    width: 100%;
+    /* border: 1px solid red; */
+    padding: 0;
+}
+.alert-wrapper .add-alert .header h4 {
+    display: inline-block;
+    vertical-align: middle;
+}
+.alert-wrapper .add-alert .header .close {
+    display: inline-block;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    /* border: 1px solid red; */
+    cursor: pointer;
+    float: right;
+    vertical-align: middle;
+}
+.alert-wrapper .add-alert .item-inp {
+    text-align: center;
+    margin-bottom: 20px;
+    /* border: 1px solid red; */
+}
+.alert-wrapper .add-alert .item-inp input {
+    width: 220px;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid rgba(0,0,0,.3);
+}
+.alert-wrapper .add-alert .item-inp .add-shuju {
+    margin-right: 10px;
+    border: none;
+}
+.alert-wrapper .add-alert .ctrl-wrap {
+    float: right;
+    margin-top: 50px;
+    margin-bottom: 10px;
+}
+.alert-wrapper .add-alert .ctrl-wrap span {
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.alert-wrapper .add-alert .ctrl-wrap span:first-child {
+    background: rgb(51, 125, 253);
+    color: #fff;
+}
+.alert-wrapper .add-alert .ctrl-wrap span:last-child {
+    background: none;
+    border: 1px solid rgb(201, 201, 201);
+}
+
+
+
+
+.alert-wrapper .add-new {
+    padding: 20px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    /* height: 400px; */
+    background: #fff;
+    border-radius: 10px;
+    color: #222;
+}
+.alert-wrapper .add-new .header  {
+    position: relative;
+    width: 100%;
+    /* border: 1px solid red; */
+    padding: 0;
+}
+.alert-wrapper .add-new .header h4 {
+    display: inline-block;
+    vertical-align: middle;
+}
+.alert-wrapper .add-new .header .close {
+    display: inline-block;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    /* border: 1px solid red; */
+    cursor: pointer;
+    float: right;
+    vertical-align: middle;
+}
+.alert-wrapper .add-new .item-inp {
+    text-align: center;
+    margin-bottom: 20px;
+    /* border: 1px solid red; */
+}
+.alert-wrapper .add-new .item-inp input {
+    width: 220px;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid rgba(0,0,0,.3);
+}
+.alert-wrapper .add-new .item-inp .add-shuju {
+    margin-right: 10px;
+    border: none;
+}
+.alert-wrapper .add-new .ctrl-wrap {
+    float: right;
+    margin-top: 50px;
+    margin-bottom: 10px;
+}
+.alert-wrapper .add-new .ctrl-wrap span {
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.alert-wrapper .add-new .ctrl-wrap span:first-child {
+    background: rgb(51, 125, 253);
+    color: #fff;
+}
+.alert-wrapper .add-new .ctrl-wrap span:last-child {
+    background: none;
+    border: 1px solid rgb(201, 201, 201);
+}
+
+/* 弹窗 END */
+
+
+/* table-wrap */
+.alert-see .header  {
+    position: relative;
+    width: 100%;
+    /* border: 1px solid red; */
+    padding: 0;
+    height: 30px;
+}
+.alert-see .header h4 {
+    display: inline-block;
+    vertical-align: middle;
+}
+.alert-see .header .close {
+    display: inline-block;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    /* border: 1px solid red; */
+    cursor: pointer;
+    float: right;
+    vertical-align: middle;
+}
+.alert-see {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    border-radius: 10px;
+    display: inline-block;
+    color: #222;
+    width: 300px;
+    background: #fff;
+}
+.alert-see {
+    position: absolute;
+    color: #222;
+    padding: 20px;
+    box-sizing: border-box;
+    display: inline-block;
+    width: 800px;
+    border-radius: 10px;
+}
+.alert-see table.gridtable {
+    margin-top: 10px;
+    font-size:12px;
+    width: 100%;
+    text-align: left;
+    border: 1px solid rgb(235, 236, 240);
+    background: #fff;
+}
+.alert-see table.gridtable th {
+	border-width: 1px;
+    padding: 8px;
+    background-color: rgb(235, 236, 240);
+}
+.alert-see table.gridtable tr {
+    height: 50px;
+}
+.alert-see table.gridtable tr td {
+	border-width: 1px;
+    padding: 8px;
+    border-bottom: 1px solid rgb(235, 236, 240);
+}
+.alert-see table.gridtable tr:last-child td {
+    border: none;
+}
+.alert-see .hege {
+    background: rgb(49, 128, 255);
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 75px;
+    text-align: center;
+    line-height: 40px;
+    display: inline-block;
+}
+.alert-see .hege-no {
+    background: rgb(237, 28, 36);
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 75px;
+    text-align: center;
+    line-height: 40px;
+    display: inline-block;
+}
+.alert-see table tbody {
+    display: block;
+    height: 150px;
+    overflow-y: scroll;
+}
+
+.alert-see table thead {
+   display: table;
+}
+.alert-see tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+.alert-see table thead {
+    width: calc( 100%)
+}
+.alert-see table thead th {
+    background: #ccc;
+}
+
+/* table-wrap END */
+
+.pagination {
+    margin: 50px auto;
+    text-align: center;
+}
+#zhandian option {
+    background: transparent;
+    color: #222;
+}
+
+/* **** */
+
+.gridtable .btn span {
+    background: #666;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 65px;
+    text-align: center;
+    line-height: 36px;
+    display: inline-block;
+    border-bottom: 1px solid rgb(235, 236, 240);
+}
+.pic-wrap {
+    display: block;
+    margin: 0 auto;
+    overflow-x: scroll;
+    white-space: nowrap;
+}
+.pic-wrap li {
+    height: 100px;
+    width: 100px;
+    display: inline-block;
+    /* border: 1px solid #222; */
+    text-align: center;
+    overflow: hidden;
+}
+.pic-wrap li img {
+    max-width: 100px;
+    height: 100px;
+    margin: 0 auto;
+}
+
+
+
