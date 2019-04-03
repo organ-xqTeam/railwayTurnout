@@ -158,18 +158,18 @@ public class detectionresultController {
 		return ma;
 	}
 	@RequestMapping("/getexcle")
-	public void getexcle(HttpServletResponse response,String id) {//设置响应为下载
-		
-			
-		
+	public void getexcle(HttpServletResponse response,String id,String filename) {//设置响应为下载
+		if (filename == null || "".equals(filename)) {
+			filename = "export";
+		}
 		try {
 			response.setContentType("application/x-msdownload");
 			response.setHeader("Content-disposition",
-					"attachment; filename=" + new String("export.xls".getBytes("gb2312"), "iso8859-1"));
+					"attachment; filename=" + new String((filename+".xls").getBytes("gb2312"), "iso8859-1"));
 			//第一步创建workbook 
 			HSSFWorkbook wb = new HSSFWorkbook();
 			//第二步创建sheet 
-			HSSFSheet sheet = wb.createSheet("体育馆");
+			HSSFSheet sheet = wb.createSheet("测量标准");
 			//第三步创建行row:添加表头0行 
 			HSSFRow row = sheet.createRow(0);
 			HSSFCellStyle style = wb.createCellStyle();
