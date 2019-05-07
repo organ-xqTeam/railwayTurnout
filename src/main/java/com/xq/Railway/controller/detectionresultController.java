@@ -1,8 +1,18 @@
 package com.xq.Railway.controller;
 
+import java.awt.Graphics;
+import java.awt.GraphicsConfiguration;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+import java.awt.HeadlessException;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.Transparency;
+import java.awt.image.BufferedImage;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,9 +20,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
+import javax.imageio.ImageIO;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.ImageIcon;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
@@ -20,6 +32,7 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -45,6 +58,9 @@ public class detectionresultController {
 	
 	@Autowired
 	private ifiledatatableService ifs;
+	
+	@Value("${springurl.fileurl}")
+	private String url;
 	
 	/**
 	 * 新增 结果   添加上传文件
@@ -209,6 +225,40 @@ public class detectionresultController {
 		} catch (Exception e) {
 		}
 	}
+	@RequestMapping("/getApp/{filename}")
+	public void getApp(HttpServletResponse response, @PathVariable String filename) {// 设置响应为下载
+		try {
+//			String fileurl = "D:\\Users\\Desktop\\";
+			String fileurl = url;
+			ServletOutputStream out = response.getOutputStream();
+			File file = new File(fileurl + filename + ".apk");
+			System.out.println(file.exists());
+			if (!file.exists()) {
+				return;
+			}
+			response.setContentType("application/x-msdownload");
+			response.setHeader("Content-disposition",
+					"attachment; filename=" + new String(("道岔参数系统.apk").getBytes("gb2312"), "iso8859-1"));
+			System.out.println(file.getName());
+			FileInputStream fileInputStream = null;
+			try {
+				fileInputStream = new FileInputStream(file);
+			} catch (Exception e) {
+			}
+
+			if (fileInputStream != null) {
+				int filelen = fileInputStream.available();
+				byte a[] = new byte[filelen];
+				fileInputStream.read(a);
+				out.write(a);
+			}
+			fileInputStream.close();
+			out.close();
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	}
 	/**
 	 * 文件上传
 	 * @param files
@@ -262,16 +312,6 @@ public class detectionresultController {
 		return jsonObject;
 
 	}
-	
-	
-	/**
-	 * 
-	 * 获取所有图片id
-	 */
-	
-	
-	
-	
 	/***
 	 * 
 	 * 
@@ -310,6 +350,63 @@ public class detectionresultController {
 			e.printStackTrace();
 		} finally {
 		}
+	}
+	@RequestMapping(value = "/showImg/{fileName}", method = RequestMethod.GET)
+	public void showImg(HttpServletResponse res, @PathVariable String fileName) {
+		String downloadPath = url + fileName + ".jpg";
+		
+		File file = new File(downloadPath);
+		System.out.println(file.exists());
+		if (!file.exists()) {
+			return;
+		}
+		
+		res.setContentType("image/jpeg");
+//		res.setDateHeader("expries", -1);
+//		res.setHeader("Cache-Control", "no-cache");
+//		res.setHeader("Pragma", "no-cache");
+		BufferedImage buffImg;
+		
+		try {
+			buffImg = toBufferedImage(Toolkit.getDefaultToolkit().getImage(downloadPath));
+//			System.out.println(buffImg.getHeight());
+			ImageIO.write(buffImg, "jpg", res.getOutputStream());
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+	public BufferedImage toBufferedImage(Image image) {
+		if (image instanceof BufferedImage) {
+			return (BufferedImage) image;
+		}
+		// This code ensures that all the pixels in the image are loaded
+		image = new ImageIcon(image).getImage();
+		BufferedImage bimage = null;
+		GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+		try {
+			int transparency = Transparency.OPAQUE;
+			GraphicsDevice gs = ge.getDefaultScreenDevice();
+			GraphicsConfiguration gc = gs.getDefaultConfiguration();
+			bimage = gc.createCompatibleImage(image.getWidth(null), image.getHeight(null), transparency);
+		} catch (HeadlessException e) {
+			// The system does not have a screen
+		}
+		if (bimage == null) {
+			// Create a buffered image using the default color model
+			int type = BufferedImage.TYPE_INT_RGB;
+			bimage = new BufferedImage(image.getWidth(null), image.getHeight(null), type);
+		}
+		// Copy image to buffered image
+		Graphics g = bimage.createGraphics();
+		// Paint the image onto the buffered image
+		g.drawImage(image, 0, 0, null);
+		g.dispose();
+		return bimage;
 	}
 
 	
