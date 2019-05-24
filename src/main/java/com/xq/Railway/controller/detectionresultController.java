@@ -46,6 +46,9 @@ import com.xq.Railway.model.detectionresult;
 import com.xq.Railway.model.filedatatable;
 import com.xq.Railway.service.idetectionresultService;
 import com.xq.Railway.service.ifiledatatableService;
+import com.xq.Railway.service.imeasurementstandardService;
+import com.xq.Railway.util.StringUtil;
+import com.xq.Railway.util.jsonTomodel;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -59,6 +62,9 @@ public class detectionresultController {
 	
 	@Autowired
 	private ifiledatatableService ifs;
+	
+	@Autowired
+	private imeasurementstandardService imss;
 	
 	@Value("${springurl.fileurl}")
 	private String url;
@@ -384,17 +390,46 @@ public class detectionresultController {
 	
 
 	@RequestMapping(value = "/getSmartCarData")
-	public String getSmartCarData() {
-		
-		
-		String fileaddr = "[{\"list\":[{\"num\":\"69\",\"sitename\":\"合格\"},{\"num\":\"69\",\"sitename\":\"不合格\"}],\"name\":\"水平\",\"code\":\"a\"},{\"list\":[{\"num\":\"69\",\"sitename\":\"不合格\"},{\"num\":\"69\",\"sitename\":\"不合格\"}],\"name\":\"垂直\",\"code\":\"b\"}]";
+	public String getSmartCarData(HttpServletRequest request) {
+		String realPath = request.getSession().getServletContext().getRealPath("file/");
 		JSONObject jsonObject = new JSONObject();
+		imss.selectAll1(1, 20);
+		
+		try {
+			List<String[]> li = jsonTomodel.Read2003xls(realPath + "123.xls");
+			if (li.size() == 0) {
+				jsonObject.put("code", 500);
+				jsonObject.put("state", "fail");
+				jsonObject.put("msg", "li is null");
+				return jsonObject.toString();
+			}
+			
+			JSONArray array1 = new JSONArray();//轨距
+			JSONArray array2 = new JSONArray();//水平
+			JSONArray array3 = new JSONArray();//高低
+			
+			for (int i = 0; i < li.size(); i++) {
+				String[] str = li.get(i);
+				array1.add(str[1]);//轨距
+				array2.add(str[2]);//水平
+				array3.add(str[3]);//高低
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			jsonObject.put("code", 500);
+			jsonObject.put("state", "fail");
+			jsonObject.put("msg", e);
+			return jsonObject.toString();
+		}
+
+		String fileaddr = "[{\"list\":[{\"num\":\"69\",\"sitename\":\"合格\"},{\"num\":\"69\",\"sitename\":\"不合格\"}],\"name\":\"水平\",\"code\":\"a\"},{\"list\":[{\"num\":\"69\",\"sitename\":\"不合格\"},{\"num\":\"69\",\"sitename\":\"不合格\"}],\"name\":\"垂直\",\"code\":\"b\"}]";
 		jsonObject.put("code", 200);
 		jsonObject.put("state", "success");
 		jsonObject.put("msg", fileaddr);
-		
+
 		return jsonObject.toString();
-		
+
 	}
 	
 	
