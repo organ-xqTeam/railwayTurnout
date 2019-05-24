@@ -47,6 +47,7 @@ import com.xq.Railway.model.filedatatable;
 import com.xq.Railway.service.idetectionresultService;
 import com.xq.Railway.service.ifiledatatableService;
 
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 @RestController
@@ -380,6 +381,23 @@ public class detectionresultController {
 		}
 
 	}
+	
+
+	@RequestMapping(value = "/getSmartCarData")
+	public String getSmartCarData() {
+		
+		
+		String fileaddr = "[{\"list\":[{\"num\":\"69\",\"sitename\":\"合格\"},{\"num\":\"69\",\"sitename\":\"不合格\"}],\"name\":\"水平\",\"code\":\"a\"},{\"list\":[{\"num\":\"69\",\"sitename\":\"不合格\"},{\"num\":\"69\",\"sitename\":\"不合格\"}],\"name\":\"垂直\",\"code\":\"b\"}]";
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("code", 200);
+		jsonObject.put("state", "success");
+		jsonObject.put("msg", fileaddr);
+		
+		return jsonObject.toString();
+		
+	}
+	
+	
 	public BufferedImage toBufferedImage(Image image) {
 		if (image instanceof BufferedImage) {
 			return (BufferedImage) image;
