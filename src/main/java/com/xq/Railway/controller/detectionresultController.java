@@ -393,8 +393,8 @@ public class detectionresultController {
 
 	@RequestMapping(value = "/getSmartCarData")
 	public String getSmartCarData(HttpServletRequest request) {
-//		String realPath = request.getSession().getServletContext().getRealPath("file/");
-		String realPath = "/Users/apple/Desktop/";
+		String realPath = url;
+//		String realPath = "/Users/apple/Desktop/";
 		JSONObject jsonObject = new JSONObject();
 		JSONArray array = new JSONArray();
 		//获取 对比规则
