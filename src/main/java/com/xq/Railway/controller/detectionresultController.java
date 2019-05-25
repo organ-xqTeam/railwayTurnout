@@ -15,6 +15,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -44,6 +45,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.xq.Railway.logAop.MethodLog;
 import com.xq.Railway.model.detectionresult;
 import com.xq.Railway.model.filedatatable;
+import com.xq.Railway.model.measurementstandard;
 import com.xq.Railway.service.idetectionresultService;
 import com.xq.Railway.service.ifiledatatableService;
 import com.xq.Railway.service.imeasurementstandardService;
@@ -391,9 +393,37 @@ public class detectionresultController {
 
 	@RequestMapping(value = "/getSmartCarData")
 	public String getSmartCarData(HttpServletRequest request) {
-		String realPath = request.getSession().getServletContext().getRealPath("file/");
+//		String realPath = request.getSession().getServletContext().getRealPath("file/");
+		String realPath = "/Users/apple/Desktop/";
 		JSONObject jsonObject = new JSONObject();
-		imss.selectAll1(1, 20);
+		JSONArray array = new JSONArray();
+		//获取 对比规则
+		JSONObject jsono = imss.selectAll1(0, 10);
+		JSONArray jo =  (JSONArray) jsono.get("list");
+		
+		String str1 = "";//轨距
+		String str2 = "";//水平
+		String str3 = "";//高低
+		for (int i = 0; i < jo.size(); i++) {
+			if ("1".equals(jo.getJSONObject(i).get("id"))) {
+				str1 = (String) jo.getJSONObject(i).get("standard");
+			}else if ("2".equals(jo.getJSONObject(i).get("id"))) {
+				str2 = (String) jo.getJSONObject(i).get("standard");
+			}else if ("3".equals(jo.getJSONObject(i).get("id"))) {
+				str3 = (String) jo.getJSONObject(i).get("standard");
+			}else {
+				continue;
+			}
+		}
+		if ("".equals(str1)||"".equals(str2)||"".equals(str3)) {
+			jsonObject.put("code", 500);
+			jsonObject.put("state", "fail");
+			jsonObject.put("msg", "计算标准为空！");
+			return jsonObject.toString();
+		}
+		BigDecimal bigDecimal1 = new BigDecimal(str1);
+		BigDecimal bigDecimal2 = new BigDecimal(str2);
+		BigDecimal bigDecimal3 = new BigDecimal(str3);
 		
 		try {
 			List<String[]> li = jsonTomodel.Read2003xls(realPath + "123.xls");
@@ -407,13 +437,57 @@ public class detectionresultController {
 			JSONArray array1 = new JSONArray();//轨距
 			JSONArray array2 = new JSONArray();//水平
 			JSONArray array3 = new JSONArray();//高低
-			
-			for (int i = 0; i < li.size(); i++) {
+			int isnot1=0;//轨距 合格数量
+			int isnot2=0;//水平 合格数量
+			int isnot3=0;//高低 合格数量
+			for (int i = 1; i < li.size(); i++) {
 				String[] str = li.get(i);
-				array1.add(str[1]);//轨距
-				array2.add(str[2]);//水平
-				array3.add(str[3]);//高低
+				JSONObject j1 = new JSONObject();
+				j1.put("num", str[1]);
+				String ss1 = check1(new BigDecimal(str[1]),bigDecimal1);
+				j1.put("sitename", ss1);
+				if ("合格".equals(ss1)) {
+					isnot1++;
+				}
+				array1.add(j1);//轨距
+				
+				JSONObject j2 = new JSONObject();
+				j2.put("num", str[2]);
+				String ss2 = check2(new BigDecimal(str[2]),bigDecimal2);
+				if ("合格".equals(ss2)) {
+					isnot2++;
+				}
+				j2.put("sitename", ss2);
+				array2.add(j2);//水平
+				
+				JSONObject j3 = new JSONObject();
+				j3.put("num", str[3]);
+				String ss3 = check2(new BigDecimal(str[3]),bigDecimal3);
+				j3.put("sitename", ss3);
+				if ("合格".equals(ss3)) {
+					isnot3++;
+				}
+				array3.add(j3);//高低
 			}
+			
+			JSONObject o1 = new JSONObject();
+			o1.put("list", array1);
+			o1.put("name", "轨距");
+			o1.put("code", (isnot1/array1.size())*100+"%");
+			array.add(o1);
+			
+			o1 = new JSONObject();
+			o1.put("list", array2);
+			o1.put("name", "水平");
+			o1.put("code", (isnot2/array2.size())*100+"%");
+			array.add(o1);
+			
+			o1 = new JSONObject();
+			o1.put("list", array3);
+			o1.put("name", "高低");
+			o1.put("code", (isnot3/array3.size())*100+"%");
+			array.add(o1);
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -423,13 +497,46 @@ public class detectionresultController {
 			return jsonObject.toString();
 		}
 
-		String fileaddr = "[{\"list\":[{\"num\":\"69\",\"sitename\":\"合格\"},{\"num\":\"69\",\"sitename\":\"不合格\"}],\"name\":\"水平\",\"code\":\"a\"},{\"list\":[{\"num\":\"69\",\"sitename\":\"不合格\"},{\"num\":\"69\",\"sitename\":\"不合格\"}],\"name\":\"垂直\",\"code\":\"b\"}]";
+//		String fileaddr = "[{\"list\":[{\"num\":\"69\",\"sitename\":\"合格\"},{\"num\":\"69\",\"sitename\":\"不合格\"}],\"name\":\"水平\",\"code\":\"a\"},{\"list\":[{\"num\":\"69\",\"sitename\":\"不合格\"},{\"num\":\"69\",\"sitename\":\"不合格\"}],\"name\":\"垂直\",\"code\":\"b\"}]";
 		jsonObject.put("code", 200);
 		jsonObject.put("state", "success");
-		jsonObject.put("msg", fileaddr);
+		jsonObject.put("msg", array);
 
 		return jsonObject.toString();
 
+	}
+	//轨距
+	public String check1(BigDecimal b1,BigDecimal b2){
+		//.negate()     返回负数
+		//b2 减b1
+		BigDecimal bg1 = b2.subtract(b1);
+		
+		BigDecimal bg2 = b1.add(b2.negate());
+		int r1=bg1.compareTo(BigDecimal.ZERO); //和0，Zero比较
+		int r2=bg2.compareTo(BigDecimal.ZERO); //和0，Zero比较
+//		if(r==0) //等于
+//		if(r==1) //大于
+//		if(r==-1) //小于
+		if (r1 != -1 && r2 != -1) {
+			return "合格";
+		}else {
+			return "不合格";
+		}	
+	}
+	//水平 高低
+	public String check2(BigDecimal b1,BigDecimal b2){
+		//.negate()     返回负数
+		//b2 减b1
+		BigDecimal bg1 = b2.subtract(b1);
+		int r1=bg1.compareTo(BigDecimal.ZERO); //和0，Zero比较
+//		if(r==0) //等于
+//		if(r==1) //大于
+//		if(r==-1) //小于
+		if (r1 != -1 ) {
+			return "合格";
+		}else {
+			return "不合格";
+		}	
 	}
 	
 	
