@@ -394,7 +394,7 @@ public class detectionresultController {
 	@RequestMapping(value = "/getSmartCarData")
 	public String getSmartCarData(HttpServletRequest request) {
 		String realPath = url;
-//		String realPath = "D:\\Users\\Desktop\\";
+//		String realPath = "/Users/apple/Desktop/";
 		JSONObject jsonObject = new JSONObject();
 		JSONArray array = new JSONArray();
 		//获取 对比规则
@@ -450,52 +450,79 @@ public class detectionresultController {
 			JSONArray array2 = new JSONArray();//水平
 			JSONArray array3 = new JSONArray();//高低
 			JSONArray array4 = new JSONArray();//方向
+			JSONArray array5 = new JSONArray();//方向
 			int isnot1=0;//轨距 合格数量
 			int isnot2=0;//水平 合格数量
 			int isnot3=0;//高低 合格数量
 			int isnot4=0;//方向 合格数量
+			
+			String title[] = li.get(0);
+			
 			for (int i = 1; i < li.size(); i++) {
 				
 				String[] str = li.get(i);
 				if ("".equals(str[0])|| str[0].length() <= 0) {
 					break;
 				}
-				JSONObject j1 = new JSONObject();
-				j1.put("num", str[1]);
-				String ss1 = check1(new BigDecimal(str[1]),bigDecimal1);
-				j1.put("sitename", ss1);
-				if ("合格".equals(ss1)) {
-					isnot1++;
-				}
-				array1.add(j1);//轨距
 				
-				JSONObject j2 = new JSONObject();
-				j2.put("num", str[2]);
-				String ss2 = check2(new BigDecimal(str[2]),bigDecimal2);
-				if ("合格".equals(ss2)) {
-					isnot2++;
+				for (int j = 0; j < title.length; j++) {
+					if ("".equals(title[j])|| title.length <= 0) {
+						continue;
+					}
+					if ("轨距".equals(title[j])) {
+						JSONObject j1 = new JSONObject();
+						
+						j1.put("num", str[j]);
+						String ss1 = check1(new BigDecimal(str[j]),bigDecimal1);
+						j1.put("sitename", ss1);
+						if ("合格".equals(ss1)) {
+							isnot1++;
+						}
+						array1.add(j1);//轨距
+					}else if("水平".equals(title[j])) {
+						
+						JSONObject j2 = new JSONObject();
+						j2.put("num", str[j]);
+						String ss2 = check2(new BigDecimal(str[j]),bigDecimal2);
+						if ("合格".equals(ss2)) {
+							isnot2++;
+						}
+						j2.put("sitename", ss2);
+						array2.add(j2);//水平
+					}else if("高低".equals(title[j])) {
+						
+						JSONObject j3 = new JSONObject();
+						j3.put("num", str[j]);
+						String ss3 = check2(new BigDecimal(str[j]),bigDecimal3);
+						j3.put("sitename", ss3);
+						if ("合格".equals(ss3)) {
+							isnot3++;
+						}
+						array3.add(j3);//高低
+					}else if("方向".equals(title[j])) {
+						
+						JSONObject j4 = new JSONObject();
+						j4.put("num", str[j]);
+						String ss4 = check2(new BigDecimal(str[j]),bigDecimal4);
+						j4.put("sitename", ss4);
+						if ("合格".equals(ss4)) {
+							isnot4++;
+						}
+						array4.add(j4);//高低
+					}else {
+						JSONObject o5 = new JSONObject();
+						o5.put("title", title[j]);
+						o5.put("num", str[j]);
+						o5.put("sitename", "-");
+						array5.add(o5);
+					}
+					
+					
 				}
-				j2.put("sitename", ss2);
-				array2.add(j2);//水平
-				
-				JSONObject j3 = new JSONObject();
-				j3.put("num", str[3]);
-				String ss3 = check2(new BigDecimal(str[3]),bigDecimal3);
-				j3.put("sitename", ss3);
-				if ("合格".equals(ss3)) {
-					isnot3++;
-				}
-				array3.add(j3);//高低
 				
 				
-				JSONObject j4 = new JSONObject();
-				j3.put("num", str[4]);
-				String ss4 = check2(new BigDecimal(str[4]),bigDecimal4);
-				j3.put("sitename", ss4);
-				if ("合格".equals(ss4)) {
-					isnot4++;
-				}
-				array4.add(j4);//高低
+				
+				
 				
 				
 			}
@@ -519,10 +546,22 @@ public class detectionresultController {
 			array.add(o1);
 			
 			o1 = new JSONObject();
-			o1.put("list", array3);
+			o1.put("list", array4);
 			o1.put("name", "方向");
 			o1.put("code", (isnot4/array4.size())*100+"%");
 			array.add(o1);
+			
+			for (int i = 0; i < array5.size(); i++) {
+				JSONObject object = array5.getJSONObject(i);
+				
+				o1 = new JSONObject();
+				JSONArray jso = new JSONArray();
+				jso.add(object);
+				o1.put("list", jso);
+				o1.put("name", object.getString("title"));
+				o1.put("code", 100+"%");
+				array.add(o1);
+			}
 			
 			
 		} catch (Exception e) {
@@ -545,15 +584,16 @@ public class detectionresultController {
 	public String check1(BigDecimal b1,BigDecimal b2){
 		//.negate()     返回负数
 		//b2 减b1
-		BigDecimal bg1 = b2.subtract(b1);
-		
-		BigDecimal bg2 = b1.add(b2.negate());
-		int r1=bg1.compareTo(BigDecimal.ZERO); //和0，Zero比较
-		int r2=bg2.compareTo(BigDecimal.ZERO); //和0，Zero比较
+//		BigDecimal bg1 = b2.subtract(b1);
+//		BigDecimal bg2 = b1.add(b2);
+		int r1=b1.compareTo(b2); //和0，Zero比较
+		int r2=b1.compareTo(b2.negate()); //和0，Zero比较
 //		if(r==0) //等于
 //		if(r==1) //大于
 //		if(r==-1) //小于
-		if (r1 != -1 && r2 != -1) {
+		System.out.println(r1== -1);
+		System.out.println(r2!= -1);
+		if (r1 == -1 && r2 != -1) {
 			return "合格";
 		}else {
 			return "不合格";
