@@ -394,7 +394,7 @@ public class detectionresultController {
 	@RequestMapping(value = "/getSmartCarData")
 	public String getSmartCarData(HttpServletRequest request) {
 		String realPath = url;
-//		String realPath = "/Users/apple/Desktop/";
+//		String realPath = "D:\\Users\\Desktop\\";
 		JSONObject jsonObject = new JSONObject();
 		JSONArray array = new JSONArray();
 		//获取 对比规则
@@ -404,6 +404,7 @@ public class detectionresultController {
 		String str1 = "";//轨距
 		String str2 = "";//水平
 		String str3 = "";//高低
+		String str4 = "";//方向
 		for (int i = 0; i < jo.size(); i++) {
 			if ("1".equals(jo.getJSONObject(i).get("id"))) {
 				str1 = (String) jo.getJSONObject(i).get("standard");
@@ -411,10 +412,20 @@ public class detectionresultController {
 				str2 = (String) jo.getJSONObject(i).get("standard");
 			}else if ("3".equals(jo.getJSONObject(i).get("id"))) {
 				str3 = (String) jo.getJSONObject(i).get("standard");
+			}else if ("4".equals(jo.getJSONObject(i).get("id"))) {
+				str4 = (String) jo.getJSONObject(i).get("standard");
+				String str41 = "";
+				for (int i1 = 0; i1 < str4.length(); i1++) {
+					if (str4.charAt(i1) >= 48 && str4.charAt(i1) <= 57) {
+						str41 += str4.charAt(i1);
+					}
+				}
+				str4 = str41;
 			}else {
 				continue;
 			}
 		}
+		System.out.println(str4);
 		if ("".equals(str1)||"".equals(str2)||"".equals(str3)) {
 			jsonObject.put("code", 500);
 			jsonObject.put("state", "fail");
@@ -424,9 +435,10 @@ public class detectionresultController {
 		BigDecimal bigDecimal1 = new BigDecimal(str1);
 		BigDecimal bigDecimal2 = new BigDecimal(str2);
 		BigDecimal bigDecimal3 = new BigDecimal(str3);
+		BigDecimal bigDecimal4 = new BigDecimal(str4);
 		
 		try {
-			List<String[]> li = jsonTomodel.Read2003xls(realPath + "railwayVehicleData.xls");
+			List<String[]> li = jsonTomodel.Read2003xls(realPath + "railwayVehicleDataFresh.xls");
 			if (li.size() == 0) {
 				jsonObject.put("code", 500);
 				jsonObject.put("state", "fail");
@@ -437,11 +449,17 @@ public class detectionresultController {
 			JSONArray array1 = new JSONArray();//轨距
 			JSONArray array2 = new JSONArray();//水平
 			JSONArray array3 = new JSONArray();//高低
+			JSONArray array4 = new JSONArray();//方向
 			int isnot1=0;//轨距 合格数量
 			int isnot2=0;//水平 合格数量
 			int isnot3=0;//高低 合格数量
+			int isnot4=0;//方向 合格数量
 			for (int i = 1; i < li.size(); i++) {
+				
 				String[] str = li.get(i);
+				if ("".equals(str[0])|| str[0].length() <= 0) {
+					break;
+				}
 				JSONObject j1 = new JSONObject();
 				j1.put("num", str[1]);
 				String ss1 = check1(new BigDecimal(str[1]),bigDecimal1);
@@ -468,6 +486,18 @@ public class detectionresultController {
 					isnot3++;
 				}
 				array3.add(j3);//高低
+				
+				
+				JSONObject j4 = new JSONObject();
+				j3.put("num", str[4]);
+				String ss4 = check2(new BigDecimal(str[4]),bigDecimal4);
+				j3.put("sitename", ss4);
+				if ("合格".equals(ss4)) {
+					isnot4++;
+				}
+				array4.add(j4);//高低
+				
+				
 			}
 			
 			JSONObject o1 = new JSONObject();
@@ -486,6 +516,12 @@ public class detectionresultController {
 			o1.put("list", array3);
 			o1.put("name", "高低");
 			o1.put("code", (isnot3/array3.size())*100+"%");
+			array.add(o1);
+			
+			o1 = new JSONObject();
+			o1.put("list", array3);
+			o1.put("name", "方向");
+			o1.put("code", (isnot4/array4.size())*100+"%");
 			array.add(o1);
 			
 			
