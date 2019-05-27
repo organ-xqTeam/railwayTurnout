@@ -45,11 +45,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.xq.Railway.logAop.MethodLog;
 import com.xq.Railway.model.detectionresult;
 import com.xq.Railway.model.filedatatable;
-import com.xq.Railway.model.measurementstandard;
 import com.xq.Railway.service.idetectionresultService;
 import com.xq.Railway.service.ifiledatatableService;
 import com.xq.Railway.service.imeasurementstandardService;
-import com.xq.Railway.util.StringUtil;
 import com.xq.Railway.util.jsonTomodel;
 
 import net.sf.json.JSONArray;
@@ -394,7 +392,7 @@ public class detectionresultController {
 	@RequestMapping(value = "/getSmartCarData")
 	public String getSmartCarData(HttpServletRequest request) {
 		String realPath = url;
-//		String realPath = "/Users/apple/Desktop/";
+//		String realPath = "D:/Users/Desktop/";
 		JSONObject jsonObject = new JSONObject();
 		JSONArray array = new JSONArray();
 		//获取 对比规则
@@ -438,7 +436,9 @@ public class detectionresultController {
 		BigDecimal bigDecimal4 = new BigDecimal(str4);
 		
 		try {
-			List<String[]> li = jsonTomodel.Read2003xls(realPath + "railwayVehicleDataFresh.xls");
+//			List<String[]> li = jsonTomodel.Read2003xls(realPath + "railwayVehicleDataFresh.xls");
+//			List<String[]> li = jsonTomodel.readPoi(realPath + "railwayVehicleDataFresh.xlsx");
+			List<String[]> li = jsonTomodel.readCSV(realPath + "railwayVehicleDataFresh.csv");
 			if (li.size() == 0) {
 				jsonObject.put("code", 500);
 				jsonObject.put("state", "fail");
@@ -461,12 +461,12 @@ public class detectionresultController {
 			for (int i = 1; i < li.size(); i++) {
 				
 				String[] str = li.get(i);
-				if ("".equals(str[0])|| str[0].length() <= 0) {
+				if ("".equals(str[0].trim())|| str[0].trim().length() <= 0) {
 					break;
 				}
 				
 				for (int j = 0; j < title.length; j++) {
-					if ("".equals(title[j])|| title.length <= 0) {
+					if ("".equals(title[j].trim())|| title.length <= 0) {
 						continue;
 					}
 					if ("轨距".equals(title[j])) {
@@ -480,7 +480,6 @@ public class detectionresultController {
 						}
 						array1.add(j1);//轨距
 					}else if("水平".equals(title[j])) {
-						
 						JSONObject j2 = new JSONObject();
 						j2.put("num", str[j]);
 						String ss2 = check2(new BigDecimal(str[j]),bigDecimal2);
