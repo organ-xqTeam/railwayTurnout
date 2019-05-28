@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xq.Railway.dao.turnouttypeMapper" >
+  <resultMap id="BaseResultMap" type="com.xq.Railway.model.turnouttype" >
+    <result column="id" property="id" jdbcType="VARCHAR" />
+    <result column="turnoutType" property="turnouttype" jdbcType="VARCHAR" />
+    <result column="reamke" property="reamke" jdbcType="VARCHAR" />
+    <result column="isdelete" property="isdelete" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.xq.Railway.model.turnouttype" >
+    insert into turnouttype (id, turnoutType, reamke, 
+      isdelete)
+    values (#{id,jdbcType=VARCHAR}, #{turnouttype,jdbcType=VARCHAR}, #{reamke,jdbcType=VARCHAR}, 
+      #{isdelete,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xq.Railway.model.turnouttype" >
+    insert into turnouttype
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="turnouttype != null" >
+        turnoutType,
+      </if>
+      <if test="reamke != null" >
+        reamke,
+      </if>
+      <if test="isdelete != null" >
+        isdelete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="turnouttype != null" >
+        #{turnouttype,jdbcType=VARCHAR},
+      </if>
+      <if test="reamke != null" >
+        #{reamke,jdbcType=VARCHAR},
+      </if>
+      <if test="isdelete != null" >
+        #{isdelete,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>
