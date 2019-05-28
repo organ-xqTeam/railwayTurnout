@@ -19,6 +19,7 @@ import com.xq.Railway.util.StringUtil;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
+import springfox.documentation.annotations.ApiIgnore;
 /**
  * 
  * 
@@ -27,6 +28,7 @@ import net.sf.json.JSONObject;
  * @author XingPanST
  *
  */
+@ApiIgnore
 @RestController
 @RequestMapping("/measurementproject")
 public class measurementprojectController {

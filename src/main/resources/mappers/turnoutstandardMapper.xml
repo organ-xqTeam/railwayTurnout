@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xq.Railway.dao.turnoutstandardMapper" >
+  <resultMap id="BaseResultMap" type="com.xq.Railway.model.turnoutstandard" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="turnoutid" property="turnoutid" jdbcType="VARCHAR" />
+    <result column="turnoutstandard" property="turnoutstandard" jdbcType="VARCHAR" />
+    <result column="isdelete" property="isdelete" jdbcType="VARCHAR" />
+    <result column="qualityid" property="qualityid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, turnoutid, turnoutstandard, isdelete, qualityid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from turnoutstandard
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from turnoutstandard
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.xq.Railway.model.turnoutstandard" >
+    insert into turnoutstandard (id, turnoutid, turnoutstandard, 
+      isdelete, qualityid)
+    values (#{id,jdbcType=VARCHAR}, #{turnoutid,jdbcType=VARCHAR}, #{turnoutstandard,jdbcType=VARCHAR}, 
+      #{isdelete,jdbcType=VARCHAR}, #{qualityid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xq.Railway.model.turnoutstandard" >
+    insert into turnoutstandard
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="turnoutid != null" >
+        turnoutid,
+      </if>
+      <if test="turnoutstandard != null" >
+        turnoutstandard,
+      </if>
+      <if test="isdelete != null" >
+        isdelete,
+      </if>
+      <if test="qualityid != null" >
+        qualityid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="turnoutid != null" >
+        #{turnoutid,jdbcType=VARCHAR},
+      </if>
+      <if test="turnoutstandard != null" >
+        #{turnoutstandard,jdbcType=VARCHAR},
+      </if>
+      <if test="isdelete != null" >
+        #{isdelete,jdbcType=VARCHAR},
+      </if>
+      <if test="qualityid != null" >
+        #{qualityid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xq.Railway.model.turnoutstandard" >
+    update turnoutstandard
+    <set >
+      <if test="turnoutid != null" >
+        turnoutid = #{turnoutid,jdbcType=VARCHAR},
+      </if>
+      <if test="turnoutstandard != null" >
+        turnoutstandard = #{turnoutstandard,jdbcType=VARCHAR},
+      </if>
+      <if test="isdelete != null" >
+        isdelete = #{isdelete,jdbcType=VARCHAR},
+      </if>
+      <if test="qualityid != null" >
+        qualityid = #{qualityid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xq.Railway.model.turnoutstandard" >
+    update turnoutstandard
+    set turnoutid = #{turnoutid,jdbcType=VARCHAR},
+      turnoutstandard = #{turnoutstandard,jdbcType=VARCHAR},
+      isdelete = #{isdelete,jdbcType=VARCHAR},
+      qualityid = #{qualityid,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

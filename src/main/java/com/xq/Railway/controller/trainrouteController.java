@@ -11,12 +11,14 @@ import com.xq.Railway.model.trainroute;
 import com.xq.Railway.service.itrainrouteService;
 
 import net.sf.json.JSONObject;
+import springfox.documentation.annotations.ApiIgnore;
 /**
  * 
  * 线路
  * @author XingPanST
  *
  */
+@ApiIgnore
 @RestController
 @RequestMapping("/trainroute")
 public class trainrouteController {

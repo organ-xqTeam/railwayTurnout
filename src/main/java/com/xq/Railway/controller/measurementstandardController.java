@@ -9,12 +9,14 @@ import com.xq.Railway.model.measurementstandard;
 import com.xq.Railway.service.imeasurementstandardService;
 
 import net.sf.json.JSONObject;
+import springfox.documentation.annotations.ApiIgnore;
 /**
  * 
  * 检测项点
  * @author XingPanST
  *
  */
+@ApiIgnore
 @RestController
 @RequestMapping("/measurementstandard")
 public class measurementstandardController {

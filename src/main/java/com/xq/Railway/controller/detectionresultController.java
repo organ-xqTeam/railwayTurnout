@@ -52,7 +52,8 @@ import com.xq.Railway.util.jsonTomodel;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
-
+import springfox.documentation.annotations.ApiIgnore;
+@ApiIgnore
 @RestController
 @RequestMapping("/detectionresult")
 public class detectionresultController {
@@ -458,6 +459,8 @@ public class detectionresultController {
 			
 			String title[] = li.get(0);
 			
+			String mileage = "";
+			
 			for (int i = 1; i < li.size(); i++) {
 				
 				String[] str = li.get(i);
@@ -508,45 +511,49 @@ public class detectionresultController {
 							isnot4++;
 						}
 						array4.add(j4);//高低
+					}else if ("里程".equals(title[j])){
+						mileage = str[j];
+						
 					}else {
 						JSONObject o5 = new JSONObject();
 						o5.put("title", title[j]);
-						o5.put("num", str[j]);
+						o5.put("num", j == str.length ?"-":str[j]);
 						o5.put("sitename", "-");
 						array5.add(o5);
 					}
-					
-					
 				}
-				
-				
-				
-				
-				
-				
 			}
+			
+			JSONObject mileagejs = new JSONObject();
+			
+			mileagejs.put("name", "里程");
+			mileagejs.put("num", mileage);
 			
 			JSONObject o1 = new JSONObject();
 			o1.put("list", array1);
 			o1.put("name", "轨距");
+			o1.put("mileage", mileagejs);
 			o1.put("code", (isnot1/array1.size())*100+"%");
 			array.add(o1);
 			
 			o1 = new JSONObject();
 			o1.put("list", array2);
 			o1.put("name", "水平");
+			o1.put("mileage", mileagejs);
 			o1.put("code", (isnot2/array2.size())*100+"%");
 			array.add(o1);
 			
 			o1 = new JSONObject();
 			o1.put("list", array3);
 			o1.put("name", "高低");
+			o1.put("mileage", mileagejs);
 			o1.put("code", (isnot3/array3.size())*100+"%");
 			array.add(o1);
 			
 			o1 = new JSONObject();
 			o1.put("list", array4);
 			o1.put("name", "方向");
+			o1.put("mileage", mileagejs);
 			o1.put("code", (isnot4/array4.size())*100+"%");
 			array.add(o1);
 			
@@ -557,6 +564,8 @@ public class detectionresultController {
 				JSONArray jso = new JSONArray();
 				jso.add(object);
 				o1.put("list", jso);
+				
+				o1.put("mileage", mileagejs);
 				o1.put("name", object.getString("title"));
 				o1.put("code", 100+"%");
 				array.add(o1);

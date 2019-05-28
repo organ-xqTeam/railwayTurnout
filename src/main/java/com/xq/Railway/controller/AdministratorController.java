@@ -12,6 +12,7 @@ import com.xq.Railway.model.administrator;
 import com.xq.Railway.service.iAdministratorService;
 
 import net.sf.json.JSONObject;
+import springfox.documentation.annotations.ApiIgnore;
 
 
 
@@ -21,6 +22,7 @@ import net.sf.json.JSONObject;
  * @Author 
  * @Date 2018年9月11日 下午12:15:41
  */
+@ApiIgnore
 @RestController
 @RequestMapping("/administrator")
 public class AdministratorController {

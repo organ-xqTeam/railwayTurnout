@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xq.Railway.dao.gaugestandardMapper" >
+  <resultMap id="BaseResultMap" type="com.xq.Railway.model.gaugestandard" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="turnoutid" property="turnoutid" jdbcType="VARCHAR" />
+    <result column="mileage" property="mileage" jdbcType="VARCHAR" />
+    <result column="gauge" property="gauge" jdbcType="VARCHAR" />
+    <result column="isdelete" property="isdelete" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, turnoutid, mileage, gauge, isdelete
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from gaugestandard
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from gaugestandard
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.xq.Railway.model.gaugestandard" >
+    insert into gaugestandard (id, turnoutid, mileage, 
+      gauge, isdelete)
+    values (#{id,jdbcType=VARCHAR}, #{turnoutid,jdbcType=VARCHAR}, #{mileage,jdbcType=VARCHAR}, 
+      #{gauge,jdbcType=VARCHAR}, #{isdelete,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xq.Railway.model.gaugestandard" >
+    insert into gaugestandard
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="turnoutid != null" >
+        turnoutid,
+      </if>
+      <if test="mileage != null" >
+        mileage,
+      </if>
+      <if test="gauge != null" >
+        gauge,
+      </if>
+      <if test="isdelete != null" >
+        isdelete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="turnoutid != null" >
+        #{turnoutid,jdbcType=VARCHAR},
+      </if>
+      <if test="mileage != null" >
+        #{mileage,jdbcType=VARCHAR},
+      </if>
+      <if test="gauge != null" >
+        #{gauge,jdbcType=VARCHAR},
+      </if>
+      <if test="isdelete != null" >
+        #{isdelete,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xq.Railway.model.gaugestandard" >
+    update gaugestandard
+    <set >
+      <if test="turnoutid != null" >
+        turnoutid = #{turnoutid,jdbcType=VARCHAR},
+      </if>
+      <if test="mileage != null" >
+        mileage = #{mileage,jdbcType=VARCHAR},
+      </if>
+      <if test="gauge != null" >
+        gauge = #{gauge,jdbcType=VARCHAR},
+      </if>
+      <if test="isdelete != null" >
+        isdelete = #{isdelete,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xq.Railway.model.gaugestandard" >
+    update gaugestandard
+    set turnoutid = #{turnoutid,jdbcType=VARCHAR},
+      mileage = #{mileage,jdbcType=VARCHAR},
+      gauge = #{gauge,jdbcType=VARCHAR},
+      isdelete = #{isdelete,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
