@@ -9,6 +9,7 @@ import com.xq.Railway.model.linesite;
 import com.xq.Railway.service.ilinesiteService;
 
 import net.sf.json.JSONObject;
+import springfox.documentation.annotations.ApiIgnore;
 /**
  * 
  * 
@@ -16,6 +17,7 @@ import net.sf.json.JSONObject;
  * @author XingPanST
  *
  */
+@ApiIgnore
 @RestController
 @RequestMapping("/linesite")
 public class linesiteController {

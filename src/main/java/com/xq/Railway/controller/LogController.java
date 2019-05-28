@@ -8,7 +8,8 @@ import com.xq.Railway.logAop.MethodLog;
 import com.xq.Railway.service.ilogService;
 
 import net.sf.json.JSONObject;
-
+import springfox.documentation.annotations.ApiIgnore;
+@ApiIgnore
 @RestController
 @RequestMapping("/Systemlog")
 public class LogController {

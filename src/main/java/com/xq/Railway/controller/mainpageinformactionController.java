@@ -8,7 +8,8 @@ import com.xq.Railway.logAop.MethodLog;
 import com.xq.Railway.model.mainpageinformaction;
 import com.xq.Railway.service.iMainpageinformactionService;
 import net.sf.json.JSONObject;
-
+import springfox.documentation.annotations.ApiIgnore;
+@ApiIgnore
 @RestController
 @RequestMapping("/mainpageinformaction")
 public class mainpageinformactionController {

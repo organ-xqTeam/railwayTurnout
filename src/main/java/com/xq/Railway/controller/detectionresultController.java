@@ -52,7 +52,8 @@ import com.xq.Railway.util.jsonTomodel;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
-
+import springfox.documentation.annotations.ApiIgnore;
+@ApiIgnore
 @RestController
 @RequestMapping("/detectionresult")
 public class detectionresultController {
