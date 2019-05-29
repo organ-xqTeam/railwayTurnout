@@ -17,6 +17,14 @@
     from gaugestandard
     where id = #{id,jdbcType=VARCHAR}
   </select>
+  
+  <select id="values" resultMap="BaseResultMap">
+  	 select 
+    <include refid="Base_Column_List" />
+    from gaugestandard
+  
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from gaugestandard
     where id = #{id,jdbcType=VARCHAR}

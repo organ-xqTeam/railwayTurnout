@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.xq.Railway.dao.qualitystandardMapper" >
   <resultMap id="BaseResultMap" type="com.xq.Railway.model.qualitystandard" >
-    <id column="id" property="id" jdbcType="INTEGER" />
+    <id column="id" property="id" jdbcType="VARCHAR" />
     <result column="msg" property="msg" jdbcType="VARCHAR" />
     <result column="num" property="num" jdbcType="VARCHAR" />
     <result column="msg1" property="msg1" jdbcType="VARCHAR" />
@@ -10,20 +10,34 @@
   <sql id="Base_Column_List" >
     id, msg, num, msg1
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  
+  
+  <delete id="remove"  parameterType="java.lang.String">
+  
+  	delete from qualitystandard   where id = #{id,jdbcType=VARCHAR}
+  
+  </delete>
+  <select id="values" resultMap="BaseResultMap" > 
+  	 select 
+    <include refid="Base_Column_List"  />
+    from qualitystandard
+  
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     from qualitystandard
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from qualitystandard
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.xq.Railway.model.qualitystandard" >
     insert into qualitystandard (id, msg, num, 
       msg1)
-    values (#{id,jdbcType=INTEGER}, #{msg,jdbcType=VARCHAR}, #{num,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=VARCHAR}, #{msg,jdbcType=VARCHAR}, #{num,jdbcType=VARCHAR}, 
       #{msg1,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.xq.Railway.model.qualitystandard" >
@@ -44,7 +58,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
-        #{id,jdbcType=INTEGER},
+        #{id,jdbcType=VARCHAR},
       </if>
       <if test="msg != null" >
         #{msg,jdbcType=VARCHAR},
@@ -70,13 +84,13 @@
         msg1 = #{msg1,jdbcType=VARCHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.xq.Railway.model.qualitystandard" >
     update qualitystandard
     set msg = #{msg,jdbcType=VARCHAR},
       num = #{num,jdbcType=VARCHAR},
       msg1 = #{msg1,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

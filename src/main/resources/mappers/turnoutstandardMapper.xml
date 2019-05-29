@@ -17,6 +17,21 @@
     from turnoutstandard
     where id = #{id,jdbcType=VARCHAR}
   </select>
+  
+  <select id="values" resultMap="BaseResultMap" >
+   select 
+    <include refid="Base_Column_List" />
+    from turnoutstandard
+  </select>
+  
+  <select id="findbyTurnoutstandard" resultMap="BaseResultMap" parameterType="java.lang.String">
+  	 select 
+    <include refid="Base_Column_List" />
+    from turnoutstandard
+    where turnoutstandard = #{name,jdbcType=VARCHAR}
+  </select>
+  
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from turnoutstandard
     where id = #{id,jdbcType=VARCHAR}

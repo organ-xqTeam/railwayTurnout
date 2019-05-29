@@ -10,9 +10,10 @@
     <result column="range1" property="range1" jdbcType="VARCHAR" />
     <result column="standard1" property="standard1" jdbcType="VARCHAR" />
     <result column="isdelete" property="isdelete" jdbcType="VARCHAR" />
+    <result column="turnoutstandardid" property="turnoutstandardid" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, measurementitem,state,ranges,standard,range1,standard1, isdelete
+    id, measurementitem,state,ranges,standard,range1,standard1, isdelete,turnoutstandardid
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
@@ -51,9 +52,11 @@
   </delete>
   <insert id="insert" parameterType="com.xq.Railway.model.measurementstandard" >
     insert into measurementstandard (id, measurementitem, standard, 
-      isdelete)
+      isdelete,turnoutstandardid)
     values (#{id,jdbcType=VARCHAR}, #{measurementitem,jdbcType=VARCHAR}, #{standard,jdbcType=VARCHAR}, 
-      #{isdelete,jdbcType=VARCHAR})
+      #{isdelete,jdbcType=VARCHAR},
+      #{turnoutstandardid,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.xq.Railway.model.measurementstandard" >
     insert into measurementstandard
@@ -76,6 +79,9 @@
       <if test="isdelete != null" >
         isdelete,
       </if>
+      <if test="turnoutstandardid != null" >
+        turnoutstandardid,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -97,6 +103,9 @@
       <if test="isdelete != null" >
         #{isdelete,jdbcType=VARCHAR},
       </if>
+      <if test="turnoutstandardid != null" >
+        #{turnoutstandardid,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.xq.Railway.model.measurementstandard" >
@@ -110,6 +119,9 @@
       </if>
       <if test="standard1 != null" >
         standard1 = #{standard1,jdbcType=VARCHAR},
+      </if>
+      <if test="turnoutstandardid != null" >
+        turnoutstandardid = #{turnoutstandardid,jdbcType=VARCHAR},
       </if>
       <if test="isdelete != null" >
         isdelete = #{isdelete,jdbcType=VARCHAR},

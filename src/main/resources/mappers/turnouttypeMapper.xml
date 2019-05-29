@@ -3,14 +3,55 @@
 <mapper namespace="com.xq.Railway.dao.turnouttypeMapper" >
   <resultMap id="BaseResultMap" type="com.xq.Railway.model.turnouttype" >
     <result column="id" property="id" jdbcType="VARCHAR" />
-    <result column="turnoutType" property="turnouttype" jdbcType="VARCHAR" />
+    <result column="turnoutTypename" property="turnoutTypename" jdbcType="VARCHAR" />
     <result column="reamke" property="reamke" jdbcType="VARCHAR" />
     <result column="isdelete" property="isdelete" jdbcType="VARCHAR" />
   </resultMap>
+  <sql id="Base_Column_List" >
+    id, turnoutTypename, reamke, isdelete
+  </sql>
+  <select id="findbyturnouttypename"  resultMap="BaseResultMap" parameterType="java.lang.String">
+  	select
+  	<include refid="Base_Column_List"/>
+  	from turnouttype 
+  	where turnoutTypename = #{turnouttypename}
+  </select>
+  
+  <select id="findbyid" resultMap="BaseResultMap" parameterType="java.lang.String">
+  	select
+  	<include refid="Base_Column_List"/>
+  	from turnouttype 
+  	where id = #{id}
+  
+  </select>
+  <update id="update" parameterType="com.xq.Railway.model.turnouttype">
+  	update turnouttype 
+ 	 <set >
+      <if test="turnouttypename != null" >
+        turnoutTypename = #{turnoutTypename,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  
+  </update>
+  
+  <select id="values" resultMap="BaseResultMap">
+  
+  	select
+  	<include refid="Base_Column_List"/>
+  	from turnouttype 
+  
+  </select>
+ 
+ 	<delete id="remove">
+ 		delete from turnouttype where id = #{id}
+ 	</delete>
+ 
+ 
   <insert id="insert" parameterType="com.xq.Railway.model.turnouttype" >
-    insert into turnouttype (id, turnoutType, reamke, 
+    insert into turnouttype (id, turnoutTypename, reamke, 
       isdelete)
-    values (#{id,jdbcType=VARCHAR}, #{turnouttype,jdbcType=VARCHAR}, #{reamke,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=VARCHAR}, #{turnoutTypename,jdbcType=VARCHAR}, #{reamke,jdbcType=VARCHAR}, 
       #{isdelete,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.xq.Railway.model.turnouttype" >
@@ -19,8 +60,8 @@
       <if test="id != null" >
         id,
       </if>
-      <if test="turnouttype != null" >
-        turnoutType,
+      <if test="turnoutTypename != null" >
+        turnoutTypename,
       </if>
       <if test="reamke != null" >
         reamke,
@@ -33,8 +74,8 @@
       <if test="id != null" >
         #{id,jdbcType=VARCHAR},
       </if>
-      <if test="turnouttype != null" >
-        #{turnouttype,jdbcType=VARCHAR},
+      <if test="turnoutTypename != null" >
+        #{turnoutTypename,jdbcType=VARCHAR},
       </if>
       <if test="reamke != null" >
         #{reamke,jdbcType=VARCHAR},
