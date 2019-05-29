@@ -4,8 +4,6 @@ if (!getCookie('user')) {
 }
 
 
-// window.location.href = './login.html'
-console.log('aaaaaaaaaaaaaaaaaaaaaaaa')
 createSelect();
 // 获取线路
 function createSelect() {
@@ -52,7 +50,7 @@ function createSite() {
             }
             $('#site-box').html(str);
             createResult($('#site-box').val(), 0, 5)
-            eChart($('#site-box').val())
+            // 图表 弃用 eChart($('#site-box').val())
             createWeather($('#site-box').val())
         }
     })
@@ -60,7 +58,7 @@ function createSite() {
 $('#line-box').on('change', function () {
     createSite()
     createResult($('#site-box').val(), 0, 5)
-    eChart($('#site-box').val())
+    // 图表 弃用 eChart($('#site-box').val())
     createWeather($('#site-box').val())
 })
 // 检测结果
@@ -216,7 +214,7 @@ function createWeather($id) {
         success: function (res) {
             console.log(res);
             if (!res.msg) {
-                alert('当前站点没有天气信息，请在站点设置页面添加')
+                // alert('当前站点没有天气信息，请在站点设置页面添加')
                 return;
             }
             var baseurl = './src/images/sunny.png'
@@ -238,10 +236,10 @@ function createWeather($id) {
                     imgurl = '../img/duoyun@2x.png'
                     break;
             }
+            // <img src="./src/img/duoyun@2x.png" alt="">
             var str = `<div class="weather-title">
-                            <img src="./src/img/duoyun@2x.png" alt="">
                             <div class="right">
-                                <div>14 °</div>
+                                <div></div>
                                 <div>${res.msg.weather}</div>
                             </div>
                         </div>
@@ -306,3 +304,52 @@ function clearCookie(name) {
 $('#out').on('click', function () {
     window.location.href = './login.html'
 })
+
+
+
+
+
+
+// 新增的 table
+createDomDown()
+function createDomDown () {
+    console.log(1234565)
+    $.ajax({
+        type:"get",
+        dataType : 'json', 
+        url:"http://120.92.10.2:81/railwayTurnout/detectionresult/getSmartCarData",
+        success:function(res){
+            console.log(res.msg)
+            // var headStr = '<table class="table-bordered table"><thead><tr><th>编号</th><th>参数</th><th>实测参数</th><th>统计分析</th></tr></thead>';
+            // var bodyStr = '';
+            // res.msg.forEach((item, index) => {
+            //     var json = JSON.stringify(item.list)
+            //     bodyStr += `<tr>
+            //                 <td>${index + 1}</td>
+            //                 <td>${item.name}</td>
+            //                 <td>${item.list[0].num}</td>
+            //                 <td>${item.list[0].sitename}</td>
+            //             </tr>`
+            // });
+            // bodyStr += '</table>';
+            // var table = headStr + bodyStr;
+
+            var headStr = '<table class="table-bordered table"><thead><tr><th>参数</th><th>实测参数</th><th>里程</th><th>统计分析</th></tr></thead>';
+            var bodyStr = '';
+            res.msg.forEach((item, index) => {
+                var json = JSON.stringify(item.list)
+                bodyStr += `<tr>
+                            <td>${item.name}</td>
+                            <td>${item.list[0].num}</td>
+                            <td>${item.mileage.num}</td>
+                            <td>${item.list[0].sitename}</td>
+                        </tr>`
+            });
+            bodyStr += '</table>';
+            var table = headStr + bodyStr;
+
+
+            $('.table-content-add').html(table);
+        }
+    });
+}

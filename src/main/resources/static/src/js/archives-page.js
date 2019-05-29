@@ -93,6 +93,8 @@ function create(obj) {
  */
 $('.alert-wrapper .close').on('click', function () {
     $('.alert-wrapper').css('display','none');
+    $('.alert-wrapper .add-new').css('display','none');
+    $('.alert-wrapper .alert-see').css('display','none');
 })
 
 
@@ -255,32 +257,67 @@ $("#project-choose").on('change', function () {
  * 下载表格
  */
 $('body').delegate('.download-btn','click', function () {
-    window.open(Global.host + 'detectionresult/getexcle?id=' + $(this).attr('data-id'));
+    $('.alert-wrapper .add-new').css('display','block')
+    $('.alert-wrapper').css('display','block')
+    $('.down-ok').attr('data-id',$(this).attr('data-id'))
+    // window.open(Global.host + 'detectionresult/getexcle?id=' + $(this).attr('data-id'));
+})
+$('.down-ok').on('click', function () {
+    console.log($(this).attr('data-id'))
+    // $.ajax({
+    //     type: 'POST',
+    //     url: Global.host + "detectionresult/getexcle", 
+    //     data: {
+    //         id:	$(this).attr('data-id'),
+    //         filename: $('.measurementitem').val()
+    //     },
+    //     success: function (res) {
+    //         console.log(res);
+    //         // window.open(res)
+    //     }
+    // })
+    window.open(Global.host + 'detectionresult/getexcle?id=' + $(this).attr('data-id')+ '&filename=' + $('.measurementitem').val()) 
+    // window.location.href = Global.host + 'detectionresult/getexcle?id=' + $(this).attr('data-id') + '&filename=' + $('.measurementitem').val()
+    $('.alert-wrapper .add-new').css('display','none')
+    $('.alert-wrapper').css('display','none')
 })
 /**
  * 打印页面
  */
 $('body').delegate('.printing-btn','click', function () {
-    var tr = $("tr", $('div.table-con'));    
-    for(var i=0;i<tr.length;i++){    
-            for(var j=0;j<tr.eq(i).children().length;j++)  {
-                //获取td元素，也就是页面上的单元格  
-            var td = tr.eq(i).children().eq(j);    
-            td.removeClass("b0");    
-            td.addClass("b1");    
-            }     
-        }  
+    $.ajax({
+        type: 'POST',
+        url: Global.host + 'detectionresult/selectbyridpname',
+        data: {
+            rid: $(this).attr('data-id')
+        }, // 项目id
+        success: function (res) {
+            console.log(res)
+            create(res.list)
 
 
-    // 打印页面
-    bdhtml=window.document.body.innerHTML;   
-    sprnstr="<!--startprint-->";   
-    eprnstr="<!--endprint-->";   
-    prnhtml=bdhtml.substr(bdhtml.indexOf(sprnstr)+17);   
-    prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));   
-    window.document.body.innerHTML=prnhtml;  
-    window.print();   
-    // 还原页面
-    window.document.body.innerHTML = bdhtml
-    window.location.reload()
+            var tr = $("tr", $('div.table-con'));  
+            for(var i=0;i<tr.length;i++){    
+                    for(var j=0;j<tr.eq(i).children().length;j++)  {
+                        //获取td元素，也就是页面上的单元格  
+                    var td = tr.eq(i).children().eq(j);    
+                    td.removeClass("b0");    
+                    td.addClass("b1");    
+                    }     
+                }  
+        
+        
+            // 打印页面
+            bdhtml=window.document.body.innerHTML;   
+            sprnstr="<!--startprint-->";   
+            eprnstr="<!--endprint-->";   
+            prnhtml=bdhtml.substr(bdhtml.indexOf(sprnstr)+17);   
+            prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));   
+            window.document.body.innerHTML=prnhtml;  
+            window.print();   
+            // 还原页面
+            window.document.body.innerHTML = bdhtml
+            window.location.reload()
+        }
+    })
 })

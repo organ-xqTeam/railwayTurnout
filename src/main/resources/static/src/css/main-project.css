@@ -68,6 +68,7 @@
 
 
 .main .project-wrap li.edit-project {
+    position: relative;
     text-align: center;
     color: #222;
     vertical-align: top;
@@ -459,3 +460,11 @@
 
 
 
+.delete {
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}

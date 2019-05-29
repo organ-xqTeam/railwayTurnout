@@ -1,10 +1,10 @@
 //翻页
-function page () {
+function page() {
     $.ajax({
         type: "POST",
         url: Global.host + "measurementproject/selectAllpName",
         data: {
-            id:localStorage.getItem('site'), // 站点id
+            id: localStorage.getItem('site'), // 站点id
             pageNum: 0,
             pageSize: 10000
         },
@@ -12,20 +12,20 @@ function page () {
             console.log(res);
             var $dataTotal = res.list.length;
             var $pageTotal = Math.ceil(res.list.length / 11)
-            console.log($dataTotal,$pageTotal)
+            console.log($dataTotal, $pageTotal)
             new Page({
                 id: 'pagination',
                 pageTotal: $pageTotal, //必填,总页数
-                pageAmount: 12,  //每页多少条
+                pageAmount: 12, //每页多少条
                 dataTotal: $dataTotal, //总共多少条数据
-                curPage:1, //初始页码,不填默认为1
+                curPage: 1, //初始页码,不填默认为1
                 pageSize: 5, //分页个数,不填默认为5
-                showPageTotalFlag:true, //是否显示数据统计,不填默认不显示
-                showSkipInputFlag:true, //是否支持跳转,不填默认不显示
+                showPageTotalFlag: true, //是否显示数据统计,不填默认不显示
+                showSkipInputFlag: true, //是否支持跳转,不填默认不显示
                 getPage: function (page) {
                     //获取当前页数
-                   console.log(page);
-                   createCard(page-1,11)
+                    console.log(page);
+                    createCard(page - 1, 11)
                 }
             })
         }
@@ -46,9 +46,9 @@ var $id = '',
  * 弹窗
  * 查看
  */
-$(".project-wrap").delegate('.project-name',"click", function (){
-    $(".alert-wrapper").css("display","block");
-    $(".alert-see").css("display","block");
+$(".project-wrap").delegate('.project-name', "click", function () {
+    $(".alert-wrapper").css("display", "block");
+    $(".alert-see").css("display", "block");
     var $id = $(this).attr('data-id')
     $.ajax({
         type: 'POST',
@@ -75,24 +75,24 @@ function create(obj, $id) {
     var imgArr = [];
     obj.forEach(function (item, index) {
         imgArr[index] = [];
-        for(var i = 0; i < item.jsonArray.length; i++) {
-            console.log( item.jsonArray)
+        for (var i = 0; i < item.jsonArray.length; i++) {
+            console.log(item.jsonArray)
             imgArr[index][i] = item.jsonArray[i];
         }
         var str = imgArr[index].join(",");
         console.log(str);
         console.log(index, imgArr)
         arr[index] = '<tr>\
-                        <td>'+ item.data.pname+ '</td>\
-                        <td>'+ item.data.standards+ '</td>\
-                        <td>'+ item.data.measureddata+ '</td>\
-                        <td class="btn see_btn"> <span data-id="'+ $id +'" data-img="'+imgArr[index]+'"> 查看图片 </span></td>\
+                        <td>' + item.data.pname + '</td>\
+                        <td>' + item.data.standards + '</td>\
+                        <td>' + item.data.measureddata + '</td>\
+                        <td class="btn see_btn"> <span data-id="' + $id + '" data-img="' + imgArr[index] + '"> 查看图片 </span></td>\
                       <td>'
 
-        if(item.data.measuredresults == '合格') {
-            arr[index] += '<span class="hege">'+item.data.measuredresults+'</span></td></tr>'
-        } else if(item.data.measuredresults == '不合格') {
-            arr[index] += '<span class="hege-no">'+item.data.measuredresults+'</span></td></tr>'
+        if (item.data.measuredresults == '合格') {
+            arr[index] += '<span class="hege">' + item.data.measuredresults + '</span></td></tr>'
+        } else if (item.data.measuredresults == '不合格') {
+            arr[index] += '<span class="hege-no">' + item.data.measuredresults + '</span></td></tr>'
         }
         $tbody += arr[index];
 
@@ -110,7 +110,7 @@ function create(obj, $id) {
             <tbody>' + $tbody + '</tbody></table>'
     $('.table-wrap').html(str);
     console.log(obj)
-    
+
     // var imgTable = '';
     // var imgArr = [];
     // obj.forEach(function (item, index) {
@@ -123,8 +123,8 @@ function create(obj, $id) {
 /**
  * 显示图片弹窗
  */
-$('.alert-see').delegate('.btn span','click', function () {
-    $('.pic-wrap').css('display','block');
+$('.alert-see').delegate('.btn span', 'click', function () {
+    $('.pic-wrap').css('display', 'block');
     // var $index = $('.see_btn').index($('.gridtable tbody tr'));
     // $.ajax({
     //     type: 'POST',
@@ -148,7 +148,7 @@ $('.alert-see').delegate('.btn span','click', function () {
     var res = $(this).attr('data-img').split(",")
     console.log(res)
     var imgArr = '';
-    for(var i = 0; i < res.length; i++) {
+    for (var i = 0; i < res.length; i++) {
         imgArr += '<li>\
                         <img src="' + Global.host + res[i] + '" alt="">\
                     </li>'
@@ -164,56 +164,56 @@ $('.alert-see').delegate('.btn span','click', function () {
  * 弹窗
  * 关闭
  */
-$(".alert-see .close").on("click", function (){
-    $('.pic-wrap').css('display','none');
-    $('.alert-see').css('display','none');
-    $('.alert-wrapper').css('display','none');
+$(".alert-see .close").on("click", function () {
+    $('.pic-wrap').css('display', 'none');
+    $('.alert-see').css('display', 'none');
+    $('.alert-wrapper').css('display', 'none');
 })
 
 /**
  * 修改
  */
-$(".project-wrap").delegate('.edit-btn','click', function () {
+$(".project-wrap").delegate('.edit-btn', 'click', function () {
     $id = $(this).attr('data-id');
-    $tid= $(this).attr('data-tid');
-    $lid= $(this).attr('data-lid');
+    $tid = $(this).attr('data-tid');
+    $lid = $(this).attr('data-lid');
     $(".add-alert .edit-paoject_name").val($(this).parent().find('.project-name').text());
-    $(".alert-wrapper").css("display","block");
-    $(".add-alert").css("display","block");
+    $(".alert-wrapper").css("display", "block");
+    $(".add-alert").css("display", "block");
     $('.add-alert .edit-ok').attr('data-id', $(this).attr('data-id'))
 })
 /**
  * 修改关闭弹窗
  *  */
 $(".close").on('click', function () {
-    $(".alert-wrapper").css("display","none");
-    $(".add-alert").css("display","none");
-    $(".alert-see").css("display","none");
+    $(".alert-wrapper").css("display", "none");
+    $(".add-alert").css("display", "none");
+    $(".alert-see").css("display", "none");
 })
 /**
  *  确认修改
  *  */
 $(".add-alert .edit-ok").on('click', function () {
     $(".project-name").text($('.edit-paoject_name').val())
-    $(".alert-wrapper").css("display","none");
-    var formData= new FormData()
+    $(".alert-wrapper").css("display", "none");
+    var formData = new FormData()
     var file = $(".add-alert .add-shuju")[0].files
-    formData.append("id",$(this).attr('data-id'))       // 项目id
-    formData.append("aid",localStorage.getItem('aid'))  // aid
-    formData.append("tid",localStorage.getItem('line')) // 站点id
-    formData.append("lid",localStorage.getItem('site')) // 线路id
-    formData.append("projectName",$(".add-alert .edit-paoject_name").val())
-    formData.append("file",$(".add-alert .add-shuju")[0].files[0])
-    if(!$(".add-alert .edit-paoject_name").val()) {
+    formData.append("id", $(this).attr('data-id')) // 项目id
+    formData.append("aid", localStorage.getItem('aid')) // aid
+    formData.append("tid", localStorage.getItem('line')) // 站点id
+    formData.append("lid", localStorage.getItem('site')) // 线路id
+    formData.append("projectName", $(".add-alert .edit-paoject_name").val())
+    formData.append("file", $(".add-alert .add-shuju")[0].files[0])
+    if (!$(".add-alert .edit-paoject_name").val()) {
         alert('项目名不能为空');
         createSelect()
-        createCard(0,11)
+        createCard(0, 11)
         return
     }
     $.ajax({
         type: "POST",
         url: Global.host + "measurementproject/multipleSave", //   // measurementproject/updatebyid
-        data: formData,            
+        data: formData,
         cache: false, // 上传文件无需缓存
         processData: false, // 用于对data参数进行序列化处理 这里必须false
         contentType: false, // 必须
@@ -226,17 +226,40 @@ $(".add-alert .edit-ok").on('click', function () {
 })
 
 /**
+ *  删除项目
+ *  */
+$(".project-wrap").delegate('.delete', 'click', function () {
+    var r = confirm("是否删除此项目!");
+    if (r == true) {
+        console.log("用户确认删除");
+        $.ajax({
+            type: "POST",
+            url: Global.host + "measurementproject/delete", 
+            data: {
+                id: $(this).attr('data-id')
+            },
+            success: function (res) {
+                console.log(res)
+                init()
+            }
+        })
+    } else {
+        console.log("用户取消删除");
+    }
+
+})
+/**
  * 添加项目
  * 弹窗
  */
 $(".project-wrap").delegate('.add-btn', 'click', function () {
-    if(localStorage.getItem('site') == 'undefined') {
+    if (localStorage.getItem('site') == 'undefined') {
         alert('您未设置默认站点，请到站点设置页面设置')
         return
     }
     $(".add-new .edit-paoject_name").val('')
-    $(".alert-wrapper").css("display","block");
-    $(".add-new").css("display","block");
+    $(".alert-wrapper").css("display", "block");
+    $(".add-new").css("display", "block");
 })
 
 /**
@@ -244,8 +267,8 @@ $(".project-wrap").delegate('.add-btn', 'click', function () {
  * 关闭弹窗
  */
 $(".add-new .close").on('click', function () {
-    $(".alert-wrapper").css("display","none");
-    $(".add-new").css("display","none");
+    $(".alert-wrapper").css("display", "none");
+    $(".add-new").css("display", "none");
 })
 
 /**
@@ -253,26 +276,26 @@ $(".add-new .close").on('click', function () {
  * 确认添加
  */
 $(".add-new .edit-ok").on('click', function () {
-    $(".alert-wrapper").css("display","none");
-    $(".add-new").css("display","none");
+    $(".alert-wrapper").css("display", "none");
+    $(".add-new").css("display", "none");
 
-    var formData= new FormData()
+    var formData = new FormData()
     var file = $(".add-new .add-shuju")[0].files
-    formData.append("id",'')
-    formData.append("aid",localStorage.getItem('aid'))  // aid
-    formData.append("tid",localStorage.getItem('site')) // 站点id
-    formData.append("lid",localStorage.getItem('line')) // 线路id
-    formData.append("projectName",$(".add-new .edit-paoject_name").val())
-    formData.append("file",$(".add-shuju")[0].files[0])
-//    return
-    if(!$(".add-new .edit-paoject_name").val()) {
+    formData.append("id", '')
+    formData.append("aid", localStorage.getItem('aid')) // aid
+    formData.append("tid", localStorage.getItem('site')) // 站点id
+    formData.append("lid", localStorage.getItem('line')) // 线路id
+    formData.append("projectName", $(".add-new .edit-paoject_name").val())
+    formData.append("file", $(".add-shuju")[0].files[0])
+    //    return
+    if (!$(".add-new .edit-paoject_name").val()) {
         alert('请填写正确的项目名');
         return;
     }
     $.ajax({
         type: "POST",
         url: Global.host + "measurementproject/multipleSave",
-        data: formData,            
+        data: formData,
         cache: false, // 上传文件无需缓存
         processData: false, // 用于对data参数进行序列化处理 这里必须false
         contentType: false, // 必须
@@ -312,7 +335,7 @@ $(".add-new .edit-ok").on('click', function () {
  */
 $("#zhandian").on("change", function () {
     $.ajax({
-        type:"POST",
+        type: "POST",
         url: Global.host + "measurementproject/selectBy",
         data: {
             id: localStorage.getItem('site'),
@@ -323,7 +346,7 @@ $("#zhandian").on("change", function () {
         success: function (res) {
             console.log(res);
             createCardDom(res.list)
-            if($('#zhandian').val() == 'ALL') {
+            if ($('#zhandian').val() == 'ALL') {
                 console.log('all')
                 init()
             }
@@ -373,8 +396,8 @@ function chooseCard(res) {
                     data-datasources="' + res.datasources + '" \
                     data-isdelete="' + res.isdelete + '"\
                     type="submit" value="修改"></li>'
-                
-            var str1 =     '<li class="add-project">\
+
+    var str1 = '<li class="add-project">\
                                 <div>\
                                         <i>\
                                             <img src="../src/images/xiamgmumingc.png" alt="">\
@@ -395,7 +418,7 @@ function chooseCard(res) {
                                     </div>\
                                     <input class="add-btn" type="submit" value="添加">\
                                 </li>'
-    $str = str1 + $str;            
+    $str = str1 + $str;
     $(".project-wrap").html($str)
 }
 
@@ -409,7 +432,7 @@ function init() {
         type: 'POST',
         url: Global.host + "measurementproject/selectBy", // 查询检测报告【分页】
         data: {
-            id:	localStorage.getItem('site'),  // 站点id
+            id: localStorage.getItem('site'), // 站点id
             mName: '', // 项目名
             pageNum: 0,
             pageSize: 10000
@@ -419,7 +442,7 @@ function init() {
             createProject();
             createCardDom(res.list)
             page()
-            if(localStorage.getItem('site') == 'undefined') {
+            if (localStorage.getItem('site') == 'undefined') {
                 alert('您未设置默认站点，请到站点设置页面设置')
             }
         }
@@ -436,14 +459,14 @@ function createProject() {
         type: "POST",
         url: Global.host + "measurementproject/selectAllpName",
         data: {
-            id:localStorage.getItem('site'), // 站点id
+            id: localStorage.getItem('site'), // 站点id
             pageNum: 0,
             pageSize: 10000
         },
         success: function (res) {
             console.log(res);
             var str = '';
-            for(var i = 0; i < res.list.length; i++) {
+            for (var i = 0; i < res.list.length; i++) {
                 str += '<option value="' + res.list[i] + '">' + res.list[i] + '</option>'
             }
             str = '<option value="ALL">请选择</option>' + str;
@@ -460,15 +483,21 @@ function createCardDom(res) {
     console.log(res)
     var $str = '';
     var $strArr = [];
-    for(var i = 0; i < res.length; i++) {
+    for (var i = 0; i < res.length; i++) {
         var $li = document.createElement('li');
         $($li).addClass('edit-project')
+        if (!res[i].lAltitude) {
+            res[i].lAltitude = '未填写'
+        }
+        if (!res[i].rAltitude) {
+            res[i].rAltitude = '未填写'
+        }
         $str = '<div>\
                     <i>\
                         <img src="../src/images/xiamgmumingc.png" alt="">\
                     </i>\
                     <span class="project-name" \
-                        data-id="'+ res[i].id + '" \
+                        data-id="' + res[i].id + '" \
                         data-tid="' + res[i].tid + '" \
                         data-lid="' + res[i].lid + '" \
                         data-pname="' + res[i].pname + '" \
@@ -510,11 +539,12 @@ function createCardDom(res) {
                     data-warningstatistics="' + res[i].warningstatistics + '" \
                     data-datasources="' + res[i].datasources + '" \
                     data-isdelete="' + res[i].isdelete + '"\
-                    type="submit" value="修改">'
+                    type="submit" value="修改">\
+                    <img class="delete" data-id="' + res[i].id + '" src="../src/images/shanchu.png" alt="">'
         $($li).html($str);
         $strArr[i] = $li;
     }
-    var str1 =      '<li class="add-project">\
+    var str1 = '<li class="add-project">\
                         <div>\
                             <i>\
                                 <img src="../src/images/xiamgmumingc.png" alt="">\

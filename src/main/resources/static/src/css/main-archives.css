@@ -331,3 +331,69 @@
 .alert-table-wrap table td{
     border:1px solid #EBECF0;
 }
+
+
+
+
+
+
+.alert-wrapper .add-new {
+    padding: 50px 20px;
+    padding-right: 40px;
+    box-sizing: border-box;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    background: #fff;
+    border-radius: 10px;
+    color: #222;
+}
+.alert-wrapper .add-new p {
+    display: inline-block;
+    /* border: 1px solid red; */
+    width: 70px;
+    text-align: right;
+    vertical-align: middle;
+}
+.alert-wrapper .add-new div {
+    text-align: center;
+    margin: 10px 0;
+}
+.alert-wrapper .add-new div input {
+    padding: 10px;
+    vertical-align: middle;
+    margin-left: 10px;
+    border-radius: 2px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+}
+.alert-wrapper .add-new .ctrl-wrap {
+    float: right;
+    margin-top: 50px;
+    margin-bottom: 10px;
+}
+.alert-wrapper .add-new .ctrl-wrap span {
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.alert-wrapper .add-new .ctrl-wrap span:first-child {
+    background: rgb(51, 125, 253);
+    color: #fff;
+}
+.alert-wrapper .add-new .ctrl-wrap span:last-child {
+    background: none;
+    border: 1px solid rgb(201, 201, 201);
+}
+
+
+
+
+
+
+
+
+
+
+

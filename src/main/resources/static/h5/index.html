@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="./src/css/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="./src/css/main.css">
 </head>
+
 <body>
 
     <div class="header">
@@ -39,7 +40,7 @@
     <!-- 检测结果 -->
     <div class="result shadow">
         <div class="title">
-            <span>检测结果</span>
+            <span>实测数据</span>
             <div class="more" data-toggle="modal" data-target="#myModal">更多 ></div>
         </div>
         <div class="table-con">
@@ -65,18 +66,35 @@
 
     <!-- 检测结果统计图 -->
     <div class="result-pic shadow">
-        <div class="title">
-            检测结果统计图
+        <div class="title_">
+            实测数据
         </div>
-        <div id="container" style="height: 100%"></div>
+        <div class="table-content-add">
+            <table>
+                <thead>
+                    <tr>
+                        <th>编号</th>
+                        <th>参数</th>
+                        <th>实测参数</th>
+                        <th>统计分析</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                </tr>
+                </table>
+        </div>
+        <!-- <div id="container" style="height: 100%"></div> 图表  弃用 -->
     </div>
     <!-- 检测结果统计图 END -->
 
     <!-- 天气 -->
     <div class="weather shadow">
-
         <div class="weather-title">
-            <img src="./src/img/duoyun@2x.png" alt="">
+            <!-- <img src="./src/img/duoyun@2x.png" alt=""> -->
             <div class="right">
                 <div>14 °</div>
                 <div>多云</div>
@@ -88,7 +106,6 @@
         <p>
             项目概况项目概况项目概况项目概况项目概况项目概况
         </p>
-
     </div>
     <!-- 天气 END -->
 
@@ -136,10 +153,9 @@
     </ul>
 
 
-
     <script src="./src/js/jquery.js"></script>
     <script src="./src/css/bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+    <!-- <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script> -->
     <script src="./src/js/main.js"></script>
     <script src="./src/js/index.js"></script>
 </body>

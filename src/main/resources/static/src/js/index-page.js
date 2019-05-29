@@ -201,7 +201,7 @@ $('#xianlu-choose').on('change', function () {
 $('#zhandian-choose').on('change', function () {
     console.log('change');
     createWeather($('#zhandian-choose').val());
-    eChart($("#zhandian-choose").val());
+    // eChart($("#zhandian-choose").val());
     page($("#zhandian-choose").val());
 })
 createSelect();
@@ -249,7 +249,7 @@ function createZhandian() {
             // createTable(0, 4)
             createWeather($('#zhandian-choose').val());
             createTable($('#zhandian-choose').val(),0,4);
-            eChart($("#zhandian-choose").val())
+            // eChart($("#zhandian-choose").val())
         }
     })
 }
@@ -354,3 +354,79 @@ $("#dropout-index").click(function(){
         }
     });
 });
+
+
+
+
+createDomDown()
+setInterval(function () {
+    createDomDown()
+}, 10000)
+// ***渲染列表*******************************************************************
+function createDomDown () {
+    $.ajax({
+        type:"get",
+        dataType : 'json', 
+        url:"http://120.92.10.2:81/railwayTurnout/detectionresult/getSmartCarData",
+        success:function(res){
+            console.log(res.msg)
+            var headStr = '<table><thead><tr><th>编号</th><th>参数</th><th>实测参数</th><th>里程</th><th>统计分析</th></tr></thead>';
+            var bodyStr = '';
+            res.msg.forEach((item, index) => {
+                var json = JSON.stringify(item.list)
+                bodyStr += `<tr>
+                            <td>${index + 1}</td>
+                            <td>${item.name}</td>
+                            <td>${item.list[0].num}</td>
+                            <td>${item.mileage.num}</td>
+                            <td>${item.list[0].sitename}</td>
+                        </tr>`
+            });
+            bodyStr += '</table>';
+            var table = headStr + bodyStr;
+            $('.table-con-2').html(table);
+        }
+    });
+}
+// 关闭弹窗 弃用
+// $('.alert-box').delegate('.close-alert-img', 'click', function () {
+//     $('.alert-box').css('display','none')
+// })
+
+// alert-box 关闭所有弹窗
+// $('.alert-box').on('click', function (event) {
+//     event.preventDefault();
+//     $('.alert-box').css('display','none')
+// })
+
+
+// 弃用
+// $('.table-con-2').delegate('.alert-json', 'click', function () {
+//     console.log($(this).attr('data-json'))
+//     var arr = JSON.parse($(this).attr('data-json'));
+//     console.log(arr)
+//     var tableHead = '<div class="close">\
+//                             <img class="close-alert-img" src="./src/images/close.png" alt="">\
+//                         </div>\
+//                         <table>\
+//                             <thead>\
+//                                 <tr>\
+//                                     <th>编号</th>\
+//                                     <th>实测参数</th>\
+//                                     <th>分析</th>\
+//                                 </tr>\
+//                             </thead>';
+//     var tableBody = '';
+//     arr.forEach((item, index) =>{
+//         tableBody += `<tbody>
+//                         <tr>
+//                             <td>${index + 1}</td>
+//                             <td>${item.num}</td>
+//                             <td>${item.sitename}</td>
+//                         </tr>
+//                     </tbody>`
+//     })
+//     var table = tableHead + tableBody + '</table>';
+//     $('.table-con-3').html(table);
+//     $('.alert-box').css('display','block')
+// })

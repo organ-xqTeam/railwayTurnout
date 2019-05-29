@@ -27,6 +27,18 @@
     /* border: 1px solid red; */
 }
 
+
+/* 按钮样式 */
+.alert-btn {
+    background: rgb(49, 128, 255);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    -ms-border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+    display: inline-block;
+}
 /* zhandian */
 .main .main-main .zhandian {
     position: absolute;
@@ -71,7 +83,98 @@
     -ms-border: none;
 }
 
-.main .main-main .zhandian .zxf_pagediv {
+
+
+.main .main-footer .table-con-2 table {
+    margin-top: 10px;
+    font-size: 12px;
+    width: 100%;
+    text-align: left;
+    border: 1px solid rgb(235, 236, 240);
+    -ms-border: 1px solid rgb(235, 236, 240);
+}
+
+.main .main-footer .table-con-2 table th {
+    border-width: 1px;
+    -ms-border-width: 1px;
+    padding: 8px;
+    background-color: rgb(235, 236, 240);
+}
+
+.main .main-footer .table-con-2 table tr td {
+    border-width: 1px;
+    -ms-border-width: 1px;
+    padding: 8px;
+    border-bottom: 1px solid rgb(235, 236, 240);
+    -ms-border-bottom: 1px solid rgb(235, 236, 240);
+}
+
+.main .main-footer .table-con-2 table tr:last-child td {
+    border: none;
+    -ms-border: none;
+}
+
+.table-con-3 table {
+    margin-top: 10px;
+    font-size: 12px;
+    width: 100%;
+    text-align: left;
+    border: 1px solid rgb(235, 236, 240);
+    -ms-border: 1px solid rgb(235, 236, 240);
+}
+
+.table-con-3 table th {
+    border-width: 1px;
+    -ms-border-width: 1px;
+    padding: 8px;
+    background-color: rgb(235, 236, 240);
+}
+
+.table-con-3 table tr td {
+    border-width: 1px;
+    -ms-border-width: 1px;
+    padding: 8px;
+    border-bottom: 1px solid rgb(235, 236, 240);
+    -ms-border-bottom: 1px solid rgb(235, 236, 240);
+}
+.table-con-3 table tr:last-child td {
+    border: none;
+    -ms-border: none;
+}
+
+.alert-box {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background: rgba(0,0,0,.5);
+}
+.alert-box .alert-con {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 500px;
+    color: #222
+}
+.alert-box .alert-con .close {
+    text-align: right;
+}
+.alert-box .alert-con .close img {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+
+
+
+
+.main .main-footer .table-con-2 .zxf_pagediv {
     margin: 0 auto;
     /* margin-top: 20px; */
 }

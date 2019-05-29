@@ -34,18 +34,57 @@ html {
     font-size: 24px;
     color: #fff;
 }
-.alert {
+.wrapper {
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%,-50%);
     margin-top: 100px;
     text-align: center;
-    background: #fff;
-    display: inline-block;
+    display: flex;
+    align-items: center;
     border-radius: 10px;
     -ms-border-radius: 10px;
     padding: 40px;
+    margin: 20px 0;
+}
+.wrapper .code-wrap {
+    color: #fff;
+    text-align: center;
+    width: 240px;
+    background:  #003883;
+    height: 280px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.wrapper .code-wrap img {
+    width: 100px;
+    padding: 5px;
+    background: #fff
+}
+.wrapper .code-wrap p {
+    padding: 10px 0;
+    font-size: 12px;
+}
+.wrapper .code-wrap p:first-child {
+    font-size: 16px;
+}
+.alert {
+    /* position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    margin-top: 100px; */
+    text-align: center;
+    background: #fff;
+    display: inline-block;
+    /* border-radius: 10px; */
+    -ms-border-radius: 10px;
+    height: 280px;
+    padding: 40px;
+    box-sizing: border-box;
     margin: 20px 0;
 }
 .alert div {

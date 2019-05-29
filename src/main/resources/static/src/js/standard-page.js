@@ -1,4 +1,5 @@
 //翻页
+let $page = 1;
 function page() {
     $.ajax({
         type: 'POST',
@@ -21,6 +22,7 @@ function page() {
                 getPage: function (page) {
                     //获取当前页数
                    console.log(page);
+                   $page = page;
                    createTable(page-1, 10)
                 }
             })
@@ -40,6 +42,7 @@ $(".table-con").delegate('.bianji','click', function () {
     $(".add-alert .standards").val($(this).attr('data-standards')||'请填写');
     $(".add-alert .range1").val($(this).attr('data-range1')||'请填写');
     $(".add-alert .standard1").val($(this).attr('data-standard1')||'请填写');
+    $(".add-alert .mathods").val($(this).attr('data-standard1')||'请填写');
     
     $(".add-alert .standard").val($(this).attr('data-standard'))
 })
@@ -58,7 +61,8 @@ $(".add-alert .edit-ok").on('click', function () {
         data: {
             id: $(this).attr('data-id'),
             measurementitem: $('.add-alert').find('.measurementitem').val(),
-            standard: $('.add-alert').find('.standard').val()
+            standard: $('.add-alert').find('.standard').val(),
+            standard1: $('.add-alert').find('.mathods').val()
         },
         success: function (res) {
             console.log(res);
@@ -90,13 +94,17 @@ $(".add-new .edit-ok").on('click', function () {
         alert('测量标准不能为空');
         return;
     }
+    if(!$('.add-new').find('.mathods').val()) {
+        alert('测量方式不能为空');
+        return;
+    }
     $.ajax({
         type: 'POST',
         url: Global.host + 'measurementstandard/insert',
         data: {
             measurementitem: $('.add-new').find('.measurementitem').val(),
             standard: $('.add-new').find('.standard').val(),
-            standard1: $('.add-new').find('.standard1').val()
+            standard1: $('.add-new').find('.mathods').val() 
         },
         success: function (res) {
             console.log(res)
@@ -156,56 +164,84 @@ function createDom (arr, el) {
                         <tr>\
                             <th>测量项</th>\
                             <th>测量标准</th>\
+                            <th>测量方式</th>\
                             <th width="300">操作</th>\
                         </tr>\
                     </thead>'
     for(var i = 0; i < arr.length; i++) {
-        if(i == 0) {
-            $body_str += '  <tr>\
-                                <td>' + arr[i].measurementitem + '</td>\
-                                <td>+-' + arr[i].standard + '</td>\
-                                <td>\
-                                    <i class="bianji" \
-                                        data-id="' + arr[i].id + '" \
-                                        data-measurementitem="' + arr[i].measurementitem + '"\
-                                        data-state="' + arr[i].state + '"\
-                                        data-ranges="' + arr[i].ranges + '"\
-                                        data-standard="' + arr[i].standard + '"\
-                                        data-range1="' + arr[i].range1 + '"\
-                                        data-standard1="' + arr[i].standard1 + '"\
-                                        data-state="' + arr[i].state + '">\
-                                            <img src="../src/images/bianji.png" alt="">\
-                                    </i>\
-                                    <i class="shanchu">\
-                                        <img src="../src/images/shanchu.png" alt="">\
-                                    </i>\
-                                </td>\
-                            </tr>'
-        } else if(i == 1 || i == 2) {
-            $body_str += '  <tr>\
-                                <td>' + arr[i].measurementitem + '</td>\
-                                <td><=' + arr[i].standard + '</td>\
-                                <td>\
-                                    <i class="bianji" \
-                                        data-id="' + arr[i].id + '" \
-                                        data-measurementitem="' + arr[i].measurementitem + '"\
-                                        data-state="' + arr[i].state + '"\
-                                        data-ranges="' + arr[i].ranges + '"\
-                                        data-standard="' + arr[i].standard + '"\
-                                        data-range1="' + arr[i].range1 + '"\
-                                        data-standard1="' + arr[i].standard1 + '"\
-                                        data-state="' + arr[i].state + '">\
-                                            <img src="../src/images/bianji.png" alt="">\
-                                    </i>\
-                                    <i class="shanchu">\
-                                        <img src="../src/images/shanchu.png" alt="">\
-                                    </i>\
-                                </td>\
-                            </tr>'
+        if($page == 1) {
+            if(i == 0) {
+                $body_str += '  <tr>\
+                                    <td>' + arr[i].measurementitem + '</td>\
+                                    <td>+-' + arr[i].standard + '</td>\
+                                    <td>' + arr[i].standard1 + '</td>\
+                                    <td>\
+                                        <i class="bianji" \
+                                            data-id="' + arr[i].id + '" \
+                                            data-measurementitem="' + arr[i].measurementitem + '"\
+                                            data-state="' + arr[i].state + '"\
+                                            data-ranges="' + arr[i].ranges + '"\
+                                            data-standard="' + arr[i].standard + '"\
+                                            data-range1="' + arr[i].range1 + '"\
+                                            data-standard1="' + arr[i].standard1 + '"\
+                                            data-state="' + arr[i].state + '">\
+                                                <img src="../src/images/bianji.png" alt="">\
+                                        </i>\
+                                        <i class="shanchu">\
+                                            <img src="../src/images/shanchu.png" alt="">\
+                                        </i>\
+                                    </td>\
+                                </tr>'
+            } else if(i == 1 || i == 2) {
+                $body_str += '  <tr>\
+                                    <td>' + arr[i].measurementitem + '</td>\
+                                    <td><=' + arr[i].standard + '</td>\
+                                    <td>' + arr[i].standard1 + '</td>\
+                                    <td>\
+                                        <i class="bianji" \
+                                            data-id="' + arr[i].id + '" \
+                                            data-measurementitem="' + arr[i].measurementitem + '"\
+                                            data-state="' + arr[i].state + '"\
+                                            data-ranges="' + arr[i].ranges + '"\
+                                            data-standard="' + arr[i].standard + '"\
+                                            data-range1="' + arr[i].range1 + '"\
+                                            data-standard1="' + arr[i].standard1 + '"\
+                                            data-state="' + arr[i].state + '">\
+                                                <img src="../src/images/bianji.png" alt="">\
+                                        </i>\
+                                        <i class="shanchu">\
+                                            <img src="../src/images/shanchu.png" alt="">\
+                                        </i>\
+                                    </td>\
+                                </tr>'
+            } else {
+                $body_str += '  <tr>\
+                                    <td>' + arr[i].measurementitem + '</td>\
+                                    <td>' + arr[i].standard + '</td>\
+                                    <td>' + arr[i].standard1 + '</td>\
+                                    <td>\
+                                        <i class="bianji" \
+                                            data-id="' + arr[i].id + '" \
+                                            data-measurementitem="' + arr[i].measurementitem + '"\
+                                            data-state="' + arr[i].state + '"\
+                                            data-ranges="' + arr[i].ranges + '"\
+                                            data-standard="' + arr[i].standard + '"\
+                                            data-range1="' + arr[i].range1 + '"\
+                                            data-standard1="' + arr[i].standard1 + '"\
+                                            data-state="' + arr[i].state + '">\
+                                                <img src="../src/images/bianji.png" alt="">\
+                                        </i>\
+                                        <i class="shanchu">\
+                                            <img src="../src/images/shanchu.png" alt="">\
+                                        </i>\
+                                    </td>\
+                                </tr>'
+            }      
         } else {
             $body_str += '  <tr>\
                                 <td>' + arr[i].measurementitem + '</td>\
                                 <td>' + arr[i].standard + '</td>\
+                                <td>' + arr[i].standard1 + '</td>\
                                 <td>\
                                     <i class="bianji" \
                                         data-id="' + arr[i].id + '" \
@@ -223,8 +259,7 @@ function createDom (arr, el) {
                                     </i>\
                                 </td>\
                             </tr>'
-        }      
-        
+        } 
     }
     var $table = '<table class="gridtable" cellspacing="0">' + $table_head +'<tbody>' + $body_str + '</tbody></table>'
 

@@ -86,7 +86,7 @@
             </div>
             <div class="main-footer">
                 <div class="title">
-                    <h4>检测结果统计图</h4>
+                    <!-- <h4>检测结果统计图</h4> -->
                     <!-- <ul>
                         <li>
                            <i></i>
@@ -105,13 +105,49 @@
                            <span>含义</span> 
                         </li>
                     </ul> -->
-                </div>
-                <div id="container" style="height: 100%"></div>
+                <!-- </div> -->
+                <!-- 图表 ***************** 弃用 <div id="container" style="height: 100%"></div> -->
             </div>
-            
+            <div class="table-wrap">
+                <h4>实测数据</h4>
+                <div class="table-con-2"></div>
+            </div>
+                <!-- 测试git -->
         </div>
         <!-- main END -->
     </div>
+
+
+    <!-- 弹窗 -->
+    <div class="alert-box" style="display: none">
+        <div class="alert-con">
+            <div class="table-con-3">
+                <div class="close">
+                    <img class="close-alert-img" src="./src/images/close.png" alt="">
+                </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>编号</th>
+                                <th>实测参数</th>
+                                <th>分析</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>测试数据</td>
+                                <td>合格</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+        </div>
+    </div>
+
+
+
+
     <!-- center END -->
 </div>
     <script src="./src/js/jquery.js"></script>
