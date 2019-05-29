@@ -1,17 +1,25 @@
 package com.xq.Railway.dao;
 
-import com.xq.Railway.model.qualitystandard;
+import java.util.List;
 
+import com.xq.Railway.model.qualitystandard;
+ 
 public interface qualitystandardMapper {
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(String id);
 
     int insert(qualitystandard record);
 
     int insertSelective(qualitystandard record);
 
-    qualitystandard selectByPrimaryKey(Integer id);
+    qualitystandard selectByPrimaryKey(String id);
 
     int updateByPrimaryKeySelective(qualitystandard record);
 
     int updateByPrimaryKey(qualitystandard record);
+
+	int remove(String id);
+
+	List<qualitystandard> values();
+	
+
 }

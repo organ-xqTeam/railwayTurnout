@@ -1,19 +1,28 @@
 package com.xq.Railway.model;
 
+import io.swagger.annotations.ApiModelProperty;
+
+/**
+ * 
+ * 质量分析标准
+ * @author XingPanST
+ *
+ */
 public class qualitystandard {
-    private Integer id;
+	@ApiModelProperty(hidden=true)
+    private String id;
 
-    private String msg;
+    private String msg; //描述信息
 
-    private String num;
+    private String num;//数字
 
-    private String msg1;
+    private String msg1;//描述信息
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

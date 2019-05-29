@@ -1,9 +1,27 @@
 package com.xq.Railway.model;
 
-public class turnouttype {
-    private String id;
+import java.io.Serializable;
 
-    private String turnouttype;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+/**
+ * 
+ * 
+ * 道岔分类
+ * @author XingPanST
+ *
+ */
+public class turnouttype implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4620758487514863801L;
+	@ApiModelProperty(hidden=true)
+    private String id;
+    
+    private String turnoutTypename;//道岔分类名称
 
     private String reamke;
 
@@ -17,15 +35,15 @@ public class turnouttype {
         this.id = id == null ? null : id.trim();
     }
 
-    public String getTurnouttype() {
-        return turnouttype;
-    }
+    public String getTurnouttypename() {
+		return turnoutTypename;
+	}
 
-    public void setTurnouttype(String turnouttype) {
-        this.turnouttype = turnouttype == null ? null : turnouttype.trim();
-    }
+	public void setTurnouttypename(String turnouttypename) {
+		this.turnoutTypename = turnouttypename;
+	}
 
-    public String getReamke() {
+	public String getReamke() {
         return reamke;
     }
 

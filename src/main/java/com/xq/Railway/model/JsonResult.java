@@ -1,5 +1,10 @@
 package com.xq.Railway.model;
-
+/**
+ * 
+ * 返回实体类
+ * @author XingPanST
+ *
+ */
 public class JsonResult {
 
 	private String status = null;

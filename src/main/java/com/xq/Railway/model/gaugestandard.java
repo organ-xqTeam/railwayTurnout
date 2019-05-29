@@ -1,13 +1,22 @@
 package com.xq.Railway.model;
 
+import io.swagger.annotations.ApiModelProperty;
+
+/**
+ * 
+ * 轨距测量标准
+ * @author XingPanST
+ *
+ */
 public class gaugestandard {
+	@ApiModelProperty(hidden=true)
     private String id;
 
-    private String turnoutid;
+    private String turnoutid;//道岔标准id
 
-    private String mileage;
+    private String mileage;//里程
 
-    private String gauge;
+    private String gauge;//轨距
 
     private String isdelete;
 

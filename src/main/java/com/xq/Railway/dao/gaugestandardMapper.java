@@ -1,5 +1,7 @@
 package com.xq.Railway.dao;
 
+import java.util.List;
+
 import com.xq.Railway.model.gaugestandard;
 
 public interface gaugestandardMapper {
@@ -14,4 +16,6 @@ public interface gaugestandardMapper {
     int updateByPrimaryKeySelective(gaugestandard record);
 
     int updateByPrimaryKey(gaugestandard record);
+
+	List<gaugestandard> values();
 }

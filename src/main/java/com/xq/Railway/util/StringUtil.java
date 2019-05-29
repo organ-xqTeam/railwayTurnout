@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
+import java.util.UUID;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -19,6 +20,10 @@ public class StringUtil {
 
 	public static String getRandNum(int i) {
 		return System.currentTimeMillis()+"";
+	}
+	
+	public static String getRanduuid() {
+		return  UUID.randomUUID().toString().replaceAll("-", "");
 	}
 	
 	

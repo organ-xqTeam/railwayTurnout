@@ -1,5 +1,7 @@
 package com.xq.Railway.dao;
 
+import java.util.List;
+
 import com.xq.Railway.model.turnoutstandard;
 
 public interface turnoutstandardMapper {
@@ -14,4 +16,10 @@ public interface turnoutstandardMapper {
     int updateByPrimaryKeySelective(turnoutstandard record);
 
     int updateByPrimaryKey(turnoutstandard record);
+
+
+	turnoutstandard findbyTurnoutstandard(String name);
+
+	List<turnoutstandard> values();
+
 }

@@ -1,15 +1,25 @@
 package com.xq.Railway.model;
 
+import io.swagger.annotations.ApiModelProperty;
+
+/**
+ * 
+ * 道岔标准
+ * 
+ * @author XingPanST
+ *
+ */
 public class turnoutstandard {
-    private String id;
+	@ApiModelProperty(hidden=true)
+    private String id;//
 
-    private String turnoutid;
+    private String turnoutid;//道岔分类
 
-    private String turnoutstandard;
+    private String turnoutstandard;//名称
 
     private String isdelete;
 
-    private String qualityid;
+    private String qualityid;//关联质量分析标准
 
     public String getId() {
         return id;
