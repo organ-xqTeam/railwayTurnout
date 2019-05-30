@@ -17,7 +17,7 @@ public class gaugestandard {
     private String mileage;//里程
 
     private String gauge;//轨距
-
+    @ApiModelProperty(hidden=true)
     private String isdelete;
 
     public String getId() {

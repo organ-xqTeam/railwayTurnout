@@ -17,6 +17,12 @@
     from turnoutstandard
     where id = #{id,jdbcType=VARCHAR}
   </select>
+  <select id="findbyqualitystandardid">
+  	 select 
+    <include refid="Base_Column_List" />
+    from turnoutstandard
+    where qualityid = #{id,jdbcType=VARCHAR}
+  </select>
   
   <select id="values" resultMap="BaseResultMap" >
    select 

@@ -6,6 +6,7 @@
     <result column="tid" property="tid" jdbcType="VARCHAR" />
     <result column="lid" property="lid" jdbcType="VARCHAR" />
     <result column="aid" property="aid" jdbcType="VARCHAR" />
+    <result column="turnoutstandardid" property="turnoutstandardid" jdbcType="VARCHAR" />
     <result column="pname" property="pname" jdbcType="VARCHAR" />
     <result column="ptime" property="ptime" jdbcType="VARCHAR" />
     <result column="warningstatistics" property="warningstatistics" jdbcType="VARCHAR" />
@@ -13,7 +14,7 @@
     <result column="isdelete" property="isdelete" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, tid, lid,aid, pname, ptime, warningstatistics, datasources,distance,lAltitude,rAltitude, isdelete
+    id, tid, lid,aid,turnoutstandardid, pname, ptime, warningstatistics, datasources,distance,lAltitude,rAltitude, isdelete
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
@@ -129,10 +130,10 @@
     where id = #{id,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.xq.Railway.model.measurementproject" >
-    insert into measurementproject (id, tid, lid, 
+    insert into measurementproject (id, tid, lid, turnoutstandardid,
       pname, ptime, warningstatistics, 
       datasources, isdelete)
-    values (#{id,jdbcType=VARCHAR}, #{tid,jdbcType=VARCHAR}, #{lid,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=VARCHAR}, #{tid,jdbcType=VARCHAR}, #{lid,jdbcType=VARCHAR}, #{turnoutstandardid,jdbcType=VARCHAR}, 
       #{pname,jdbcType=VARCHAR}, #{ptime,jdbcType=VARCHAR}, #{warningstatistics,jdbcType=VARCHAR}, 
       #{datasources,jdbcType=VARCHAR}, #{isdelete,jdbcType=VARCHAR})
   </insert>
@@ -156,6 +157,9 @@
       </if>
       <if test="aid != null" >
         aid,
+      </if>
+      <if test="turnoutstandardid != null" >
+        turnoutstandardid,
       </if>
       <if test="pname != null" >
         pname,
@@ -194,6 +198,9 @@
       </if>
       <if test="aid != null" >
         #{aid,jdbcType=VARCHAR},
+      </if>
+      <if test="turnoutstandardid != null" >
+        #{turnoutstandardid,jdbcType=VARCHAR},
       </if>
       <if test="pname != null" >
         #{pname,jdbcType=VARCHAR},
@@ -238,6 +245,9 @@
       <if test="aid != null" >
         aid = #{aid,jdbcType=VARCHAR},
       </if>
+      <if test="turnoutstandardid != null" >
+        turnoutstandardid = #{turnoutstandardid,jdbcType=VARCHAR},
+      </if>
       <if test="pname != null" >
         pname = #{pname,jdbcType=VARCHAR},
       </if>
@@ -269,6 +279,7 @@
     update measurementproject
     set tid = #{tid,jdbcType=VARCHAR},
       lid = #{lid,jdbcType=VARCHAR},
+      turnoutstandardid = #{turnoutstandardid,jdbcType=VARCHAR},
       pname = #{pname,jdbcType=VARCHAR},
       ptime = #{ptime,jdbcType=VARCHAR},
       warningstatistics = #{warningstatistics,jdbcType=VARCHAR},

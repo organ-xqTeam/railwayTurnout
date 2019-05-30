@@ -16,7 +16,7 @@ public class turnoutstandard {
     private String turnoutid;//道岔分类
 
     private String turnoutstandard;//名称
-
+    @ApiModelProperty(hidden=true)
     private String isdelete;
 
     private String qualityid;//关联质量分析标准

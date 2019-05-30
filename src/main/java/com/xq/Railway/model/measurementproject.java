@@ -14,6 +14,8 @@ public class measurementproject {
     private String lid;//站点id
     
     private String aid;//管理员id
+    
+    private String turnoutstandardid;//测量标准id
 
     private String pname;//项目名
 
@@ -32,7 +34,15 @@ public class measurementproject {
     
     
     
-    public String getDistance() {
+    public String getTurnoutstandardid() {
+		return turnoutstandardid;
+	}
+
+	public void setTurnoutstandardid(String turnoutstandardid) {
+		this.turnoutstandardid = turnoutstandardid;
+	}
+
+	public String getDistance() {
 		return distance;
 	}
 

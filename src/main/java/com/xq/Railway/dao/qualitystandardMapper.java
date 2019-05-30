@@ -20,6 +20,8 @@ public interface qualitystandardMapper {
 	int remove(String id);
 
 	List<qualitystandard> values();
+
+	List<qualitystandard> getbyidentifiernum(String id);
 	
 
 }

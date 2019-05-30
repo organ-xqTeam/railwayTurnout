@@ -53,6 +53,14 @@ import com.xq.Railway.util.jsonTomodel;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import springfox.documentation.annotations.ApiIgnore;
+
+
+/**
+ * 
+ * 测量结果
+ * @author XingPanST
+ *
+ */
 @ApiIgnore
 @RestController
 @RequestMapping("/detectionresult")

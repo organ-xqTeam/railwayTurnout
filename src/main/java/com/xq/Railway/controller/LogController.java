@@ -9,6 +9,16 @@ import com.xq.Railway.service.ilogService;
 
 import net.sf.json.JSONObject;
 import springfox.documentation.annotations.ApiIgnore;
+
+
+
+/**
+ * 
+ * 
+ * 日志
+ * @author XingPanST
+ *
+ */
 @ApiIgnore
 @RestController
 @RequestMapping("/Systemlog")

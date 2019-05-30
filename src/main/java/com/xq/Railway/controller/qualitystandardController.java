@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.xq.Railway.model.JsonResult;
 import com.xq.Railway.model.qualitystandard;
-import com.xq.Railway.model.turnouttype;
 import com.xq.Railway.service.impl.qualitystandardService;
 
 import io.swagger.annotations.ApiImplicitParam;
@@ -98,6 +97,25 @@ public class qualitystandardController {
 		}
 		return ResponseEntity.ok(r);
 	}
+	
+	@ApiOperation(value="获取类型下质量分析标准", notes="根据道岔的identifiernum来获取质量分析标准")
+	@ApiImplicitParam(name = "id", value = "质量分析标准identifiernum", required = true, dataType = "Integer", paramType = "path")
+	@RequestMapping(value = "/identifiernum/{id}", method = RequestMethod.GET)
+	public ResponseEntity<JsonResult> getUserByidentifiernum (@PathVariable(value = "id") String id){
+		JsonResult r = new JsonResult();
+		try {
+			List<qualitystandard> user = qualitystandard.getbyidentifiernum(id);
+			r.setResult(user);
+			r.setStatus("ok");
+		} catch (Exception e) {
+			r.setResult(e.getClass().getName() + ":" + e.getMessage());
+			r.setStatus("error");
+			e.printStackTrace();
+		}
+		return ResponseEntity.ok(r);
+	}
+	
+	
 	
 	/**
 	 * 查询道岔列表

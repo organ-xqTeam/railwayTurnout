@@ -20,7 +20,7 @@ public class MeasurementstandardService implements imeasurementstandardService{
 	@Override
 	public JSONObject instert(measurementstandard m) {
 		JSONObject jsonObject = new JSONObject();
-		m.setState("2");
+//		m.setState("2");
 		int a = imm.insertSelective(m);
 		if (a > 0) {
 			jsonObject.put("stats", "success");

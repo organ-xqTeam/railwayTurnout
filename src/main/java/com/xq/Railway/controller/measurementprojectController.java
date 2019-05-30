@@ -3,6 +3,7 @@ package com.xq.Railway.controller;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,12 +24,11 @@ import springfox.documentation.annotations.ApiIgnore;
 /**
  * 
  * 
- * 
+ *   测量项目
  * 检测项目
  * @author XingPanST
  *
  */
-@ApiIgnore
 @RestController
 @RequestMapping("/measurementproject")
 public class measurementprojectController {
@@ -48,9 +48,9 @@ public class measurementprojectController {
 	 * @param m
 	 * @return
 	 */
-	@RequestMapping(value = "/insert" )
+	@RequestMapping(value = "/insert" , method = RequestMethod.POST)
 	@MethodLog(remark = "新增测量项目")
-	public JSONObject insert(measurementproject m) {
+	public JSONObject insert(@RequestBody measurementproject m) {
 		JSONObject result = imps.instert(m);
 		return result;
 	}
@@ -188,7 +188,7 @@ public class measurementprojectController {
 	 * @param rid    
 	 * @return
 	 */
-	@RequestMapping(value = "/selectbyid")
+	@RequestMapping(value = "/selectbyid" , method = RequestMethod.GET)
 	@MethodLog(remark = "查看单个项目")
 	public measurementproject selectbyid(String rid) {
 		measurementproject ma = imps.selectbyid(rid);
@@ -201,15 +201,15 @@ public class measurementprojectController {
 	 *  根据id 修改 站点信息
 	 *    
 	 */
-	@RequestMapping(value = "/updatebyid")
+	@RequestMapping(value = "/updatebyid" , method = RequestMethod.POST)
 	@MethodLog(remark = "更新项目信息")
-	public int updatebyid(measurementproject m) {
+	public int updatebyid(@RequestBody measurementproject m) {
 		int ma = imps.updatemeasurementproject(m);
 		return ma;
 	}
 	
 	
-	@RequestMapping(value = "/delete")
+	@RequestMapping(value = "/delete" , method = RequestMethod.GET)
 	@MethodLog(remark = "删除项目")
 	public int deletebyid(String id) {
 		int ma = imps.deletebyid(id);
@@ -221,7 +221,7 @@ public class measurementprojectController {
 	 *   查询所有项目
 	 * @return
 	 */
-	@RequestMapping(value = "/selectAll")
+	@RequestMapping(value = "/selectAll" , method = RequestMethod.GET)
 	@MethodLog(remark = "查询所有项目")
 	public JSONObject  selectAll(Integer  pageNum,Integer  pageSize) {
 		JSONObject ma = imps.selectAll(pageNum, pageSize);
@@ -235,7 +235,7 @@ public class measurementprojectController {
 	 * @param mid
 	 * @return
 	 */
-	@RequestMapping(value = "/selectBymid")
+	@RequestMapping(value = "/selectBymid" , method = RequestMethod.GET)
 	@MethodLog(remark = "查询站点下 所有项目信息")
 	public JSONObject  selectBymid(String mid,String  pageNum,String pageSize) {
 		
@@ -249,7 +249,7 @@ public class measurementprojectController {
 	 * @param mName
 	 * @return
 	 */
-	@RequestMapping(value = "/selectByName")
+	@RequestMapping(value = "/selectByName" , method = RequestMethod.GET)
 	@MethodLog(remark = "项目名查询项目信息")
 	public JSONObject  selectByName(String mName,Integer  pageNum,Integer  pageSize) {
 		JSONObject ma = imps.selectByName(mName, pageNum, pageSize);
@@ -265,7 +265,7 @@ public class measurementprojectController {
 	 * @param pageSize
 	 * @return
 	 */
-	@RequestMapping(value = "/selectBy")
+	@RequestMapping(value = "/selectBy" , method = RequestMethod.GET)
 	@MethodLog(remark = "根据id和项目名查询项目信息")
 	public JSONObject  selectBy(String id,String mName,Integer  pageNum,Integer  pageSize) {
 		JSONObject ma = imps.selectBy(id,mName, pageNum, pageSize);
@@ -278,7 +278,7 @@ public class measurementprojectController {
 	 * @return
 	 */
 	
-	@RequestMapping(value = "/selectAllpName")
+	@RequestMapping(value = "/selectAllpName" , method = RequestMethod.GET)
 	public JSONObject  selectAllpName(String id) {
 		JSONObject ma = imps.selectAllpName(id);
 		return ma;
@@ -292,7 +292,7 @@ public class measurementprojectController {
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping(value = "/GetHomeECharts")
+	@RequestMapping(value = "/GetHomeECharts" , method = RequestMethod.GET)
 	@MethodLog(remark = "获取首页 柱状图 id为 站点id")
 	public JSONObject GetHomeECharts(String id) {
 		JSONObject ma = imps.GetHomeECharts(id);
@@ -305,7 +305,7 @@ public class measurementprojectController {
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping(value = "/GetPageECharts")
+	@RequestMapping(value = "/GetPageECharts" , method = RequestMethod.GET)
 	@MethodLog(remark = "获取统计页面 曲线图 id为 线路id")
 	public JSONObject GetPageECharts(String id) {
 		JSONObject ma = imps.GetPageECharts(id);

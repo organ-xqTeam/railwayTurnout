@@ -23,7 +23,12 @@ public class measurementstandard {
 
     private String isdelete;
     
-    private String turnoutstandardid;
+    private String turnoutstandardid;//道岔标准id
+    
+    private String inspectionmethod;//检查方法和数量
+    
+    
+    private String managementcategory;//管理类别
 
     public String getId() {
         return id;
@@ -35,7 +40,23 @@ public class measurementstandard {
 
     
     
-    public String getRanges() {
+    public String getInspectionmethod() {
+		return inspectionmethod;
+	}
+
+	public void setInspectionmethod(String inspectionmethod) {
+		this.inspectionmethod = inspectionmethod;
+	}
+
+	public String getManagementcategory() {
+		return managementcategory;
+	}
+
+	public void setManagementcategory(String managementcategory) {
+		this.managementcategory = managementcategory;
+	}
+
+	public String getRanges() {
 		return ranges;
 	}
 

@@ -22,4 +22,6 @@ public interface turnoutstandardMapper {
 
 	List<turnoutstandard> values();
 
+	turnoutstandard findbyqualitystandardid(String id);
+
 }

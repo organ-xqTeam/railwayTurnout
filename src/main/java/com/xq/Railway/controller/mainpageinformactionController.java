@@ -9,6 +9,15 @@ import com.xq.Railway.model.mainpageinformaction;
 import com.xq.Railway.service.iMainpageinformactionService;
 import net.sf.json.JSONObject;
 import springfox.documentation.annotations.ApiIgnore;
+
+
+/**
+ * 
+ * 
+ * 站点
+ * @author XingPanST
+ *
+ */
 @ApiIgnore
 @RestController
 @RequestMapping("/mainpageinformaction")

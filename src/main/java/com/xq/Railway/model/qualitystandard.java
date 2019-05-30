@@ -9,9 +9,13 @@ import io.swagger.annotations.ApiModelProperty;
  *
  */
 public class qualitystandard {
+	
 	@ApiModelProperty(hidden=true)
     private String id;
-
+	
+	
+	private String identifiernum;//分类
+	
     private String msg; //描述信息
 
     private String num;//数字
@@ -26,7 +30,15 @@ public class qualitystandard {
         this.id = id;
     }
 
-    public String getMsg() {
+	public String getIdentifiernum() {
+		return identifiernum;
+	}
+
+	public void setIdentifiernum(String identifiernum) {
+		this.identifiernum = identifiernum;
+	}
+
+	public String getMsg() {
         return msg;
     }
 

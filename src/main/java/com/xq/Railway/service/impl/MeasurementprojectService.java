@@ -49,7 +49,7 @@ public class MeasurementprojectService implements imeasurementprojectService{
 			jsonObject.put("project", m);
 		}else {
 			jsonObject.put("stats", "fail");
-			jsonObject.put("code", "200");
+			jsonObject.put("code", "500");
 			jsonObject.put("message", "");
 			jsonObject.put("project", m);
 		}

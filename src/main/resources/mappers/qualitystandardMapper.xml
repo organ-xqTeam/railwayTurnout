@@ -3,12 +3,13 @@
 <mapper namespace="com.xq.Railway.dao.qualitystandardMapper" >
   <resultMap id="BaseResultMap" type="com.xq.Railway.model.qualitystandard" >
     <id column="id" property="id" jdbcType="VARCHAR" />
+    <id column="identifiernum" property="identifiernum" jdbcType="VARCHAR" />
     <result column="msg" property="msg" jdbcType="VARCHAR" />
     <result column="num" property="num" jdbcType="VARCHAR" />
     <result column="msg1" property="msg1" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, msg, num, msg1
+    id,identifiernum, msg, num, msg1
   </sql>
   
   
@@ -30,14 +31,20 @@
     from qualitystandard
     where id = #{id,jdbcType=VARCHAR}
   </select>
+  <select id="getbyidentifiernum" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from qualitystandard
+    where identifiernum = #{id,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from qualitystandard
     where id = #{id,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.xq.Railway.model.qualitystandard" >
-    insert into qualitystandard (id, msg, num, 
+    insert into qualitystandard (id,identifiernum, msg, num, 
       msg1)
-    values (#{id,jdbcType=VARCHAR}, #{msg,jdbcType=VARCHAR}, #{num,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=VARCHAR},#{identifiernum,jdbcType=VARCHAR}, #{msg,jdbcType=VARCHAR}, #{num,jdbcType=VARCHAR}, 
       #{msg1,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.xq.Railway.model.qualitystandard" >
@@ -45,6 +52,9 @@
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
+      </if>
+       <if test="identifiernum != null" >
+        identifiernum,
       </if>
       <if test="msg != null" >
         msg,
@@ -60,6 +70,11 @@
       <if test="id != null" >
         #{id,jdbcType=VARCHAR},
       </if>
+      
+       <if test="identifiernum != null" >
+        #{identifiernum,jdbcType=VARCHAR},
+      </if> 
+      
       <if test="msg != null" >
         #{msg,jdbcType=VARCHAR},
       </if>
@@ -69,11 +84,15 @@
       <if test="msg1 != null" >
         #{msg1,jdbcType=VARCHAR},
       </if>
+      
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.xq.Railway.model.qualitystandard" >
     update qualitystandard
     <set >
+      <if test="identifiernum != null" >
+        identifiernum = #{identifiernum,jdbcType=VARCHAR},
+      </if>
       <if test="msg != null" >
         msg = #{msg,jdbcType=VARCHAR},
       </if>
@@ -89,6 +108,7 @@
   <update id="updateByPrimaryKey" parameterType="com.xq.Railway.model.qualitystandard" >
     update qualitystandard
     set msg = #{msg,jdbcType=VARCHAR},
+      identifiernum = #{identifiernum,jdbcType=VARCHAR},
       num = #{num,jdbcType=VARCHAR},
       msg1 = #{msg1,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}

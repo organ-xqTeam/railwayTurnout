@@ -24,7 +24,7 @@ public class turnouttype implements Serializable{
     private String turnoutTypename;//道岔分类名称
 
     private String reamke;
-
+    @ApiModelProperty(hidden=true)
     private String isdelete;
 
     public String getId() {
