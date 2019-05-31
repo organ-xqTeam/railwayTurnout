@@ -1,5 +1,6 @@
 package com.xq.Railway.model;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
@@ -9,16 +10,18 @@ import io.swagger.annotations.ApiModelProperty;
  * @author XingPanST
  *
  */
+@ApiModel(description="道岔标准")
 public class turnoutstandard {
 	@ApiModelProperty(hidden=true)
     private String id;//
-
+	@ApiModelProperty(value="道岔分类" ,name = "turnoutid",example="道岔分类id", position = 0)
     private String turnoutid;//道岔分类
-
+	@ApiModelProperty(value="道岔标准名称" ,name = "turnoutstandard",example="道岔标准名称", position = 0)
     private String turnoutstandard;//名称
     @ApiModelProperty(hidden=true)
     private String isdelete;
 
+    @ApiModelProperty(value="关联质量分析标准" ,name = "qualityid",example="质量分析标准id", position = 0)
     private String qualityid;//关联质量分析标准
 
     public String getId() {

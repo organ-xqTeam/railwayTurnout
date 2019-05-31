@@ -1,4 +1,8 @@
 package com.xq.Railway.model;
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 /**
  * 
  * 
@@ -6,29 +10,42 @@ package com.xq.Railway.model;
  * @author XingPanST
  *
  */
+@ApiModel(description="测量标准-项点标准")
 public class measurementstandard {
+	
     private String id;
-
+    @ApiModelProperty(value="测量项名称" ,name = "measurementitem",example="轨距", position = 0)
     private String measurementitem;//测量项
     
+    @ApiModelProperty(value="是否为系统判断项点 0：手动判断 1：机器判断 id:为轨距关联详细标准" ,name = "state",example="0/1/id", position = 6)
     private String state;//范围
-
-    private String ranges;//范围
     
+    @ApiModelProperty(value="if state:1 ranges:第一个数字 " ,name = "range1",example="1", position = 7)
+    private String ranges;//范围
+    @ApiModelProperty(value="if state:1 如果有两个数字 ranges:第二个数字" ,name = "range1", example="2",position = 7)
     private String standard;//测量标准
     
+    
+    @ApiModelProperty(value="if state:0 range1:文字描述  state:1 range1：符号算法id " ,name = "range1", position = 7)
     private String range1;//范围
     
+    
+    @ApiModelProperty(value="检查意见" ,name = "standard1",example="检查意见", position = 5)
     private String standard1;//测量标准
 
     private String isdelete;
-    
+    @ApiModelProperty(value="道岔标准id" ,name = "turnoutstandardid",example="道岔标准id", position = 1)
     private String turnoutstandardid;//道岔标准id
     
+    @ApiModelProperty(value="检查方法和数量" ,name = "inspectionmethod",example="检查方法和数量", position = 2)
     private String inspectionmethod;//检查方法和数量
     
     
+    @ApiModelProperty(value="管理类别A/B/C" ,name = "managementcategory",example="A/B/C", position = 3)
     private String managementcategory;//管理类别
+    
+    @ApiModelProperty(value="是否有详细标准 0：没有 1：有" ,name = "isdetails",example="0/1", position = 4)
+    private String isdetails;//管理类别
 
     public String getId() {
         return id;
@@ -40,7 +57,15 @@ public class measurementstandard {
 
     
     
-    public String getInspectionmethod() {
+    public String getIsdetails() {
+		return isdetails;
+	}
+
+	public void setIsdetails(String isdetails) {
+		this.isdetails = isdetails;
+	}
+
+	public String getInspectionmethod() {
 		return inspectionmethod;
 	}
 

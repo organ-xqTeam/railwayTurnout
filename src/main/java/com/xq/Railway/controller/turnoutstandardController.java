@@ -15,12 +15,20 @@ import com.xq.Railway.model.JsonResult;
 import com.xq.Railway.model.turnoutstandard;
 import com.xq.Railway.service.impl.turnoutstandardService;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import net.sf.json.JSONObject;
 
-
+/**
+ * 
+ * 
+ * 道岔标准
+ * @author XingPanST
+ *
+ */
+@Api(tags = "道岔标准")
 @RestController
 @RequestMapping("/turnoutstandard")
 public class turnoutstandardController {

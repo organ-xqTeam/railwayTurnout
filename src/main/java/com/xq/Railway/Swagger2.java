@@ -32,7 +32,7 @@ public class Swagger2 {
 		return new ApiInfoBuilder()
 				.title("铁路项目接口文档 api文档")
 				.description("简单优雅的restfun风格")
-				.termsOfServiceUrl("-")
+//				.termsOfServiceUrl("-")
 				.version("1.0")
 				.build();
 	}

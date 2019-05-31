@@ -13,7 +13,6 @@ import net.sf.json.JSONObject;
 @Service("imss")
 public class MeasurementstandardService implements imeasurementstandardService{
 	
-	
 	@Autowired
 	private  measurementstandardMapper imm;
 	
@@ -93,6 +92,17 @@ public class MeasurementstandardService implements imeasurementstandardService{
 		jsonObject.put("list", list);
 		jsonObject.put("listCount", listCount.size());
 		return jsonObject;
+	}
+
+	@Override
+	public JSONObject findbystandard(String id,int pageNum, int pageSize) {
+		List<measurementstandard> list  = imm.findbystandard(id, pageNum*pageSize,  pageSize);
+		List<measurementstandard> listCount  = imm.findbystandardAll(id);
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("list", list);
+		jsonObject.put("listCount", listCount.size());
+		return jsonObject;
+		
 	}
 
 }

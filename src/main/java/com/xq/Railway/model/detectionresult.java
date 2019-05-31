@@ -1,23 +1,35 @@
 package com.xq.Railway.model;
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 /**
  * 
  * 测量结果
  * @author XingPanST
  *
  */
+
+@ApiModel(description="测量结果")
 public class detectionresult {
     private String id;
-
+    
+    @ApiModelProperty(value="关联项目id" ,name = "mid",example="id", position = 0)
     private String mid;//关联项目id
-
+    
+    @ApiModelProperty(value="项点id" ,name = "pname",example="id", position = 1)
     private String pname;//项目名
 
+    @ApiModelProperty(value="标准" ,name = "standards",example="标准", position = 2)
     private String standards;//标准
     
+    @ApiModelProperty(value="标准id" ,name = "standardid",example="id", position = 2)
     private String standardid;//标准
 
+    @ApiModelProperty(value="实测数据" ,name = "measureddata",example="2", position = 2)
     private String measureddata;//实测数据
 
+    @ApiModelProperty(value="结果" ,name = "measuredresults",example="不合格", position = 2)
     private String measuredresults;//结果
 
     private String isdelete;

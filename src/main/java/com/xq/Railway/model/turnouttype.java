@@ -1,7 +1,5 @@
 package com.xq.Railway.model;
 
-import java.io.Serializable;
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -12,18 +10,23 @@ import io.swagger.annotations.ApiModelProperty;
  * @author XingPanST
  *
  */
-public class turnouttype implements Serializable{
+@ApiModel(description="道岔分类对象")
+public class turnouttype {
 	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -4620758487514863801L;
 	@ApiModelProperty(hidden=true)
     private String id;
     
-    private String turnoutTypename;//道岔分类名称
-
+	@ApiModelProperty(value="道岔分类名称" ,name = "turnouttypename",example="18号", position = 0)
+    private String turnouttypename;//道岔分类名称
+	
+	
+	@ApiModelProperty(value = "备注", position = 1)
     private String reamke;
+	
+	
     @ApiModelProperty(hidden=true)
     private String isdelete;
 
@@ -36,11 +39,11 @@ public class turnouttype implements Serializable{
     }
 
     public String getTurnouttypename() {
-		return turnoutTypename;
+		return turnouttypename;
 	}
 
 	public void setTurnouttypename(String turnouttypename) {
-		this.turnoutTypename = turnouttypename;
+		this.turnouttypename = turnouttypename;
 	}
 
 	public String getReamke() {

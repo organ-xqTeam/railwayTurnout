@@ -13,9 +13,10 @@
     <result column="turnoutstandardid" property="turnoutstandardid" jdbcType="VARCHAR" />
     <result column="inspectionmethod" property="inspectionmethod" jdbcType="VARCHAR" />
     <result column="managementcategory" property="managementcategory" jdbcType="VARCHAR" />
+    <result column="isdetails" property="isdetails" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, measurementitem,state,ranges,standard,range1,standard1, isdelete,turnoutstandardid,inspectionmethod,managementcategory
+    id, measurementitem,state,ranges,standard,range1,standard1, isdelete,turnoutstandardid,inspectionmethod,managementcategory,isdetails
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
@@ -24,12 +25,27 @@
     from measurementstandard
     where id = #{id,jdbcType=VARCHAR}
   </select>
+  
   <select id="selectAll" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
      <include refid="Base_Column_List" /> 
     <!--  measurementitem,state,range,standard,range1,standard1, isdelete -->
     from measurementstandard where state != 1 limit #{pageNum} ,#{pageSize};
   </select>
+  
+  <select id="findbystandard" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select 
+     <include refid="Base_Column_List" /> 
+    <!--  measurementitem,state,range,standard,range1,standard1, isdelete -->
+    from measurementstandard where state != 1 and turnoutstandardid = #{id} limit #{pageNum} ,#{pageSize};
+  </select>
+  <select id="findbystandardAll" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select 
+     <include refid="Base_Column_List" /> 
+    <!--  measurementitem,state,range,standard,range1,standard1, isdelete -->
+    from measurementstandard where state != 1 and turnoutstandardid = #{id} 
+  </select>
+  
   <select id="selectAllCount" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
      <include refid="Base_Column_List" /> 
@@ -54,12 +70,13 @@
   </delete>
   <insert id="insert" parameterType="com.xq.Railway.model.measurementstandard" >
     insert into measurementstandard (id, measurementitem, standard, 
-      isdelete,turnoutstandardid,inspectionmethod,managementcategory)
+      isdelete,turnoutstandardid,inspectionmethod,managementcategory,isdetails)
     values (#{id,jdbcType=VARCHAR}, #{measurementitem,jdbcType=VARCHAR}, #{standard,jdbcType=VARCHAR}, 
       #{isdelete,jdbcType=VARCHAR},
       #{turnoutstandardid,jdbcType=VARCHAR},
       #{inspectionmethod,jdbcType=VARCHAR},
-      #{managementcategory,jdbcType=VARCHAR}
+      #{managementcategory,jdbcType=VARCHAR},
+      #{isdetails,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.xq.Railway.model.measurementstandard" >
@@ -92,6 +109,9 @@
       <if test="managementcategory != null" >
         managementcategory,
       </if>
+      <if test="isdetails != null" >
+        isdetails,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -122,6 +142,9 @@
       <if test="managementcategory != null" >
         #{managementcategory,jdbcType=VARCHAR},
       </if>
+      <if test="isdetails != null" >
+        #{isdetails,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.xq.Railway.model.measurementstandard" >
@@ -144,6 +167,9 @@
       </if>
       <if test="managementcategory != null" >
         managementcategory = #{managementcategory,jdbcType=VARCHAR},
+      </if>
+      <if test="isdetails != null" >
+        isdetails = #{isdetails,jdbcType=VARCHAR},
       </if>
       <if test="isdelete != null" >
         isdelete = #{isdelete,jdbcType=VARCHAR},

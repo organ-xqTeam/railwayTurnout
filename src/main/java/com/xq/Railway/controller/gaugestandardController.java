@@ -15,6 +15,7 @@ import com.xq.Railway.model.JsonResult;
 import com.xq.Railway.model.gaugestandard;
 import com.xq.Railway.service.impl.gaugestandardService;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -26,6 +27,7 @@ import net.sf.json.JSONObject;
  * @author XingPanST
  *
  */
+@Api(tags = "轨距测量标准")
 @RestController
 @RequestMapping("/gaugestandard")
 public class gaugestandardController {

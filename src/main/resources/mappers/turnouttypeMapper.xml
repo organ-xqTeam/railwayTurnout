@@ -3,18 +3,18 @@
 <mapper namespace="com.xq.Railway.dao.turnouttypeMapper" >
   <resultMap id="BaseResultMap" type="com.xq.Railway.model.turnouttype" >
     <result column="id" property="id" jdbcType="VARCHAR" />
-    <result column="turnoutTypename" property="turnoutTypename" jdbcType="VARCHAR" />
+    <result column="turnouttypename" property="turnouttypename" jdbcType="VARCHAR" />
     <result column="reamke" property="reamke" jdbcType="VARCHAR" />
     <result column="isdelete" property="isdelete" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, turnoutTypename, reamke, isdelete
+    id, turnouttypename, reamke, isdelete
   </sql>
   <select id="findbyturnouttypename"  resultMap="BaseResultMap" parameterType="java.lang.String">
   	select
   	<include refid="Base_Column_List"/>
   	from turnouttype 
-  	where turnoutTypename = #{turnouttypename}
+  	where turnouttypename = #{turnouttypename}
   </select>
   
   <select id="findbyid" resultMap="BaseResultMap" parameterType="java.lang.String">
@@ -28,7 +28,7 @@
   	update turnouttype 
  	 <set >
       <if test="turnouttypename != null" >
-        turnoutTypename = #{turnoutTypename,jdbcType=VARCHAR},
+        turnouttypename = #{turnouttypename,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
@@ -49,9 +49,9 @@
  
  
   <insert id="insert" parameterType="com.xq.Railway.model.turnouttype" >
-    insert into turnouttype (id, turnoutTypename, reamke, 
+    insert into turnouttype (id, turnouttypename, reamke, 
       isdelete)
-    values (#{id,jdbcType=VARCHAR}, #{turnoutTypename,jdbcType=VARCHAR}, #{reamke,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=VARCHAR}, #{turnouttypename,jdbcType=VARCHAR}, #{reamke,jdbcType=VARCHAR}, 
       #{isdelete,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.xq.Railway.model.turnouttype" >
@@ -60,8 +60,8 @@
       <if test="id != null" >
         id,
       </if>
-      <if test="turnoutTypename != null" >
-        turnoutTypename,
+      <if test="turnouttypename != null" >
+        turnouttypename,
       </if>
       <if test="reamke != null" >
         reamke,
@@ -74,8 +74,8 @@
       <if test="id != null" >
         #{id,jdbcType=VARCHAR},
       </if>
-      <if test="turnoutTypename != null" >
-        #{turnoutTypename,jdbcType=VARCHAR},
+      <if test="turnouttypename != null" >
+        #{turnouttypename,jdbcType=VARCHAR},
       </if>
       <if test="reamke != null" >
         #{reamke,jdbcType=VARCHAR},

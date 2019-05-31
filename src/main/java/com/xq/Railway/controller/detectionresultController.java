@@ -35,6 +35,7 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -50,9 +51,11 @@ import com.xq.Railway.service.ifiledatatableService;
 import com.xq.Railway.service.imeasurementstandardService;
 import com.xq.Railway.util.jsonTomodel;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
-import springfox.documentation.annotations.ApiIgnore;
 
 
 /**
@@ -61,7 +64,7 @@ import springfox.documentation.annotations.ApiIgnore;
  * @author XingPanST
  *
  */
-@ApiIgnore
+@Api(tags = "测量结果")
 @RestController
 @RequestMapping("/detectionresult")
 public class detectionresultController {
@@ -84,9 +87,11 @@ public class detectionresultController {
 	 * @param m
 	 * @return
 	 */
-	@RequestMapping(value = "/insert" )
+	@ApiOperation(value="新增项点测量结果", notes="根据detectionresult对象 新增 测量结果")
+	@ApiImplicitParam(name = "m", value = "详细实体detectionresult", required = true, dataType = "detectionresult")
+	@RequestMapping(value = "/insert" , method = RequestMethod.POST)
 	@MethodLog(remark = "新增项点测量结果")
-	public JSONObject insert(detectionresult m,@RequestParam("file") MultipartFile[] files
+	public JSONObject insert(@RequestBody  detectionresult m,@RequestParam("file") MultipartFile[] files
 			,HttpServletRequest request) {
 		JSONObject result = ids.instert(m);
 		
@@ -144,7 +149,7 @@ public class detectionresultController {
 	 * @param rid
 	 * @return
 	 */
-	@RequestMapping(value = "/selectbyridpname")
+	@RequestMapping(value = "/selectbyridpname", method = RequestMethod.GET)
 	@MethodLog(remark = "根据项目id 查结果")
 	public JSONObject  selectbyid(String rid) {
 		JSONObject  ma = ids.selectbyrid(rid);
@@ -157,14 +162,14 @@ public class detectionresultController {
 	 * @param pname
 	 * @return
 	 */
-	@RequestMapping(value = "/selectbypname")
+	@RequestMapping(value = "/selectbypname", method = RequestMethod.GET)
 	@MethodLog(remark = "模糊查询 pname  项目rid 移动接口")
 	public JSONObject  selectbypname(String rid,String pname,Integer  pageNum,Integer  pageSize) {
 		JSONObject  ma = ids.selectbypname(rid,pname,  pageNum,  pageSize);
 		return ma;
 	}
 	
-	@RequestMapping(value = "/selectAll")
+	@RequestMapping(value = "/selectAll", method = RequestMethod.GET)
 	public List<detectionresult>  selectAll(Integer  pageNum,Integer  pageSize) {
 		List<detectionresult>  ma = ids.selectAll(pageNum,  pageSize);
 		return ma;
@@ -177,19 +182,19 @@ public class detectionresultController {
 	 *  根据id 修改 
 	 *    
 	 */
-	@RequestMapping(value = "/updatebyid")
+	@RequestMapping(value = "/updatebyid", method = RequestMethod.POST)
 	@MethodLog(remark = "根据id 修改 ")
-	public int updatebyid(detectionresult d) {
+	public int updatebyid(@RequestBody detectionresult d) {
 		int ma = ids.updatedetectionresult(d);
 		return ma;
 	}
-	@RequestMapping(value = "/deletebyid")
+	@RequestMapping(value = "/deletebyid", method = RequestMethod.GET)
 	@MethodLog(remark = "根据id 删除")
 	public JSONObject deletebyid(String id) {
 		JSONObject ma = ids.deletebyid(id);
 		return ma;
 	}
-	@RequestMapping("/getexcle")
+	@RequestMapping(value = "/getexcle", method = RequestMethod.GET)
 	public void getexcle(HttpServletResponse response,String id,String filename) {//设置响应为下载
 		if (filename == null || "".equals(filename)) {
 			filename = "export";
@@ -241,7 +246,7 @@ public class detectionresultController {
 		} catch (Exception e) {
 		}
 	}
-	@RequestMapping("/getApp/{filename}")
+	@RequestMapping(value = "/getApp/{filename}", method = RequestMethod.GET)
 	public void getApp(HttpServletResponse response, @PathVariable String filename) {// 设置响应为下载
 		try {
 //			String fileurl = "D:\\Users\\Desktop\\";
@@ -398,7 +403,7 @@ public class detectionresultController {
 	}
 	
 
-	@RequestMapping(value = "/getSmartCarData")
+	@RequestMapping(value = "/getSmartCarData", method = RequestMethod.GET)
 	public String getSmartCarData(HttpServletRequest request) {
 		String realPath = url;
 //		String realPath = "D:/Users/Desktop/";

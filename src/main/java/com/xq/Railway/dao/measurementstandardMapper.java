@@ -23,4 +23,8 @@ public interface measurementstandardMapper {
 	List<measurementstandard> selectAll1(int pageNum, int pageSize);
 
 	List<measurementstandard> selectAllCount1();
+
+	List<measurementstandard> findbystandard(String id, int pageNum, int pageSize);
+
+	List<measurementstandard> findbystandardAll(String id);
 }

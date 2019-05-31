@@ -18,6 +18,7 @@ import com.xq.Railway.service.ifiledatatableService;
 import com.xq.Railway.service.imeasurementprojectService;
 import com.xq.Railway.util.StringUtil;
 
+import io.swagger.annotations.Api;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import springfox.documentation.annotations.ApiIgnore;
@@ -29,6 +30,7 @@ import springfox.documentation.annotations.ApiIgnore;
  * @author XingPanST
  *
  */
+@Api(tags = "检测项目")
 @RestController
 @RequestMapping("/measurementproject")
 public class measurementprojectController {

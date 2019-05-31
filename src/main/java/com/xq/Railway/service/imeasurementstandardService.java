@@ -20,4 +20,6 @@ public interface imeasurementstandardService {
 	JSONObject selectAll(int pageNum, int pageSize);
 
 	JSONObject selectAll1(int pageNum, int pageSize);
+
+	JSONObject findbystandard(String id,int pageNum, int pageSize);
 }

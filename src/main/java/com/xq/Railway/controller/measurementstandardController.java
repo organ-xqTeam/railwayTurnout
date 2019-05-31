@@ -1,15 +1,19 @@
 package com.xq.Railway.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.xq.Railway.logAop.MethodLog;
+import com.xq.Railway.model.JsonResult;
 import com.xq.Railway.model.measurementstandard;
 import com.xq.Railway.service.imeasurementstandardService;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import net.sf.json.JSONObject;
@@ -19,6 +23,7 @@ import net.sf.json.JSONObject;
  * @author XingPanST
  *
  */
+@Api(tags = "检测项点")
 @RestController
 @RequestMapping("/measurementstandard")
 public class measurementstandardController {
@@ -40,6 +45,24 @@ public class measurementstandardController {
 		JSONObject result = imss.instert(m);
 		return result;
 	}
+	@ApiOperation(value="根据测量标准ID查询所有测量项", notes="根据测量标准ID查询所有测量项")
+	@ApiImplicitParam(name = "id", value = "测量标准ID", required = true, dataType = "String", paramType = "path")
+	@RequestMapping(value = "/standard/{id}" , method = RequestMethod.GET)
+	public ResponseEntity<JsonResult> findbystandard(@PathVariable(value = "id") String id,Integer pageNum, Integer pageSize){
+		JsonResult r = new JsonResult();
+		try {
+			JSONObject jos = imss.findbystandard(id,pageNum,pageSize);
+			r.setResult(jos);
+			r.setStatus("ok");
+		} catch (Exception e) {
+			r.setResult(e.getClass().getName() + ":" + e.getMessage());
+			r.setStatus("error");
+			e.printStackTrace();
+		}
+		return ResponseEntity.ok(r);
+		
+	}
+	
 	
 	/**
 	 *

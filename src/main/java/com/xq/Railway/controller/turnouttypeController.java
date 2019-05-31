@@ -15,12 +15,19 @@ import com.xq.Railway.model.JsonResult;
 import com.xq.Railway.model.turnouttype;
 import com.xq.Railway.service.impl.turnouttypeService;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import net.sf.json.JSONObject;
-
-
+/**
+ * 
+ * 
+ * 道岔分类
+ * @author XingPanST
+ *
+ */
+@Api(tags = "道岔分类")
 @RestController
 @RequestMapping("/turnouttype")
 public class turnouttypeController {
@@ -34,7 +41,7 @@ public class turnouttypeController {
 	 * @return
 	 */
 	@ApiOperation(value="创建道岔分类", notes="根据turnouttype对象创建分类")
-	@ApiImplicitParam(name = "turnout", value = "详细实体turnouttype", required = true, dataType = "turnouttype")
+//	@ApiImplicitParam(name = "turnout", value = "详细实体turnouttype", required = true, dataType = "turnouttype")
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public ResponseEntity<JsonResult> add (@RequestBody turnouttype turnout){
 		JsonResult r = new JsonResult();

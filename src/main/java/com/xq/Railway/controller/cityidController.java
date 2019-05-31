@@ -11,6 +11,7 @@ import com.xq.Railway.model.JsonResult;
 import com.xq.Railway.service.impl.cityidService;
 import com.xq.Railway.util.postgetUtil;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import net.sf.json.JSONObject;
 
@@ -20,6 +21,7 @@ import net.sf.json.JSONObject;
  * @author XingPanST
  *
  */
+@Api(tags = "城市天气")
 @RestController
 @RequestMapping("/city")
 public class cityidController {

@@ -15,6 +15,7 @@ import com.xq.Railway.model.JsonResult;
 import com.xq.Railway.model.qualitystandard;
 import com.xq.Railway.service.impl.qualitystandardService;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -26,6 +27,7 @@ import net.sf.json.JSONObject;
  * @author XingPanST
  *
  */
+@Api(tags = "质量分析标准")
 @RestController
 @RequestMapping("/qualitystandard")
 public class qualitystandardController {
