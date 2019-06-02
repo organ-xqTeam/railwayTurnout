@@ -22,6 +22,8 @@ public interface qualitystandardMapper {
 	List<qualitystandard> values();
 
 	List<qualitystandard> getbyidentifiernum(String id);
+
+	List<qualitystandard> valuesidentifiernum();
 	
 
 }

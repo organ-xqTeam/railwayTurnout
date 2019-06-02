@@ -9,10 +9,12 @@ import org.springframework.stereotype.Service;
 
 import com.xq.Railway.dao.detectionresultMapper;
 import com.xq.Railway.dao.filedatatableMapper;
+import com.xq.Railway.dao.gaugestandardMapper;
 import com.xq.Railway.dao.measurementprojectMapper;
 import com.xq.Railway.dao.measurementstandardMapper;
 import com.xq.Railway.model.detectionresult;
 import com.xq.Railway.model.filedatatable;
+import com.xq.Railway.model.gaugestandard;
 import com.xq.Railway.model.measurementproject;
 import com.xq.Railway.model.measurementstandard;
 import com.xq.Railway.service.idetectionresultService;
@@ -31,6 +33,8 @@ public class DetectionresultService implements idetectionresultService{
 	
 	@Autowired
 	private  measurementprojectMapper impm;
+	@Autowired
+	private  gaugestandardMapper gaugmapper;
 	
 	@Autowired
 	private filedatatableMapper ifm;
@@ -441,6 +445,55 @@ public class DetectionresultService implements idetectionresultService{
 	public List<detectionresult> selectbymid(String id) {
 		List<detectionresult> list =  idm.selectByMid(id);
 		return list;
+	}
+
+	@Override
+	public JSONObject instertnew(detectionresult m) {
+		JSONObject jo = new JSONObject();
+		
+		//查询项点 计算规则
+		measurementstandard measurement = imm.selectByPrimaryKey(m.getPname());
+		String state =  measurement.getState();
+		if ("0".equals(state)) {
+			//手动判断
+			
+			
+			
+		}else if("1".equals(state)) {
+			//系统判断
+			//为轨距 有详细计算标准
+			//获取详细计算标准
+			String isdetails = measurement.getIsdetails();
+			if ("0".equals(isdetails)) {
+				//没有详细计算标准
+				
+				
+				
+				
+			}else if("1".equals(isdetails)) {
+				//有详细计算标准
+				List<gaugestandard> gaug = gaugmapper.selectByturnoutid(state);
+				
+				
+				
+				
+			}
+			
+			
+			
+		}else {
+			
+			
+			
+			
+		}
+		
+		
+		
+		
+		
+		
+		return jo;
 	}
 
 	

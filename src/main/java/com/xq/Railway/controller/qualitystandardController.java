@@ -19,6 +19,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 /**
@@ -101,7 +102,7 @@ public class qualitystandardController {
 	}
 	
 	@ApiOperation(value="获取类型下质量分析标准", notes="根据道岔的identifiernum来获取质量分析标准")
-	@ApiImplicitParam(name = "id", value = "质量分析标准identifiernum", required = true, dataType = "Integer", paramType = "path")
+	@ApiImplicitParam(name = "id", value = "质量分析标准identifiernum", required = true, dataType = "String", paramType = "path")
 	@RequestMapping(value = "/identifiernum/{id}", method = RequestMethod.GET)
 	public ResponseEntity<JsonResult> getUserByidentifiernum (@PathVariable(value = "id") String id){
 		JsonResult r = new JsonResult();
@@ -138,7 +139,28 @@ public class qualitystandardController {
 		}
 		return ResponseEntity.ok(r);
 	}
+	/**
+	 * 查询道岔列表
+	 * @return
+	 */
+	@ApiOperation(value="获取质量分析标准分类", notes="获取质量分析标准分类")
+	@RequestMapping(value = "/findidentifiernum", method = RequestMethod.GET)
+	public ResponseEntity<JsonResult> getlevel (){
+		JsonResult r = new JsonResult();
+		try {
+			JSONArray userList = qualitystandard.valuesidentifiernum();
+			r.setResult(userList);
+			r.setStatus("ok");
+		} catch (Exception e) {
+			r.setResult(e.getClass().getName() + ":" + e.getMessage());
+			r.setStatus("error");
+			e.printStackTrace();
+		}
+		return ResponseEntity.ok(r);
+	}
 
+	
+	
 	/**
 	 * 根据id修改道岔信息
 	 * @param user

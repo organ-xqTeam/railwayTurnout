@@ -1,4 +1,7 @@
 package com.xq.Railway.model;
+
+import io.swagger.annotations.ApiModel;
+
 /**
  * 
  * 
@@ -7,6 +10,7 @@ package com.xq.Railway.model;
  * @author XingPanST
  *
  */
+@ApiModel(description="首页信息")
 public class mainpageinformaction {
     private String id;
 

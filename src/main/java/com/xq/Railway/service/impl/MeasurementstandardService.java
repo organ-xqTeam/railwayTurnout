@@ -105,4 +105,17 @@ public class MeasurementstandardService implements imeasurementstandardService{
 		
 	}
 
+	@Override
+	public JSONObject findbyproject(String id, Integer pageNum, Integer pageSize) {
+		
+		List<measurementstandard> list  = imm.findbyproject(id, pageNum*pageSize,  pageSize);
+		List<measurementstandard> listCount  = imm.findbyprojectAll(id);
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("list", list);
+		jsonObject.put("listCount", listCount.size());
+		return jsonObject;
+		
+		
+	}
+
 }

@@ -39,11 +39,30 @@
     <!--  measurementitem,state,range,standard,range1,standard1, isdelete -->
     from measurementstandard where state != 1 and turnoutstandardid = #{id} limit #{pageNum} ,#{pageSize};
   </select>
+  
+  
+  
   <select id="findbystandardAll" resultMap="BaseResultMap" parameterType="java.util.Map" >
     select 
      <include refid="Base_Column_List" /> 
     <!--  measurementitem,state,range,standard,range1,standard1, isdelete -->
     from measurementstandard where state != 1 and turnoutstandardid = #{id} 
+  </select>
+  <select id="findbyproject" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    <!-- select 
+     <include refid="Base_Column_List" /> 
+     measurementitem,state,range,standard,range1,standard1, isdelete
+    from measurementstandard  where state != 1 and turnoutstandardid = #{id} 
+     -->
+    SELECT s.* FROM measurementstandard s LEFT JOIN measurementproject p ON s.turnoutstandardid = p.turnoutstandardid WHERE p.id=#{id} limit #{pageNum} ,#{pageSize};
+  </select>
+  <select id="findbyprojectAll" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    <!-- select 
+     <include refid="Base_Column_List" /> 
+     measurementitem,state,range,standard,range1,standard1, isdelete
+    from measurementstandard  where state != 1 and turnoutstandardid = #{id} 
+     -->
+    SELECT s.* FROM measurementstandard s LEFT JOIN measurementproject p ON s.turnoutstandardid = p.turnoutstandardid WHERE p.id=#{id} 
   </select>
   
   <select id="selectAllCount" resultMap="BaseResultMap" parameterType="java.lang.String" >

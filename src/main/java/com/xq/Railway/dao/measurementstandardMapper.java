@@ -27,4 +27,8 @@ public interface measurementstandardMapper {
 	List<measurementstandard> findbystandard(String id, int pageNum, int pageSize);
 
 	List<measurementstandard> findbystandardAll(String id);
+
+	List<measurementstandard> findbyproject(String id, int pageNum, Integer pageSize);
+
+	List<measurementstandard> findbyprojectAll(String id);
 }

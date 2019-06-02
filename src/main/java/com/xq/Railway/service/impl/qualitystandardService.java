@@ -1,5 +1,6 @@
 package com.xq.Railway.service.impl;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import com.xq.Railway.model.qualitystandard;
 import com.xq.Railway.model.turnoutstandard;
 import com.xq.Railway.util.StringUtil;
 
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 @Service
 public class qualitystandardService {
@@ -102,6 +104,21 @@ public class qualitystandardService {
 	public List<qualitystandard> getbyidentifiernum(String id) {
 		List<qualitystandard> li = repository.getbyidentifiernum(id);
 		return li;
+	}
+
+	public JSONArray valuesidentifiernum() {
+		List<qualitystandard> li = repository.valuesidentifiernum();
+		JSONArray ja = new JSONArray();
+		for (qualitystandard qualitystandard : li) {
+			
+			JSONObject js = new JSONObject();
+			js.put("id", qualitystandard.getIdentifiernum());
+			js.put("msg", qualitystandard.getMsg1());
+			
+			ja.add(js);
+		}
+		
+		return ja;
 	}
 
 	

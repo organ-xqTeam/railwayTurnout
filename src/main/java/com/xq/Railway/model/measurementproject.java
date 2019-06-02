@@ -1,4 +1,8 @@
 package com.xq.Railway.model;
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 /**
  * 
  * 
@@ -6,21 +10,23 @@ package com.xq.Railway.model;
  * @author XingPanST
  *
  */
+@ApiModel(description="测量项目")
 public class measurementproject {
     private int id;
-
+	@ApiModelProperty(value = "线路ID",example="id", position = 0)
     private String tid;//线路id
-
+	@ApiModelProperty(value = "站点id",example="id", position = 1)
     private String lid;//站点id
-    
+	@ApiModelProperty(value = "管理员id",example="id", position = 2)
     private String aid;//管理员id
-    
+	@ApiModelProperty(value = "测量标准id",example="id", position = 3)
     private String turnoutstandardid;//测量标准id
 
+	@ApiModelProperty(value = "项目名",example="项目名", position = 4)
     private String pname;//项目名
-
+	@ApiModelProperty(value = "测量时间",example="2019-05-31", position = 5)
     private String ptime;//测量时间
-
+	@ApiModelProperty(value = "关联项点id",example="id", position = 6)
     private String warningstatistics;//预警统计
 
     private String datasources;//数据来源

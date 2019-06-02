@@ -41,5 +41,7 @@ public interface idetectionresultService {
 
 	List<detectionresult> selectbymid(String id);
 
+	JSONObject instertnew(detectionresult m);
+
 	
 }

@@ -3,6 +3,7 @@ package com.xq.Railway.controller;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.xq.Railway.logAop.MethodLog;
+import com.xq.Railway.model.JsonResult;
 import com.xq.Railway.model.measurementproject;
 import com.xq.Railway.service.idetectionresultService;
 import com.xq.Railway.service.ifiledatatableService;
@@ -19,6 +21,8 @@ import com.xq.Railway.service.imeasurementprojectService;
 import com.xq.Railway.util.StringUtil;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import springfox.documentation.annotations.ApiIgnore;
@@ -50,11 +54,23 @@ public class measurementprojectController {
 	 * @param m
 	 * @return
 	 */
+	@ApiOperation(value="新增测量项目", notes="根据measurementproject对象新增测量项目")
+	@ApiImplicitParam(name = "m", value = "详细实体measurementproject", required = true, dataType = "measurementproject")
 	@RequestMapping(value = "/insert" , method = RequestMethod.POST)
 	@MethodLog(remark = "新增测量项目")
-	public JSONObject insert(@RequestBody measurementproject m) {
-		JSONObject result = imps.instert(m);
-		return result;
+	public ResponseEntity<JsonResult> insert(@RequestBody measurementproject m) {
+		JsonResult r = new JsonResult();
+		try {
+			JSONObject result = imps.instert(m);
+//			JSONObject jo =  ser.standerd();
+			r.setResult(result);
+			r.setStatus("ok");
+		} catch (Exception e) {
+			r.setResult(e.getClass().getName() + ":" + e.getMessage());
+			r.setStatus("error");
+			e.printStackTrace();
+		}
+		return ResponseEntity.ok(r);
 	}
 	
 	

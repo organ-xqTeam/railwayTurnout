@@ -34,6 +34,7 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,6 +45,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.xq.Railway.logAop.MethodLog;
+import com.xq.Railway.model.JsonResult;
 import com.xq.Railway.model.detectionresult;
 import com.xq.Railway.model.filedatatable;
 import com.xq.Railway.service.idetectionresultService;
@@ -140,6 +142,23 @@ public class detectionresultController {
 		jsonObject.put("message", "");
 		jsonObject.put("result", result);
 		return jsonObject;
+	}
+	@ApiOperation(value="新增项点测量结果", notes="根据detectionresult对象 新增 测量结果")
+	@ApiImplicitParam(name = "m", value = "详细实体detectionresult", required = true, dataType = "detectionresult")
+	@RequestMapping(value = "/insertnew" , method = RequestMethod.POST)
+	@MethodLog(remark = "新增项点测量结果")
+	public ResponseEntity<JsonResult> insertnew(@RequestBody  detectionresult m) {
+		JsonResult r = new JsonResult();
+		try {
+			JSONObject result = ids.instertnew(m);
+			r.setResult(result);
+			r.setStatus("ok");
+		} catch (Exception e) {
+			r.setResult(e.getClass().getName() + ":" + e.getMessage());
+			r.setStatus("error");
+			e.printStackTrace();
+		}
+		return ResponseEntity.ok(r);
 	}
 	/**
 	 * 

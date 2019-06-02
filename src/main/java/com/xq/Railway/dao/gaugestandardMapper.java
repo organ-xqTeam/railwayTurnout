@@ -18,4 +18,6 @@ public interface gaugestandardMapper {
     int updateByPrimaryKey(gaugestandard record);
 
 	List<gaugestandard> values();
+
+	List<gaugestandard> selectByturnoutid(String state);
 }

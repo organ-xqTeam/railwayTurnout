@@ -17,6 +17,12 @@
     from gaugestandard
     where id = #{id,jdbcType=VARCHAR}
   </select>
+  <select id="selectByturnoutid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from gaugestandard
+    where turnoutid = #{state,jdbcType=VARCHAR}
+  </select>
   
   <select id="values" resultMap="BaseResultMap">
   	 select 

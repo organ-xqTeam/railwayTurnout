@@ -1,5 +1,6 @@
 package com.xq.Railway.model;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
@@ -8,15 +9,18 @@ import io.swagger.annotations.ApiModelProperty;
  * @author XingPanST
  *
  */
+@ApiModel(description = "轨距测量标准")
 public class gaugestandard {
 	@ApiModelProperty(hidden=true)
     private String id;
 
+	@ApiModelProperty(value = "关联项点id",example="id", position = 0)
     private String turnoutid;//道岔标准id
-
+	@ApiModelProperty(value = "里程",example="1734", position = 1)
     private String mileage;//里程
-
+	@ApiModelProperty(value = "轨距",example="1", position = 2)
     private String gauge;//轨距
+	
     @ApiModelProperty(hidden=true)
     private String isdelete;
 
