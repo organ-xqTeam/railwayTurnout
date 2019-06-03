@@ -15,6 +15,7 @@ import com.xq.Railway.service.impl.AdministratorService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import net.sf.json.JSONObject;
 
@@ -59,10 +60,15 @@ public class AdministratorController {
 	 * @param a
 	 * @return
 	 */
+	@ApiOperation(value = "查询管理员", notes = "分页查询")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "pageNum", value = "页码", required = true, dataType = "Integer", paramType = "path"),
+			@ApiImplicitParam(name = "pageSize", value = "每页显示个数", required = true, dataType = "Integer", paramType = "path") 
+			})
 	@RequestMapping(value = "/selectAlladmin", method = RequestMethod.GET)
 	@MethodLog(remark = "查询所有管理员")
-	public JSONObject selectAlladmin(Integer  pageNum,Integer  pageSize) {
-		JSONObject object = ias.selectAllgid(pageNum,pageSize);
+	public JSONObject selectAlladmin(Integer pageNum, Integer pageSize) {
+		JSONObject object = ias.selectAllgid(pageNum, pageSize);
 		return object;
 	}
 
@@ -77,6 +83,11 @@ public class AdministratorController {
 	 * @return
 	 * http://localhost:8089/administrator/adminlogin?ausername=admin&apwd=admin
 	 */
+	@ApiOperation(value = "后台管理员登陆", notes = "登陆")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "ausername", value = "账户", required = true, dataType = "String", paramType = "path"),
+			@ApiImplicitParam(name = "apwd", value = "密码", required = true, dataType = "String", paramType = "path") 
+			})
 	@RequestMapping(value="/adminlogin" , method = RequestMethod.GET)
 	@MethodLog(remark = "登陆")
 	public JSONObject adminlogin(String ausername,String apwd) {
@@ -93,7 +104,11 @@ public class AdministratorController {
 	 * @param apwd
 	 * @return
 	 */
-	
+	@ApiOperation(value = "安卓端登陆", notes = "登陆")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "ausername", value = "账户", required = true, dataType = "String", paramType = "path"),
+			@ApiImplicitParam(name = "apwd", value = "密码", required = true, dataType = "String", paramType = "path") 
+			})
 	@RequestMapping(value= "/login" , method = RequestMethod.GET)
 	@MethodLog(remark = "安卓端登陆")
 	public JSONObject login(String ausername,String apwd) {
@@ -110,6 +125,7 @@ public class AdministratorController {
 	 * @Date 2018年9月6日 下午7:34:07
 	 * @return
 	 */
+	@ApiOperation(value = "登出", notes = "登出")
 	@RequestMapping(value = "/dropout" , method = RequestMethod.GET)
 	@MethodLog(remark = "退出登陆")
 	public String dropout() {
@@ -117,7 +133,10 @@ public class AdministratorController {
 		return "exit.login";
 	}
 	
-	
+	@ApiOperation(value = "删除管理员", notes = "删除管理员")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "id", value = "管理员ID", required = true, dataType = "String", paramType = "path")
+			})
 	@RequestMapping(value ="/delete", method = RequestMethod.GET)
 	@MethodLog(remark = "删除管理员")
 	public JSONObject delete(String id) {
@@ -144,6 +163,10 @@ public class AdministratorController {
 	 * @Date 2018年9月20日 上午11:13:10
 	 * @return 
 	 */
+	@ApiOperation(value = "查询管理员", notes = "查询管理员")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "aid", value = "管理员ID", required = true, dataType = "String", paramType = "path")
+			})
 	@RequestMapping(value = "/selectByAid", method = RequestMethod.GET)
 	public administrator selectByAid(String aid){
 		administrator sela = ias.selectByAid(aid);
@@ -158,6 +181,10 @@ public class AdministratorController {
 	 * @param state
 	 * @return
 	 */
+	@ApiOperation(value = "更新管理员", notes = "更新管理员")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "a", value = "根据administrator实体类", required = true, dataType = "administrator")
+			})
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	@MethodLog(remark = "更新管理员")
 	public int updateadmin(@RequestBody administrator a) {

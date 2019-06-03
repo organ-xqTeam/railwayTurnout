@@ -1,8 +1,11 @@
 package com.xq.Railway.controller;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.xq.Railway.model.JsonResult;
 
 import io.swagger.annotations.Api;
 @Api(tags="测试接口")
@@ -12,8 +15,18 @@ public class TestController {
 	 * 测试
 	 */
 	@RequestMapping(value=  "/Test" , method = RequestMethod.GET)
-	public String Test() {
-		return "index/login2";
+	public ResponseEntity<JsonResult> Test() {
+		JsonResult r = new JsonResult();
+		
+		try {
+			r.setResult("hello world!!!");
+			r.setStatus("ok");
+		} catch (Exception e) {
+			r.setResult(e.getClass().getName() + ":" + e.getMessage());
+			r.setStatus("error");
+			e.printStackTrace();
+		}
+		return ResponseEntity.ok(r);
 	}
 	
 }

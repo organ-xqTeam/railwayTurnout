@@ -189,6 +189,10 @@ public class detectionresultController {
 	 * @param rid
 	 * @return
 	 */
+	@ApiOperation(value="根据项目id 查结果", notes="根据项目id 查结果")
+	@ApiImplicitParams({
+		@ApiImplicitParam(name = "rid", value = "项目id",  required = true, dataType = "String", paramType = "path"),
+	})
 	@RequestMapping(value = "/selectbyridpname", method = RequestMethod.GET)
 	@MethodLog(remark = "根据项目id 查结果")
 	public JSONObject  selectbyid(String rid) {
@@ -202,13 +206,24 @@ public class detectionresultController {
 	 * @param pname
 	 * @return
 	 */
+	@ApiOperation(value="模糊查询 pname  项目rid 移动接口", notes="模糊查询 pname  项目rid 移动接口")
+	@ApiImplicitParams({
+		@ApiImplicitParam(name = "rid", value = "项目id",  required = true, dataType = "String", paramType = "path"),
+		@ApiImplicitParam(name = "pname", value = "模糊查询",  required = true, dataType = "String", paramType = "path"),
+		@ApiImplicitParam(name = "pageNum", value = "页码",  required = true, dataType = "Integer", paramType = "path"),
+		@ApiImplicitParam(name = "pageSize", value = "每页数量",  required = true, dataType = "Integer", paramType = "path")
+	})
 	@RequestMapping(value = "/selectbypname", method = RequestMethod.GET)
 	@MethodLog(remark = "模糊查询 pname  项目rid 移动接口")
 	public JSONObject  selectbypname(String rid,String pname,Integer  pageNum,Integer  pageSize) {
 		JSONObject  ma = ids.selectbypname(rid,pname,  pageNum,  pageSize);
 		return ma;
 	}
-	
+	@ApiOperation(value="查询所有", notes="查询所有")
+	@ApiImplicitParams({
+		@ApiImplicitParam(name = "pageNum", value = "页码",  required = true, dataType = "Integer", paramType = "path"),
+		@ApiImplicitParam(name = "pageSize", value = "每页数量",  required = true, dataType = "Integer", paramType = "path")
+	})
 	@RequestMapping(value = "/selectAll", method = RequestMethod.GET)
 	public List<detectionresult>  selectAll(Integer  pageNum,Integer  pageSize) {
 		List<detectionresult>  ma = ids.selectAll(pageNum,  pageSize);
@@ -222,18 +237,31 @@ public class detectionresultController {
 	 *  根据id 修改 
 	 *    
 	 */
+	@ApiOperation(value="根据id 修改 结果", notes="根据id 修改 detectionresult")
+	@ApiImplicitParams({
+		@ApiImplicitParam(name = "d", value = "detectionresult实体类",  required = true, dataType = "detectionresult")
+	})
 	@RequestMapping(value = "/updatebyid", method = RequestMethod.POST)
 	@MethodLog(remark = "根据id 修改 ")
 	public int updatebyid(@RequestBody detectionresult d) {
 		int ma = ids.updatedetectionresult(d);
 		return ma;
 	}
+	@ApiOperation(value="根据id 删除结果", notes="根据id 删除detectionresult")
+	@ApiImplicitParams({
+		@ApiImplicitParam(name = "id", value = "id",  required = true, dataType = "String" ,paramType = "path")
+	})
 	@RequestMapping(value = "/deletebyid", method = RequestMethod.GET)
 	@MethodLog(remark = "根据id 删除")
 	public JSONObject deletebyid(String id) {
 		JSONObject ma = ids.deletebyid(id);
 		return ma;
 	}
+	@ApiOperation(value="根据id 到处表格", notes="根据id 到处表格")
+	@ApiImplicitParams({
+		@ApiImplicitParam(name = "id", value = "id",  required = true, dataType = "String" ,paramType = "path"),
+		@ApiImplicitParam(name = "filename", value = "导出文件名",  required = true, dataType = "String" ,paramType = "path")
+	})
 	@RequestMapping(value = "/getexcle", method = RequestMethod.GET)
 	public void getexcle(HttpServletResponse response,String id,String filename) {//设置响应为下载
 		if (filename == null || "".equals(filename)) {
@@ -286,6 +314,10 @@ public class detectionresultController {
 		} catch (Exception e) {
 		}
 	}
+	@ApiOperation(value="下载app", notes="下载app")
+	@ApiImplicitParams({
+		@ApiImplicitParam(name = "filename", value = "下载文件文件名",  required = true, dataType = "String" ,paramType = "path")
+	})
 	@RequestMapping(value = "/getApp/{filename}", method = RequestMethod.GET)
 	public void getApp(HttpServletResponse response, @PathVariable String filename) {// 设置响应为下载
 		try {
