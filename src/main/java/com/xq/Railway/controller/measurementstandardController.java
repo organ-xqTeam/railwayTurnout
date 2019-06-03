@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.xq.Railway.logAop.MethodLog;
 import com.xq.Railway.model.JsonResult;
 import com.xq.Railway.model.measurementstandard;
-import com.xq.Railway.service.imeasurementstandardService;
+import com.xq.Railway.service.impl.MeasurementstandardService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -29,7 +29,7 @@ import net.sf.json.JSONObject;
 public class measurementstandardController {
 
 	@Autowired
-	private imeasurementstandardService imss;
+	private MeasurementstandardService imss;
 	
 	/**
 	 * 新增 测量标准

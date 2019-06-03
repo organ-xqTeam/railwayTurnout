@@ -11,11 +11,10 @@ import com.xq.Railway.dao.mainpageinformactionMapper;
 import com.xq.Railway.model.administrator;
 import com.xq.Railway.model.linesite;
 import com.xq.Railway.model.mainpageinformaction;
-import com.xq.Railway.service.iMainpageinformactionService;
 
 import net.sf.json.JSONObject;
-@Service("imis")
-public class MainpageinformactionService implements iMainpageinformactionService{
+@Service
+public class MainpageinformactionService {
 	
 	@Autowired
 	private mainpageinformactionMapper imm;
@@ -31,7 +30,7 @@ public class MainpageinformactionService implements iMainpageinformactionService
 	@Autowired
 	private HttpSession session;
 
-	@Override
+	
 	public JSONObject instert(mainpageinformaction mainpageinformaction) {
 		JSONObject json =  (JSONObject) session.getAttribute("login");
 		String aid = json.getString("aid");//管理员id
@@ -72,13 +71,13 @@ public class MainpageinformactionService implements iMainpageinformactionService
 		return jsonObject;
 	}
 
-	@Override
+	
 	public mainpageinformaction selectbyid(String id) {
 		mainpageinformaction mp = imm.selectByPrimaryKey(id);
 		return mp;
 	}
 
-	@Override
+	
 	public JSONObject selectbyrid(String id) {
 		JSONObject jsonObject = new JSONObject();
 		mainpageinformaction mp= imm.selectByPrimaryKeyrid(id);
@@ -88,7 +87,7 @@ public class MainpageinformactionService implements iMainpageinformactionService
 		return jsonObject;
 	}
 
-	@Override
+	
 	public int updatemainpageinformaction(mainpageinformaction mainpageinformaction) {
 		
 		JSONObject json =  (JSONObject) session.getAttribute("login");

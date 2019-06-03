@@ -3,7 +3,6 @@ package com.xq.Railway.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.lang3.builder.EqualsExclude;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,13 +11,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.xq.Railway.logAop.MethodLog;
 import com.xq.Railway.model.administrator;
-import com.xq.Railway.service.iAdministratorService;
+import com.xq.Railway.service.impl.AdministratorService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import net.sf.json.JSONObject;
-import springfox.documentation.annotations.ApiIgnore;
 
 
 
@@ -34,7 +32,7 @@ import springfox.documentation.annotations.ApiIgnore;
 public class AdministratorController {
 	
 	@Autowired
-	private iAdministratorService ias;
+	private AdministratorService ias;
 	
 	@Autowired
 	private HttpServletRequest request;

@@ -1,7 +1,6 @@
 package com.xq.Railway.util;
 
 import org.apache.commons.codec.digest.DigestUtils;
-import org.springframework.beans.factory.annotation.Value;
 
 /**
  * MD5通用类

@@ -1,10 +1,6 @@
 package com.xq.Railway.service.impl;
 
 import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,14 +12,13 @@ import com.xq.Railway.dao.trainrouteMapper;
 import com.xq.Railway.model.administrator;
 import com.xq.Railway.model.linesite;
 import com.xq.Railway.model.trainroute;
-import com.xq.Railway.service.iAdministratorService;
 import com.xq.Railway.util.MD5;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
-@Service("ias")
-public class AdministratorService implements iAdministratorService {
+@Service
+public class AdministratorService  {
 	
 	@Autowired
 	private administratorMapper iam;
@@ -44,7 +39,6 @@ public class AdministratorService implements iAdministratorService {
 	
 	
 	
-	@Override
 	public JSONObject insertadmin(administrator a) {
 		JSONObject jsonObject = new JSONObject();
 		a.setAfoundtime(System.currentTimeMillis()+"");
@@ -81,7 +75,6 @@ public class AdministratorService implements iAdministratorService {
 		}
 		return jsonObject;
 	}
-	@Override
 	public JSONObject adminlogin(String ausername, String apwd) {
 		JSONObject jsonObject = new JSONObject();
 		String mpwd ;
@@ -142,7 +135,6 @@ public class AdministratorService implements iAdministratorService {
 		return jsonObject;
 	
 	}
-	@Override
 	public JSONObject selectadmin(String ausername, String apwd) {
 		JSONObject jsonObject = new JSONObject();
 		
@@ -184,13 +176,11 @@ public class AdministratorService implements iAdministratorService {
 		return jsonObject;
 	}
 
-	@Override
 	public administrator selectByAid(String aid) {
 		administrator a = iam.selectByPrimaryKey(aid);
 		return a;
 	}
 
-	@Override
 	public JSONObject selectAllgid(int pageNum,int pageSize) {
 		
 		
@@ -215,7 +205,6 @@ public class AdministratorService implements iAdministratorService {
 		return object1;
 	}
 
-	@Override
 	public int updateAdmin(administrator a) {
 		if ("".equals(a.getAid()) ||a.getAid() == null ) {
 			return 0;
@@ -239,7 +228,6 @@ public class AdministratorService implements iAdministratorService {
 		return n;
 	}
 
-	@Override
 	public int DeleteAdmin(String id) {
 		int a =  iam.deleteByPrimaryKey(id);
 		return a;

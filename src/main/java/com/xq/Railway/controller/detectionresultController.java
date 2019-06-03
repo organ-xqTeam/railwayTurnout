@@ -48,9 +48,9 @@ import com.xq.Railway.logAop.MethodLog;
 import com.xq.Railway.model.JsonResult;
 import com.xq.Railway.model.detectionresult;
 import com.xq.Railway.model.filedatatable;
-import com.xq.Railway.service.idetectionresultService;
-import com.xq.Railway.service.ifiledatatableService;
-import com.xq.Railway.service.imeasurementstandardService;
+import com.xq.Railway.service.impl.DetectionresultService;
+import com.xq.Railway.service.impl.FiledatatableService;
+import com.xq.Railway.service.impl.MeasurementstandardService;
 import com.xq.Railway.util.jsonTomodel;
 
 import io.swagger.annotations.Api;
@@ -73,13 +73,13 @@ import net.sf.json.JSONObject;
 public class detectionresultController {
 
 	@Autowired
-	private idetectionresultService ids;
+	private DetectionresultService ids;
 	
 	@Autowired
-	private ifiledatatableService ifs;
+	private FiledatatableService ifs;
 	
 	@Autowired
-	private imeasurementstandardService imss;
+	private MeasurementstandardService imss;
 	
 	@Value("${springurl.fileurl}")
 	private String url;

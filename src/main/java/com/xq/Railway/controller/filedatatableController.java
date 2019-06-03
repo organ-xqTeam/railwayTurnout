@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.xq.Railway.logAop.MethodLog;
-import com.xq.Railway.service.ifiledatatableService;
+import com.xq.Railway.service.impl.FiledatatableService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -19,7 +19,7 @@ public class filedatatableController {
 	
 	
 	@Autowired
-	private ifiledatatableService ifs;
+	private FiledatatableService ifs;
 	/**
 	 * 
 	 * 

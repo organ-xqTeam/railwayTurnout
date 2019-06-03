@@ -10,12 +10,11 @@ import com.xq.Railway.dao.linesiteMapper;
 import com.xq.Railway.dao.trainrouteMapper;
 import com.xq.Railway.model.linesite;
 import com.xq.Railway.model.trainroute;
-import com.xq.Railway.service.itrainrouteService;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
-@Service("its")
-public class TrainrouteService implements itrainrouteService{
+@Service
+public class TrainrouteService {
 	
 	
 	@Autowired
@@ -24,7 +23,6 @@ public class TrainrouteService implements itrainrouteService{
 	@Autowired
 	private trainrouteMapper itm;
 	
-	@Override
 	public JSONObject instert(trainroute t) {
 		JSONObject jsonObject = new JSONObject();
 		t.setIsdelete("0");
@@ -42,19 +40,16 @@ public class TrainrouteService implements itrainrouteService{
 		return jsonObject;
 	}
 
-	@Override
 	public trainroute selectbyid(String id) {
 		trainroute t =  itm.selectByPrimaryKey(id);
 		return t;
 	}
 
-	@Override
 	public int updatetrainroute(trainroute t) {
 		int a = itm.updateByPrimaryKeySelective(t);
 		return a;
 	}
 
-	@Override
 	public JSONObject deletebyid(String id) {
 		JSONObject jsonObject = new JSONObject();
 		List<linesite> li =  ilm.selectByrid(id);
@@ -79,7 +74,6 @@ public class TrainrouteService implements itrainrouteService{
 		return jsonObject;
 	}
 
-	@Override
 	public JSONObject selectAll(String jc,Integer pageNum, Integer pageSize) {
 		JSONObject jsonObject = new JSONObject();
 		if ("100".equals(jc) || "".equals(jc)) {
@@ -94,7 +88,6 @@ public class TrainrouteService implements itrainrouteService{
 		return jsonObject;
 	}
 
-	@Override
 	public JSONObject selectAlltrainAndline(int pageNum, int pageSize) {
 		List<Map> map =  itm.selectAlltrainAndline( pageNum,  pageSize);
 		List<Map> mapCount =  itm.selectAlltrainAndlineCount();
@@ -136,7 +129,6 @@ public class TrainrouteService implements itrainrouteService{
 	 * t.id as id, t.routename as routename,l.id as lid,l.sitename
 	 * 
 	 */
-	@Override
 	public JSONObject selectTLForAndroid() {
 		List<trainroute> list =  itm.selectAll();
 		JSONObject jsonObject = new JSONObject();

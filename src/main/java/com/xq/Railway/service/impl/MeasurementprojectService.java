@@ -14,13 +14,12 @@ import com.xq.Railway.dao.linesiteMapper;
 import com.xq.Railway.dao.measurementprojectMapper;
 import com.xq.Railway.model.linesite;
 import com.xq.Railway.model.measurementproject;
-import com.xq.Railway.service.imeasurementprojectService;
 import com.xq.Railway.util.StringUtil;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
-@Service("imps")
-public class MeasurementprojectService implements imeasurementprojectService{
+@Service
+public class MeasurementprojectService {
 	
 	
 	@Autowired
@@ -34,7 +33,7 @@ public class MeasurementprojectService implements imeasurementprojectService{
 	 * 
 	 *  新增测量项目 
 	 */
-	@Override
+	
 	public JSONObject instert(measurementproject m) {
 		JSONObject jsonObject = new JSONObject();
 		m.setPtime(StringUtil.Dateform(new Date()));
@@ -56,25 +55,25 @@ public class MeasurementprojectService implements imeasurementprojectService{
 		return jsonObject;
 	}
 
-	@Override
+	
 	public measurementproject selectbyid(String id) {
 		measurementproject measurementproject = imm.selectByPrimaryKey(id);
 		return measurementproject;
 	}
 
-	@Override
+	
 	public int updatemeasurementproject(measurementproject m) {
 		int a = imm.updateByPrimaryKeySelective(m);
 		return a;
 	}
 
-	@Override
+	
 	public int deletebyid(String id) {
 		int a  = imm.deleteByPrimaryKey(id);
 		return a;
 	}
 
-	@Override
+	
 	public JSONObject selectAll(int pageNum,int pageSize) {
 		List<measurementproject> list  = imm.selectAll( pageNum*pageSize, pageSize);
 		List<measurementproject> listCount  = imm.selectAllCount();
@@ -84,7 +83,7 @@ public class MeasurementprojectService implements imeasurementprojectService{
 		return jsonObject;
 	}
 
-	@Override
+	
 	public JSONObject selectBymid(String mid,int pageNum,int pageSize) {
 		List<measurementproject> list  = imm.selectbymid(mid, pageNum*pageSize, pageSize);
 		List<measurementproject> listCount  = imm.selectbymidCount(mid);
@@ -96,7 +95,7 @@ public class MeasurementprojectService implements imeasurementprojectService{
 		return jsonObject;
 	}
 
-	@Override
+	
 	public JSONObject selectByName(String mName,int pageNum,int pageSize) {
 		List<measurementproject> list  = imm.selectByName(mName, pageNum*pageSize, pageSize);
 		List<measurementproject> listCount  = imm.selectByNameCount(mName);
@@ -106,7 +105,7 @@ public class MeasurementprojectService implements imeasurementprojectService{
 		return jsonObject;
 	}
 
-	@Override
+	
 	public JSONObject selectBy(String id, String mName, int pageNum, int pageSize) {
 		if ("".equals(mName)) {
 			mName = null;
@@ -122,7 +121,7 @@ public class MeasurementprojectService implements imeasurementprojectService{
 	 * 
 	 * 查询站点下所有项目民
 	 */
-	@Override
+	
 	public JSONObject selectAllpName(String id) {
 		List<String> list  = imm.selectAllpName(id);
 		JSONObject jsonObject = new JSONObject();
@@ -130,7 +129,7 @@ public class MeasurementprojectService implements imeasurementprojectService{
 		return jsonObject;
 	}
 
-	@Override
+	
 	public JSONObject GetHomeECharts(String id) {
 		List<Map> listm =  imm.selectGetEchar(Integer.parseInt(id));
 		JSONObject jsonObject = new JSONObject();
@@ -138,7 +137,7 @@ public class MeasurementprojectService implements imeasurementprojectService{
 		return jsonObject;
 	}
 
-	@Override
+	
 	public JSONObject GetPageECharts(String id) {
 		List<Map> listm =  imm.GetPageECharts(Integer.parseInt(id));
 		

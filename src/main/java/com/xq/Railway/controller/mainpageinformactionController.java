@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.xq.Railway.logAop.MethodLog;
 import com.xq.Railway.model.mainpageinformaction;
-import com.xq.Railway.service.iMainpageinformactionService;
+import com.xq.Railway.service.impl.MainpageinformactionService;
 
 import io.swagger.annotations.Api;
 import net.sf.json.JSONObject;
@@ -28,7 +28,7 @@ public class mainpageinformactionController {
 	
 	
 	@Autowired
-	private iMainpageinformactionService imis;
+	private MainpageinformactionService imis;
 	
 	/**
 	 * 新增 站点 天气。。

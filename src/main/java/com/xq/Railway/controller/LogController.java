@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.xq.Railway.logAop.MethodLog;
-import com.xq.Railway.service.ilogService;
+import com.xq.Railway.service.impl.logSelectService;
 
 import net.sf.json.JSONObject;
 import springfox.documentation.annotations.ApiIgnore;
@@ -25,7 +25,7 @@ import springfox.documentation.annotations.ApiIgnore;
 public class LogController {
 	
 	@Autowired
-	private ilogService ilss;
+	private logSelectService ilss;
 	
 	@RequestMapping(value = "/selectAlllog" )
 	@MethodLog(remark = "查询系统日志")

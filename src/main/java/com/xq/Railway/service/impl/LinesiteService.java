@@ -11,12 +11,10 @@ import com.xq.Railway.dao.administratorMapper;
 import com.xq.Railway.dao.linesiteMapper;
 import com.xq.Railway.model.administrator;
 import com.xq.Railway.model.linesite;
-import com.xq.Railway.service.iAdministratorService;
-import com.xq.Railway.service.ilinesiteService;
 
 import net.sf.json.JSONObject;
-@Service("ils")
-public class LinesiteService implements ilinesiteService{
+@Service
+public class LinesiteService{
 	
 	@Autowired
 	private linesiteMapper ilm;
@@ -27,7 +25,7 @@ public class LinesiteService implements ilinesiteService{
 	@Autowired
 	private HttpServletRequest request;
 	
-	@Override
+	
 	public JSONObject instert(linesite l) {
 		JSONObject jsonObject = new JSONObject();
 		
@@ -60,19 +58,19 @@ public class LinesiteService implements ilinesiteService{
 		return jsonObject;
 	}
 
-	@Override
+	
 	public linesite selectbyid(String id) {
 		linesite linesite = ilm.selectByPrimaryKey(id);
 		return linesite;
 	}
 
-	@Override
+	
 	public int updatelinesite(linesite l) {
 		int n =  ilm.updateByPrimaryKeySelective(l);
 		return n;
 	}
 
-	@Override
+	
 	public int deletebyid(String id) {
 		/**
 		 * 
@@ -87,7 +85,7 @@ public class LinesiteService implements ilinesiteService{
 		return n;
 	}
 
-	@Override
+	
 	public JSONObject selectAll() {
 		List<linesite> li =  ilm.selectAll();
 		JSONObject jsonObject = new JSONObject();
@@ -95,7 +93,7 @@ public class LinesiteService implements ilinesiteService{
 		return jsonObject;
 	}
 
-	@Override
+	
 	public JSONObject selectbyrouteid(String routeid,Integer  pageNum,Integer  pageSize) {
 		List<linesite> li =  ilm.selectByrid1(routeid,pageNum*pageSize,pageSize);
 		JSONObject jsonObject = new JSONObject();

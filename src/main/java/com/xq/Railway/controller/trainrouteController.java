@@ -10,11 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.xq.Railway.logAop.MethodLog;
 import com.xq.Railway.model.trainroute;
-import com.xq.Railway.service.itrainrouteService;
+import com.xq.Railway.service.impl.TrainrouteService;
 
 import io.swagger.annotations.Api;
 import net.sf.json.JSONObject;
-import springfox.documentation.annotations.ApiIgnore;
 /**
  * 
  * 线路
@@ -27,7 +26,7 @@ import springfox.documentation.annotations.ApiIgnore;
 public class trainrouteController {
 
 	@Autowired
-	private itrainrouteService its;
+	private TrainrouteService its;
 	
 	@Autowired
 	private HttpServletRequest request;

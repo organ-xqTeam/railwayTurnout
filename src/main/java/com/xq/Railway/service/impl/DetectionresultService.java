@@ -17,15 +17,14 @@ import com.xq.Railway.model.filedatatable;
 import com.xq.Railway.model.gaugestandard;
 import com.xq.Railway.model.measurementproject;
 import com.xq.Railway.model.measurementstandard;
-import com.xq.Railway.service.idetectionresultService;
 import com.xq.Railway.util.DecimalUtil;
 import com.xq.Railway.util.algorithm;
 import com.xq.Railway.util.jsonTomodel;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
-@Service("ids")
-public class DetectionresultService implements idetectionresultService{
+@Service
+public class DetectionresultService {
 	
 	@Autowired
 	private detectionresultMapper idm;
@@ -41,7 +40,6 @@ public class DetectionresultService implements idetectionresultService{
 	@Autowired
 	private filedatatableMapper ifm;
 	
-	@Override
 	public JSONObject instert(detectionresult d) {
 		JSONObject jsonObject = new JSONObject();
 		
@@ -83,7 +81,6 @@ public class DetectionresultService implements idetectionresultService{
 		return jsonObject;
 	}
 	
-	@Override
 	public JSONObject insert(String id, JSONObject object) {
 		JSONObject jsonObject = new JSONObject();
 		if ("success".equals(object.getString("stats"))) {
@@ -239,7 +236,6 @@ public class DetectionresultService implements idetectionresultService{
 	}
 	
 	
-	@Override
 	public JSONObject updatedetectionresult(String id, JSONObject object) {
 		
 		
@@ -341,13 +337,13 @@ public class DetectionresultService implements idetectionresultService{
 	
 	
 
-	@Override
+	
 	public detectionresult selectbyid(String id) {
 		detectionresult detectionresult = 	idm.selectByPrimaryKey(id);
 		return detectionresult;
 	}
 
-	@Override
+	
 	public JSONObject selectbyrid(String id) {
 		JSONObject jsonObject = new JSONObject();
 		List<detectionresult> list =  idm.selectByMid(id);
@@ -376,7 +372,7 @@ public class DetectionresultService implements idetectionresultService{
 		return jsonObject;
 	}
 
-	@Override
+	
 	public JSONObject selectbypname(String id,String pname,Integer  pageNum,Integer  pageSize) {
 		JSONObject jsonObject = new JSONObject();
 		List<detectionresult> list =  idm.selectbypname(id,pname,  pageNum*pageSize,  pageSize);
@@ -411,7 +407,7 @@ public class DetectionresultService implements idetectionresultService{
 	
 	
 	
-	@Override
+	
 	public int updatedetectionresult(detectionresult d) {
 		int n = idm.updateByPrimaryKeySelective(d);
 		List<detectionresult> lists =  idm.selectbymidresults(d.getMid(), "不合格");
@@ -422,12 +418,12 @@ public class DetectionresultService implements idetectionresultService{
 		return n;
 	}
 
-	@Override
+	
 	public List<detectionresult> selectAll(Integer  pageNum,Integer  pageSize) {
 		return idm.selectAll(pageNum*pageSize,pageSize);
 	}
 
-	@Override
+	
 	public JSONObject deletebyid(String id) {
 		int a =  idm.deleteByPrimaryKey(id);
 		JSONObject jsonObject = new JSONObject();
@@ -443,13 +439,13 @@ public class DetectionresultService implements idetectionresultService{
 		return jsonObject;
 	}
 
-	@Override
+	
 	public List<detectionresult> selectbymid(String id) {
 		List<detectionresult> list =  idm.selectByMid(id);
 		return list;
 	}
 
-	@Override
+	
 	public JSONObject instertnew(detectionresult m) {
 		JSONObject jo = new JSONObject();
 		
@@ -535,7 +531,7 @@ public class DetectionresultService implements idetectionresultService{
 		return jo;
 	}
 
-	@Override
+	
 	public JSONObject insertnewcar(String urlname , String mid) {
 		
 		List<detectionresult> detectionresults = new ArrayList<detectionresult>();

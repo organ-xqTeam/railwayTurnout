@@ -12,7 +12,7 @@ import java.util.UUID;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.xq.Railway.model.filedatatable;
-import com.xq.Railway.service.ifiledatatableService;
+import com.xq.Railway.service.impl.FiledatatableService;
 
 import net.sf.json.JSONObject;
 
@@ -42,7 +42,7 @@ public class StringUtil {
 	}
 	
 	
-	public static JSONObject fileUpload(MultipartFile[] files,String realPath,ifiledatatableService ifs) throws Exception{
+	public static JSONObject fileUpload(MultipartFile[] files,String realPath,FiledatatableService ifs) throws Exception{
 		JSONObject jsonObject = new JSONObject();
 		String fileName = null;
 		try {

@@ -7,17 +7,15 @@ import org.springframework.stereotype.Service;
 
 import com.xq.Railway.dao.filedatatableMapper;
 import com.xq.Railway.model.filedatatable;
-import com.xq.Railway.service.ifiledatatableService;
 
 import net.sf.json.JSONObject;
-@Service("ifs")
-public class FiledatatableService implements ifiledatatableService{
+@Service
+public class FiledatatableService {
 	
 	
 	@Autowired
 	private filedatatableMapper ifm;
 	
-	@Override
 	public JSONObject instert(filedatatable d) {
 		JSONObject jsonObject = new JSONObject();
 		int  n =  ifm.insertSelective(d);
@@ -32,7 +30,6 @@ public class FiledatatableService implements ifiledatatableService{
 		}
 		return jsonObject;
 	}
-	@Override
 	public JSONObject instert(List<filedatatable> d) {
 		JSONObject jsonObject = new JSONObject();
 		int  n =  ifm.insertSelectives(d);
@@ -47,12 +44,10 @@ public class FiledatatableService implements ifiledatatableService{
 		}
 		return jsonObject;
 	}
-	@Override
 	public filedatatable getfileByid(String fileName) {
 		filedatatable list = ifm.selectByPrimaryKey(Integer.parseInt(fileName));
 		return list;
 	}
-	@Override
 	public JSONObject selectbyid(String id) {
 		List<filedatatable> li =  ifm.getfileByid(Integer.parseInt(id));
 		JSONObject jsonObject = new JSONObject();

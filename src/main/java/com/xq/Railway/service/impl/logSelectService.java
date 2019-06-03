@@ -7,17 +7,15 @@ import org.springframework.stereotype.Service;
 
 import com.xq.Railway.dao.OperateLogMapper;
 import com.xq.Railway.model.Syslog;
-import com.xq.Railway.service.ilogService;
 
 import net.sf.json.JSONObject;
-@Service("ilss")
-public class logSelectService implements ilogService{
+@Service
+public class logSelectService{
 	
 	
 	@Autowired
 	private OperateLogMapper iolm;
 	
-	@Override
 	public JSONObject selectAll(int pageNum, int pageSize ) {
 		List<Syslog> list =  iolm.selectAll(pageNum*pageSize, pageSize);
 		List<Syslog> listconut =  iolm.selectAlls();

@@ -1,7 +1,6 @@
 package com.xq.Railway.dao;
 
 import java.util.List;
-import java.util.Map;
 
 import com.xq.Railway.model.administrator;
 
@@ -16,6 +15,7 @@ public interface administratorMapper {
 	administrator selectusername(String username);
 	
 	/**
+	 * 
 	 *    登陆验证 账号密码
 	 * @param username
 	 * @param pwd

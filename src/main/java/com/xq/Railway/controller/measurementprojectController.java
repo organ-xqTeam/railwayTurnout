@@ -15,9 +15,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.xq.Railway.logAop.MethodLog;
 import com.xq.Railway.model.JsonResult;
 import com.xq.Railway.model.measurementproject;
-import com.xq.Railway.service.idetectionresultService;
-import com.xq.Railway.service.ifiledatatableService;
-import com.xq.Railway.service.imeasurementprojectService;
+import com.xq.Railway.service.impl.DetectionresultService;
+import com.xq.Railway.service.impl.FiledatatableService;
+import com.xq.Railway.service.impl.MeasurementprojectService;
 import com.xq.Railway.util.StringUtil;
 
 import io.swagger.annotations.Api;
@@ -25,7 +25,6 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
-import springfox.documentation.annotations.ApiIgnore;
 /**
  * 
  * 
@@ -40,14 +39,14 @@ import springfox.documentation.annotations.ApiIgnore;
 public class measurementprojectController {
 
 	@Autowired
-	private imeasurementprojectService imps;
+	private MeasurementprojectService imps;
 
 	@Autowired
-	private ifiledatatableService ifs;
+	private FiledatatableService ifs;
 	
 	
 	@Autowired
-	private idetectionresultService ids;
+	private DetectionresultService ids;
 	
 	/**
 	 * 

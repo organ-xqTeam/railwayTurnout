@@ -7,16 +7,15 @@ import org.springframework.stereotype.Service;
 
 import com.xq.Railway.dao.measurementstandardMapper;
 import com.xq.Railway.model.measurementstandard;
-import com.xq.Railway.service.imeasurementstandardService;
 
 import net.sf.json.JSONObject;
-@Service("imss")
-public class MeasurementstandardService implements imeasurementstandardService{
+@Service
+public class MeasurementstandardService {
 	
 	@Autowired
 	private  measurementstandardMapper imm;
 	
-	@Override
+	
 	public JSONObject instert(measurementstandard m) {
 		JSONObject jsonObject = new JSONObject();
 //		m.setState("2");
@@ -33,13 +32,13 @@ public class MeasurementstandardService implements imeasurementstandardService{
 		return jsonObject;
 	}
 
-	@Override
+	
 	public measurementstandard selectbyid(String id) {
 		measurementstandard measure = imm.selectByPrimaryKey(id);
 		return measure;
 	}
 
-	@Override
+	
 	public int updatemeasurementstandard(measurementstandard m) {
 		if ("1".equals(m.getId())) {
 			return -1;
@@ -55,7 +54,7 @@ public class MeasurementstandardService implements imeasurementstandardService{
 		return n;
 	}
 
-	@Override
+	
 	public int deletebyid(String id) {
 		if ("1".equals(id)) {
 			return -1;
@@ -70,7 +69,7 @@ public class MeasurementstandardService implements imeasurementstandardService{
 		return a;
 	}
 
-	@Override
+	
 	public JSONObject selectAll(int pageNum, int pageSize) {
 		List<measurementstandard> list = imm.selectAll( pageNum*pageSize,  pageSize);
 		List<measurementstandard> listCount = imm.selectAllCount();
@@ -82,7 +81,7 @@ public class MeasurementstandardService implements imeasurementstandardService{
 		return jsonObject;
 	}
 
-	@Override
+	
 	public JSONObject selectAll1(int pageNum, int pageSize) {
 		List<measurementstandard> list = imm.selectAll1( pageNum*pageSize,  pageSize);
 		List<measurementstandard> listCount = imm.selectAllCount1();
@@ -94,7 +93,7 @@ public class MeasurementstandardService implements imeasurementstandardService{
 		return jsonObject;
 	}
 
-	@Override
+	
 	public JSONObject findbystandard(String id,int pageNum, int pageSize) {
 		List<measurementstandard> list  = imm.findbystandard(id, pageNum*pageSize,  pageSize);
 		List<measurementstandard> listCount  = imm.findbystandardAll(id);
@@ -105,7 +104,7 @@ public class MeasurementstandardService implements imeasurementstandardService{
 		
 	}
 
-	@Override
+	
 	public JSONObject findbyproject(String id, Integer pageNum, Integer pageSize) {
 		
 		List<measurementstandard> list  = imm.findbyproject(id, pageNum*pageSize,  pageSize);

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.xq.Railway.logAop.MethodLog;
 import com.xq.Railway.model.linesite;
-import com.xq.Railway.service.ilinesiteService;
+import com.xq.Railway.service.impl.LinesiteService;
 
 import io.swagger.annotations.Api;
 import net.sf.json.JSONObject;
@@ -25,7 +25,7 @@ import net.sf.json.JSONObject;
 public class linesiteController {
 
 	@Autowired
-	private ilinesiteService ils;
+	private LinesiteService ils;
 	
 	/**
 	 * 新增 站点 
