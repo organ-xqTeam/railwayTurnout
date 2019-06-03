@@ -3,14 +3,20 @@ package com.xq.Railway.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang3.builder.EqualsExclude;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.xq.Railway.logAop.MethodLog;
 import com.xq.Railway.model.administrator;
 import com.xq.Railway.service.iAdministratorService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
 import net.sf.json.JSONObject;
 import springfox.documentation.annotations.ApiIgnore;
 
@@ -22,7 +28,7 @@ import springfox.documentation.annotations.ApiIgnore;
  * @Author 
  * @Date 2018年9月11日 下午12:15:41
  */
-@ApiIgnore
+@Api(tags="管理员")
 @RestController
 @RequestMapping("/administrator")
 public class AdministratorController {
@@ -42,9 +48,11 @@ public class AdministratorController {
 	 * @return
 	 * http://localhost:8089/administrator/insertadmin?aname=admin&ausername=admin&apwd=admin&aphonenum=123&aemile123@qq.com&arole=1
 	 */
-	@RequestMapping(value = "/insertadmin" )
+	@ApiOperation(value="新增管理员", notes="根据administrator对象创建")
+	@ApiImplicitParam(name = "a", value = "详细实体administrator", required = true, dataType = "administrator")
+	@RequestMapping(value = "/insertadmin" ,method = RequestMethod.POST)
 	@MethodLog(remark = "新增管理员")
-	public JSONObject insertadmin(administrator a) {
+	public JSONObject insertadmin(@RequestBody administrator a) {
 		JSONObject result = ias.insertadmin(a);
 		return result;
 	}
@@ -53,7 +61,7 @@ public class AdministratorController {
 	 * @param a
 	 * @return
 	 */
-	@RequestMapping(value = "/selectAlladmin")
+	@RequestMapping(value = "/selectAlladmin", method = RequestMethod.GET)
 	@MethodLog(remark = "查询所有管理员")
 	public JSONObject selectAlladmin(Integer  pageNum,Integer  pageSize) {
 		JSONObject object = ias.selectAllgid(pageNum,pageSize);
@@ -71,7 +79,7 @@ public class AdministratorController {
 	 * @return
 	 * http://localhost:8089/administrator/adminlogin?ausername=admin&apwd=admin
 	 */
-	@RequestMapping("/adminlogin")
+	@RequestMapping(value="/adminlogin" , method = RequestMethod.GET)
 	@MethodLog(remark = "登陆")
 	public JSONObject adminlogin(String ausername,String apwd) {
 		JSONObject a = ias.selectadmin(ausername,apwd);
@@ -88,7 +96,7 @@ public class AdministratorController {
 	 * @return
 	 */
 	
-	@RequestMapping("/login")
+	@RequestMapping(value= "/login" , method = RequestMethod.GET)
 	@MethodLog(remark = "安卓端登陆")
 	public JSONObject login(String ausername,String apwd) {
 		JSONObject a = ias.adminlogin(ausername,apwd);
@@ -104,7 +112,7 @@ public class AdministratorController {
 	 * @Date 2018年9月6日 下午7:34:07
 	 * @return
 	 */
-	@RequestMapping("/dropout")
+	@RequestMapping(value = "/dropout" , method = RequestMethod.GET)
 	@MethodLog(remark = "退出登陆")
 	public String dropout() {
 		request.getSession().invalidate();
@@ -112,7 +120,7 @@ public class AdministratorController {
 	}
 	
 	
-	@RequestMapping("/delete")
+	@RequestMapping(value ="/delete", method = RequestMethod.GET)
 	@MethodLog(remark = "删除管理员")
 	public JSONObject delete(String id) {
 		JSONObject jsonObject = new JSONObject();
@@ -138,7 +146,7 @@ public class AdministratorController {
 	 * @Date 2018年9月20日 上午11:13:10
 	 * @return 
 	 */
-	@RequestMapping("/selectByAid")
+	@RequestMapping(value = "/selectByAid", method = RequestMethod.GET)
 	public administrator selectByAid(String aid){
 		administrator sela = ias.selectByAid(aid);
 		return sela;
@@ -152,9 +160,9 @@ public class AdministratorController {
 	 * @param state
 	 * @return
 	 */
-	@RequestMapping("/update")
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	@MethodLog(remark = "更新管理员")
-	public int updateadmin(administrator a) {
+	public int updateadmin(@RequestBody administrator a) {
 		int n =  ias.updateAdmin(a);
 		return n;
 	}

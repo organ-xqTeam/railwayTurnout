@@ -1,15 +1,17 @@
 package com.xq.Railway.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.xq.Railway.logAop.MethodLog;
 import com.xq.Railway.model.linesite;
 import com.xq.Railway.service.ilinesiteService;
 
+import io.swagger.annotations.Api;
 import net.sf.json.JSONObject;
-import springfox.documentation.annotations.ApiIgnore;
 /**
  * 
  * 
@@ -17,7 +19,7 @@ import springfox.documentation.annotations.ApiIgnore;
  * @author XingPanST
  *
  */
-@ApiIgnore
+@Api(tags="站点")
 @RestController
 @RequestMapping("/linesite")
 public class linesiteController {
@@ -31,9 +33,9 @@ public class linesiteController {
 	 * @param m
 	 * @return
 	 */
-	@RequestMapping(value = "/insert" )
+	@RequestMapping(value = "/insert" , method = RequestMethod.POST)
 	@MethodLog(remark = "新增站点")
-	public JSONObject insert(linesite m) {
+	public JSONObject insert(@RequestBody linesite m) {
 		JSONObject result = ils.instert(m);
 		return result;
 	}
@@ -45,7 +47,7 @@ public class linesiteController {
 	 * @return
 	 */
 	
-	@RequestMapping(value = "/selectAll" )
+	@RequestMapping(value = "/selectAll" , method = RequestMethod.GET)
 	@MethodLog(remark = "查询所有站点")
 	public JSONObject selectAll() {
 		JSONObject result = ils.selectAll();
@@ -62,7 +64,7 @@ public class linesiteController {
 	 * @param rid
 	 * @return
 	 */
-	@RequestMapping(value = "/selectbyrouteid")
+	@RequestMapping(value = "/selectbyrouteid" , method = RequestMethod.GET)
 	@MethodLog(remark = "查询指定线路站点")
 	public JSONObject selectbyrouteid(String routeid,Integer  pageNum,Integer  pageSize) {
 		JSONObject  ma = ils.selectbyrouteid(routeid,  pageNum,  pageSize);
@@ -76,7 +78,7 @@ public class linesiteController {
 	 * @return
 	 */
 	
-	@RequestMapping(value = "/selectbyid")
+	@RequestMapping(value = "/selectbyid" , method = RequestMethod.GET)
 	@MethodLog(remark = "查看单个站点")
 	public linesite selectbyid(String id) {
 		linesite ma = ils.selectbyid(id);
@@ -90,9 +92,9 @@ public class linesiteController {
 	 *  http://localhost:8089/linesite/updatebyid?id=5&sitename=%E6%B2%88%E9%98%B3%E7%AB%991111
 	 *    
 	 */
-	@RequestMapping(value = "/updatebyid")
+	@RequestMapping(value = "/updatebyid", method = RequestMethod.POST)
 	@MethodLog(remark = "修改站点")
-	public int updatebyid(linesite m) {
+	public int updatebyid(@RequestBody linesite m) {
 		int ma = ils.updatelinesite(m);
 		return ma;
 	}
@@ -102,7 +104,7 @@ public class linesiteController {
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping(value = "/delete")
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	@MethodLog(remark = "删除站点")
 	public int deletebyid(String id) {
 		

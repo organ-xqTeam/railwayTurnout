@@ -12,6 +12,7 @@ import io.swagger.annotations.ApiModelProperty;
  */
 @ApiModel(description="测量项目")
 public class measurementproject {
+	@ApiModelProperty(hidden=true)
     private int id;
 	@ApiModelProperty(value = "线路ID",example="id", position = 0)
     private String tid;//线路id
@@ -33,7 +34,7 @@ public class measurementproject {
     private String distance;//轨距
     private String lAltitude;//左高程
     private String rAltitude;//右高程
-
+    @ApiModelProperty(hidden=true)
     private String isdelete;
 
 

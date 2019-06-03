@@ -43,5 +43,7 @@ public interface idetectionresultService {
 
 	JSONObject instertnew(detectionresult m);
 
+	JSONObject insertnewcar(String urlname,String mid);
+
 	
 }

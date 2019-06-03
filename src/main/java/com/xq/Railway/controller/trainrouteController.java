@@ -3,13 +3,16 @@ package com.xq.Railway.controller;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.xq.Railway.logAop.MethodLog;
 import com.xq.Railway.model.trainroute;
 import com.xq.Railway.service.itrainrouteService;
 
+import io.swagger.annotations.Api;
 import net.sf.json.JSONObject;
 import springfox.documentation.annotations.ApiIgnore;
 /**
@@ -18,7 +21,7 @@ import springfox.documentation.annotations.ApiIgnore;
  * @author XingPanST
  *
  */
-@ApiIgnore
+@Api(tags="线路")
 @RestController
 @RequestMapping("/trainroute")
 public class trainrouteController {
@@ -35,9 +38,9 @@ public class trainrouteController {
 	 * @param m
 	 * @return
 	 */
-	@RequestMapping(value = "/insert" )
+	@RequestMapping(value = "/insert" , method = RequestMethod.POST)
 	@MethodLog(remark = "新增线路信息")
-	public JSONObject insert(trainroute m) {
+	public JSONObject insert(@RequestBody trainroute m) {
 		JSONObject result = its.instert(m);
 		return result;
 	}
@@ -49,7 +52,7 @@ public class trainrouteController {
 	 * @param rid
 	 * @return
 	 */
-	@RequestMapping(value = "/selectbyid")
+	@RequestMapping(value = "/selectbyid", method = RequestMethod.GET)
 	public trainroute selectbyid(String rid) {
 		trainroute ma = its.selectbyid(rid);
 		return ma;
@@ -61,14 +64,14 @@ public class trainrouteController {
 	 * 
 	 *    http://localhost:8089/trainroute/updatebyid?routename=%E6%B2%88%E9%98%B3%E7%AB%991&id=4
 	 */
-	@RequestMapping(value = "/updatebyid")
+	@RequestMapping(value = "/updatebyid", method = RequestMethod.POST)
 	@MethodLog(remark = "更新线路信息")
-	public int updatebyid(trainroute m) {
+	public int updatebyid(@RequestBody trainroute m) {
 		int ma = its.updatetrainroute(m);
 		return ma;
 	}
 	
-	@RequestMapping(value = "/delete")
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	@MethodLog(remark = "删除线路")
 	public JSONObject deletebyid(String  id) {
 		JSONObject ma = its.deletebyid(id);
@@ -82,7 +85,7 @@ public class trainrouteController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping(value = "/selectAll" )
+	@RequestMapping(value = "/selectAll" , method = RequestMethod.GET)
 	@MethodLog(remark = "查询所有线路")
 	public JSONObject selectAll(Integer  pageNum,Integer  pageSize) {
 		JSONObject jsonObject = new JSONObject();
@@ -106,7 +109,7 @@ public class trainrouteController {
 	 * 查询所有线路和站点
 	 * @return
 	 */
-	@RequestMapping(value = "/selectAlltrainAndline" )
+	@RequestMapping(value = "/selectAlltrainAndline" , method = RequestMethod.GET)
 	public JSONObject selectAlltrainAndline(Integer  pageNum,Integer  pageSize) {
 		JSONObject result = its.selectAlltrainAndline(pageNum,pageSize);
 		return result;
@@ -117,7 +120,7 @@ public class trainrouteController {
 	 * 查询所有线路和站点ForAndroid
 	 * @return
 	 */
-	@RequestMapping(value = "/selectTLForAndroid" )
+	@RequestMapping(value = "/selectTLForAndroid" , method = RequestMethod.GET)
 	@MethodLog(remark = "查询所有线路并站点信息安卓")
 	public JSONObject selectTLForAndroid() {
 		JSONObject result = its.selectTLForAndroid();

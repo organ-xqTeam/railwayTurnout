@@ -13,10 +13,11 @@
     <result column="turnoutstandardid" property="turnoutstandardid" jdbcType="VARCHAR" />
     <result column="inspectionmethod" property="inspectionmethod" jdbcType="VARCHAR" />
     <result column="managementcategory" property="managementcategory" jdbcType="VARCHAR" />
+    <result column="gaugestandardid" property="gaugestandardid" jdbcType="VARCHAR" />
     <result column="isdetails" property="isdetails" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, measurementitem,state,ranges,standard,range1,standard1, isdelete,turnoutstandardid,inspectionmethod,managementcategory,isdetails
+    id, measurementitem,state,ranges,standard,range1,standard1, isdelete,turnoutstandardid,inspectionmethod,managementcategory,gaugestandardid,isdetails
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
@@ -89,12 +90,13 @@
   </delete>
   <insert id="insert" parameterType="com.xq.Railway.model.measurementstandard" >
     insert into measurementstandard (id, measurementitem, standard, 
-      isdelete,turnoutstandardid,inspectionmethod,managementcategory,isdetails)
+      isdelete,turnoutstandardid,inspectionmethod,managementcategory,gaugestandardid,isdetails)
     values (#{id,jdbcType=VARCHAR}, #{measurementitem,jdbcType=VARCHAR}, #{standard,jdbcType=VARCHAR}, 
       #{isdelete,jdbcType=VARCHAR},
       #{turnoutstandardid,jdbcType=VARCHAR},
       #{inspectionmethod,jdbcType=VARCHAR},
       #{managementcategory,jdbcType=VARCHAR},
+      #{gaugestandardid,jdbcType=VARCHAR},
       #{isdetails,jdbcType=VARCHAR}
       )
   </insert>
@@ -110,6 +112,13 @@
        <if test="state != null" >
         state,
       </if>
+       <if test="range1 != null" >
+        range1,
+      </if>
+       <if test="ranges != null" >
+        ranges,
+      </if>
+      
       <if test="standard != null" >
         standard,
       </if>
@@ -128,6 +137,9 @@
       <if test="managementcategory != null" >
         managementcategory,
       </if>
+      <if test="gaugestandardid != null" >
+        gaugestandardid,
+      </if>
       <if test="isdetails != null" >
         isdetails,
       </if>
@@ -141,6 +153,12 @@
       </if>
       <if test="state != null" >
         #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="range1 != null" >
+        #{range1,jdbcType=VARCHAR},
+      </if>
+      <if test="ranges != null" >
+        #{ranges,jdbcType=VARCHAR},
       </if>
       <if test="standard != null" >
         #{standard,jdbcType=VARCHAR},
@@ -160,6 +178,9 @@
       </if>
       <if test="managementcategory != null" >
         #{managementcategory,jdbcType=VARCHAR},
+      </if>
+      <if test="gaugestandardid != null" >
+        #{gaugestandardid,jdbcType=VARCHAR},
       </if>
       <if test="isdetails != null" >
         #{isdetails,jdbcType=VARCHAR},
@@ -189,6 +210,9 @@
       </if>
       <if test="isdetails != null" >
         isdetails = #{isdetails,jdbcType=VARCHAR},
+      </if>
+      <if test="gaugestandardid != null" >
+        gaugestandardid = #{gaugestandardid,jdbcType=VARCHAR},
       </if>
       <if test="isdelete != null" >
         isdelete = #{isdelete,jdbcType=VARCHAR},

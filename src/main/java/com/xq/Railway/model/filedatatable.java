@@ -1,6 +1,9 @@
 package com.xq.Railway.model;
 
+import io.swagger.annotations.ApiModelProperty;
+
 public class filedatatable {
+	@ApiModelProperty(hidden=true)
     private Integer id;
 
     private String originName;

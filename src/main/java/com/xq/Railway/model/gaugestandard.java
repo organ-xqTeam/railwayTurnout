@@ -18,6 +18,7 @@ public class gaugestandard {
     private String turnoutid;//道岔标准id
 	@ApiModelProperty(value = "里程",example="1734", position = 1)
     private String mileage;//里程
+	
 	@ApiModelProperty(value = "轨距",example="1", position = 2)
     private String gauge;//轨距
 	

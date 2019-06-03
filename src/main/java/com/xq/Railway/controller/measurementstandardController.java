@@ -45,6 +45,7 @@ public class measurementstandardController {
 		JSONObject result = imss.instert(m);
 		return result;
 	}
+	
 	@ApiOperation(value="根据测量标准ID查询所有测量项", notes="根据测量标准ID查询所有测量项")
 	@ApiImplicitParam(name = "id", value = "测量标准ID", required = true, dataType = "String", paramType = "path")
 	@RequestMapping(value = "/standard/{id}" , method = RequestMethod.GET)

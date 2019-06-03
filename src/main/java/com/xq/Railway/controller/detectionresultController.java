@@ -55,6 +55,7 @@ import com.xq.Railway.util.jsonTomodel;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -151,8 +152,28 @@ public class detectionresultController {
 		JsonResult r = new JsonResult();
 		try {
 			JSONObject result = ids.instertnew(m);
-			r.setResult(result);
-			r.setStatus("ok");
+			r.setResult(result.getString("r"));
+			r.setStatus(result.getString("s"));
+		} catch (Exception e) {
+			r.setResult(e.getClass().getName() + ":" + e.getMessage());
+			r.setStatus("error");
+			e.printStackTrace();
+		}
+		return ResponseEntity.ok(r);
+	}
+	@ApiOperation(value="新增小车项点测量结果", notes="根据选择的小车文件新增测量结果")
+	@ApiImplicitParams({
+		@ApiImplicitParam(name = "urlname", value = "小车文件名",  required = true, dataType = "String", paramType = "path"),
+		@ApiImplicitParam(name = "mid", value = "测量项目id", required = true,  dataType = "String", paramType = "path")
+	})
+	@RequestMapping(value = "/insertnewcar/{urlname}" , method = RequestMethod.GET)
+	@MethodLog(remark = "新增项点测量结果")
+	public ResponseEntity<JsonResult> insertnewcar(@PathVariable(value = "urlname") String urlname,String mid) {
+		JsonResult r = new JsonResult();
+		try {
+			JSONObject result = ids.insertnewcar(url+urlname, mid);
+			r.setResult(result.getString("r"));
+			r.setStatus(result.getString("s"));
 		} catch (Exception e) {
 			r.setResult(e.getClass().getName() + ":" + e.getMessage());
 			r.setStatus("error");

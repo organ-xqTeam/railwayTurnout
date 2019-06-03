@@ -1,6 +1,7 @@
 package com.xq.Railway.model;
 
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 /**
  * 
@@ -12,6 +13,7 @@ import io.swagger.annotations.ApiModel;
  */
 @ApiModel(description="首页信息")
 public class mainpageinformaction {
+	@ApiModelProperty(hidden=true)
     private String id;
 
     private String rid; //关联站点id
@@ -25,7 +27,7 @@ public class mainpageinformaction {
     private String progressconstruction;//施工进展
 
     private String noticeowner;//业主通知
-
+    @ApiModelProperty(hidden=true)
     private String isdelete;
 
     public String getId() {

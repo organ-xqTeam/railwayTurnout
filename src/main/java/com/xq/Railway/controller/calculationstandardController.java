@@ -2,7 +2,12 @@ package com.xq.Railway.controller;
 
 
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -31,6 +36,10 @@ public class calculationstandardController {
 	@Autowired
 	private calculationstandardService ser;
 	
+	@Value("${springurl.fileurl}")
+	private String url;
+	
+	
 	@ApiOperation(value="获取算法列表", notes="获取算法列表")
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ResponseEntity<JsonResult> getUserList (){
@@ -39,6 +48,37 @@ public class calculationstandardController {
 			JSONObject jo =  ser.standerd();
 			r.setResult(jo.getString("r"));
 			r.setStatus(jo.getString("s"));
+		} catch (Exception e) {
+			r.setResult(e.getClass().getName() + ":" + e.getMessage());
+			r.setStatus("error");
+			e.printStackTrace();
+		}
+		return ResponseEntity.ok(r);
+	}
+	
+	@ApiOperation(value="获取小车文件数据列表", notes="获取小车文件数据列表")
+	@RequestMapping(value = "/car", method = RequestMethod.GET)
+	public ResponseEntity<JsonResult> getCarList (){
+		JsonResult r = new JsonResult();
+		try {
+			File file = new File(url);
+			System.out.println(file.exists());
+			if (!file.exists()) {
+				r.setResult(file.exists());
+				r.setStatus("error");
+			}
+			List<String> li = new ArrayList<String>();
+			
+			String [] fileName = file.list();
+			for (int i = 0; i < fileName.length; i++) {
+				if (fileName[i].contains("-")) {
+					if ("railwayVehicleData".equals(fileName[i].split("-")[0]) && fileName[i].endsWith("csv")) {
+						li.add(fileName[i]);
+					}
+				}
+			}
+			r.setResult(li);
+			r.setStatus("ok");
 		} catch (Exception e) {
 			r.setResult(e.getClass().getName() + ":" + e.getMessage());
 			r.setStatus("error");

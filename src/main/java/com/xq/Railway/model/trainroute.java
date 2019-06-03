@@ -1,4 +1,7 @@
 package com.xq.Railway.model;
+
+import io.swagger.annotations.ApiModelProperty;
+
 /*
  * 
  * 
@@ -6,10 +9,12 @@ package com.xq.Railway.model;
  * 火车线路信息
  */
 public class trainroute {
+	
+	@ApiModelProperty(hidden=true)
     private String id; 
 
     private String routename; //线路名称
-
+    @ApiModelProperty(hidden=true)
     private String isdelete;
 
     public String getId() {

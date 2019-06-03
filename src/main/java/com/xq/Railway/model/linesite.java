@@ -1,4 +1,7 @@
 package com.xq.Railway.model;
+
+import io.swagger.annotations.ApiModelProperty;
+
 /**
  * 
  * 
@@ -8,12 +11,13 @@ package com.xq.Railway.model;
  *
  */
 public class linesite {
+	@ApiModelProperty(hidden=true)
     private String id;
 
     private String routeid; //关联线路id
 
     private String sitename;//站点名称
-
+    @ApiModelProperty(hidden=true)
     private String isdelete;
 
     public String getId() {
