@@ -1,209 +1,209 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta http-equiv="Content-Type" content="multipart/form-data; charset=utf-8" />
-    <title>高速铁路道岔参数管理系统</title>
-    <link rel="stylesheet" href="../src/css/main.css">
-    <link rel="stylesheet" href="../src/css/header.css">
-    <link rel="stylesheet" href="../src/css/nav.css">
-    <link rel="stylesheet" href="../src/css/page.css">
-    <link rel="stylesheet" href="../src/css/main-project.css">
-    <link rel="stylesheet" href="../src/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../src/css/pagination.css">
-</head>
-<body>
-    <div id="wrapper">
-        <!-- header --> 
-        <div class="header">
-            <div class="left logo-wrap">
-                <i class="icon-logo"></i>
-                <p>高速铁路道岔参数管理系统</p>
-            </div>
-            <div class="right">
-                <div class="user">
-                    <i class="icon-user"></i>
-                    <p>账户中心</p>
-                </div>
-                <div id="dropout" class="out">
-                    <i class="icon-out"></i>
-                    <p>退出登陆</p>
-                </div>
-            </div>
-        </div>
-        <!-- header END -->
-        <!-- center -->
-        <div class="center">
-            <div class="left-nav">
-                <ul class="wrap">
-                    <li id="shouye"><i class="icon icon-shouye"></i><p>首页</p></li>
-                    <li id="project" class="active"><i class="icon icon-project"></i><p>测量项目</p></li>
-                    <li id="archives"><i class="icon icon-dangan"></i><p>测量档案</p></li>
-                    <li id="standard"><i class="icon icon-biaozun"></i><p>测量标准</p></li>
-                    <li id="count"><i class="icon icon-tongji"></i><p>测量统计</p></li>
-                    <ul>
-                        <li class="title"><i class="icon icon-guanli"></i><p>系统管理</p><i class="icon icon-title"></i></li>
-                        <ul class="child-wrap">
-                            <li id="line"><p>线路</p></li>
-                            <li id="site"><p>站点</p></li>
-                            <!-- <li id="jianche"><p>检测数据</p></li> -->
-                            <li id="setup"><p>站点设置</p></li>
-                            <li id="manage"><p>人员管理</p></li>
-                            <li id="log"><p>系统日记</p></li>
-                        </ul>
-                    </ul>
-                </ul>
-            </div>
-            <!-- main -->
-            <div class="main">
-                <div class="main-header">
-                    <p>项目名称 ：</p>
-                    <select name="" id="zhandian">
-                        <option value="">请选择</option>
-                    </select>
-                </div>
-                <ul class="project-wrap">
-                    <li class="add-project">
-                        <div>
-                            <i>
-                                <img src="../src/images/xiamgmumingc.png" alt="">
-                            </i>
-                            <span>项目名称</span>
-                        </div>
-                        <div>
-                            <i>
-                                <img src="../src/images/shijian.png" alt="">
-                            </i>
-                            <span>检测时间</span>
-                        </div>
-                        <div>
-                            <i>
-                                <img src="../src/images/baojing.png" alt="">
-                            </i>
-                            <span>报警统计</span>
-                        </div>
-                        <input class="add-btn" type="submit" value="添加">
-                    </li>
-                </ul>
-                <!-- 分页 -->
-                <div id="pagination" class="pagination"></div>
-            </div>
-            <!-- main END -->
-        </div>
-        <!-- center END -->
-    </div>
-    <div class="alert-wrapper" style="display:none">
-        <div class="add-new" style="display:none">
-            <div class="header">
-                <h4>添加项目</h4>
-                <b class="close">
-                    <img src="../src/images/close.png" alt="">
-                </b>
-            </div>
-            <div class="item-inp">
-                项目名称： 
-                <input class="edit-paoject_name" type="text">
-            </div>
-            <div class="item-inp">
-                小车数据: 
-                <input class="add-shuju" name="file" type="file">
-            </div>
-            <div class="ctrl-wrap">
-                <span class="edit-ok">确认</span>
-                <span class="close">关闭</span>
-            </div>
-        </div>
-        <div class="add-alert" style="display:none">
-            <div class="header">
-                <h4>修改项目</h4>
-                <b class="close">
-                    <img src="../src/images/close.png" alt="">
-                </b>
-            </div>
-            <div class="item-inp">
-                项目名称： 
-                <input class="edit-paoject_name" type="text">
-            </div>
-            <div class="item-inp">
-                小车数据: 
-                <input class="add-shuju" name="file" type="file">
-            </div>
-            <div class="ctrl-wrap">
-                <span class="edit-ok">确认</span>
-                <span class="close">关闭</span>
-            </div>
-        </div>
-        <div class="alert-see" style="display:none">
-                <ul class="pic-wrap" style="display:none">
-                    <li>
-                        <img src="" alt="">
-                    </li>
-                </ul>
-                <div class="header">
-                    <h4>查看项目</h4>
-                    <b class="close">
-                        <img src="../src/images/close.png" alt="">
-                    </b>
-                </div>
-                <div class="table-wrap">
-                    <table class="gridtable" cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th>检测项点</th>
-                                <th>标准</th>
-                                <th>实测数据</th>
-                                <th>结果</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>XXXXXXXXX</td>
-                                <td>&lt;100</td>
-                                <td>95</td>
-                                <td>
-                                    <span class="hege">合格</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>XXXXXXXXX</td>
-                                <td>&lt;100</td>
-                                <td>95</td>
-                                <td>
-                                    <span class="hege">合格</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>XXXXXXXXX</td>
-                                <td>&lt;100</td>
-                                <td>95</td>
-                                <td>
-                                    <span class="hege-no">不合格</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>XXXXXXXXX</td>
-                                <td>&lt;100</td>
-                                <td>95</td>
-                                <td>
-                                    <span class="hege">合格</span>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-        </div>
-    </div>
-
-
-
-    <script src="../src/js/jquery.js"></script>
-    <script src="../src/js/main.js"></script>
-    <script src="../src/js/Global.js"></script>
-    <script src="../src/js/dropout.js"></script>
-    <script src="../src/js/page.js"></script>
-    <script src="../src/js/project-page.js"></script>
-    <script src="../src/js/pagination.js"></script>
-</body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="Content-Type" content="multipart/form-data; charset=utf-8" />
+    <title>高速铁路道岔参数管理系统</title>
+    <link rel="stylesheet" href="../src/css/main.css">
+    <link rel="stylesheet" href="../src/css/header.css">
+    <link rel="stylesheet" href="../src/css/nav.css">
+    <link rel="stylesheet" href="../src/css/page.css">
+    <link rel="stylesheet" href="../src/css/main-project.css">
+    <link rel="stylesheet" href="../src/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../src/css/pagination.css">
+</head>
+<body>
+    <div id="wrapper">
+        <!-- header --> 
+        <div class="header">
+            <div class="left logo-wrap">
+                <i class="icon-logo"></i>
+                <p>高速铁路道岔参数管理系统</p>
+            </div>
+            <div class="right">
+                <div class="user">
+                    <i class="icon-user"></i>
+                    <p>账户中心</p>
+                </div>
+                <div id="dropout" class="out">
+                    <i class="icon-out"></i>
+                    <p>退出登陆</p>
+                </div>
+            </div>
+        </div>
+        <!-- header END -->
+        <!-- center -->
+        <div class="center">
+            <div class="left-nav">
+                <ul class="wrap">
+                    <li id="shouye"><i class="icon icon-shouye"></i><p>首页</p></li>
+                    <li id="project" class="active"><i class="icon icon-project"></i><p>测量项目</p></li>
+                    <li id="archives"><i class="icon icon-dangan"></i><p>测量档案</p></li>
+                    <li id="standard"><i class="icon icon-biaozun"></i><p>测量标准</p></li>
+                    <li id="count"><i class="icon icon-tongji"></i><p>测量统计</p></li>
+                    <ul>
+                        <li class="title"><i class="icon icon-guanli"></i><p>系统管理</p><i class="icon icon-title"></i></li>
+                        <ul class="child-wrap">
+                            <li id="line"><p>线路</p></li>
+                            <li id="site"><p>站点</p></li>
+                            <!-- <li id="jianche"><p>检测数据</p></li> -->
+                            <li id="setup"><p>站点设置</p></li>
+                            <li id="manage"><p>人员管理</p></li>
+                            <li id="log"><p>系统日记</p></li>
+                        </ul>
+                    </ul>
+                </ul>
+            </div>
+            <!-- main -->
+            <div class="main">
+                <div class="main-header">
+                    <p>项目名称 ：</p>
+                    <select name="" id="zhandian">
+                        <option value="">请选择</option>
+                    </select>
+                </div>
+                <ul class="project-wrap">
+                    <li class="add-project">
+                        <div>
+                            <i>
+                                <img src="../src/images/xiamgmumingc.png" alt="">
+                            </i>
+                            <span>项目名称</span>
+                        </div>
+                        <div>
+                            <i>
+                                <img src="../src/images/shijian.png" alt="">
+                            </i>
+                            <span>检测时间</span>
+                        </div>
+                        <div>
+                            <i>
+                                <img src="../src/images/baojing.png" alt="">
+                            </i>
+                            <span>报警统计</span>
+                        </div>
+                        <input class="add-btn" type="submit" value="添加">
+                    </li>
+                </ul>
+                <!-- 分页 -->
+                <div id="pagination" class="pagination"></div>
+            </div>
+            <!-- main END -->
+        </div>
+        <!-- center END -->
+    </div>
+    <div class="alert-wrapper" style="display:none">
+        <div class="add-new" style="display:none">
+            <div class="header">
+                <h4>添加项目</h4>
+                <b class="close">
+                    <img src="../src/images/close.png" alt="">
+                </b>
+            </div>
+            <div class="item-inp">
+                项目名称： 
+                <input class="edit-paoject_name" type="text">
+            </div>
+            <div class="item-inp">
+                小车数据: 
+                <input class="add-shuju" name="file" type="file">
+            </div>
+            <div class="ctrl-wrap">
+                <span class="edit-ok">确认</span>
+                <span class="close">关闭</span>
+            </div>
+        </div>
+        <div class="add-alert" style="display:none">
+            <div class="header">
+                <h4>修改项目</h4>
+                <b class="close">
+                    <img src="../src/images/close.png" alt="">
+                </b>
+            </div>
+            <div class="item-inp">
+                项目名称： 
+                <input class="edit-paoject_name" type="text">
+            </div>
+            <div class="item-inp">
+                小车数据: 
+                <input class="add-shuju" name="file" type="file">
+            </div>
+            <div class="ctrl-wrap">
+                <span class="edit-ok">确认</span>
+                <span class="close">关闭</span>
+            </div>
+        </div>
+        <div class="alert-see" style="display:none">
+                <ul class="pic-wrap" style="display:none">
+                    <li>
+                        <img src="" alt="">
+                    </li>
+                </ul>
+                <div class="header">
+                    <h4>查看项目</h4>
+                    <b class="close">
+                        <img src="../src/images/close.png" alt="">
+                    </b>
+                </div>
+                <div class="table-wrap">
+                    <table class="gridtable" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>检测项点</th>
+                                <th>标准</th>
+                                <th>实测数据</th>
+                                <th>结果</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>XXXXXXXXX</td>
+                                <td>&lt;100</td>
+                                <td>95</td>
+                                <td>
+                                    <span class="hege">合格</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>XXXXXXXXX</td>
+                                <td>&lt;100</td>
+                                <td>95</td>
+                                <td>
+                                    <span class="hege">合格</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>XXXXXXXXX</td>
+                                <td>&lt;100</td>
+                                <td>95</td>
+                                <td>
+                                    <span class="hege-no">不合格</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>XXXXXXXXX</td>
+                                <td>&lt;100</td>
+                                <td>95</td>
+                                <td>
+                                    <span class="hege">合格</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+        </div>
+    </div>
+
+
+
+    <script src="../src/js/jquery.js"></script>
+    <script src="../src/js/main.js"></script>
+    <script src="../src/js/Global.js"></script>
+    <script src="../src/js/dropout.js"></script>
+    <script src="../src/js/page.js"></script>
+    <script src="../src/js/project-page.js"></script>
+    <script src="../src/js/pagination.js"></script>
+</body>
 </html>

@@ -1,150 +1,150 @@
-<!-- 人员管理 -->
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>高速铁路道岔参数管理系统</title>
-    <link rel="stylesheet" href="../src/css/main.css">
-    <link rel="stylesheet" href="../src/css/header.css">
-    <link rel="stylesheet" href="../src/css/nav.css">
-    <link rel="stylesheet" href="../src/css/main-manage.css">
-    <link rel="stylesheet" href="../src/css/page.css">
-    <link rel="stylesheet" href="../src/css/pagination.css">
-</head>
-<body>
-    <div id="wrapper">
-        <!-- header -->
-        <div class="header">
-            <div class="left logo-wrap">
-                <i class="icon-logo"></i>
-                <p>高速铁路道岔参数管理系统</p>
-            </div>
-            <div class="right">
-                <div class="user">
-                    <i class="icon-user"></i>
-                    <p>账户中心</p>
-                </div>
-                <div id="dropout" class="out" id="dropout">
-                    <i class="icon-out"></i>
-                    <p>退出登陆</p>
-                </div>
-            </div>
-        </div>
-        <!-- header END -->
-        <!-- center -->
-        <div class="center">
-            <div class="left-nav">
-                <ul class="wrap">
-                    <li id="shouye"><i class="icon icon-shouye"></i>
-                        <p>首页</p>
-                    </li>
-                    <li id="project"><i class="icon icon-project"></i>
-                        <p>测量项目</p>
-                    </li>
-                    <li id="archives"><i class="icon icon-dangan"></i>
-                        <p>测量档案</p>
-                    </li>
-                    <li id="standard"><i class="icon icon-biaozun"></i>
-                        <p>测量标准</p>
-                    </li>
-                    <li id="count"><i class="icon icon-tongji"></i>
-                        <p>测量统计</p>
-                    </li>
-                    <ul>
-                        <li class="title"><i class="icon icon-guanli"></i>
-                            <p>系统管理</p><i class="icon icon-title"></i>
-                        </li>
-                        <ul class="child-wrap">
-                            <li id="line"><p>线路</p></li>
-                            <li id="site"><p>站点</p></li>
-                            <!-- <li id="jianche"><p>检测数据</p></li> -->
-                            <li id="setup">
-                                <p>站点设置</p>
-                            </li>
-                            <li class="active" id="manage">
-                                <p>人员管理</p>
-                            </li>
-                            <li id="log">
-                                <p>系统日记</p>
-                            </li>
-                        </ul>
-                    </ul>
-                </ul>
-            </div>
-            <!-- main -->
-            <div class="main">
-                <div class="header">
-                    <span class="add-project">新增</span>
-                </div>
-                <div class="table-wrap">
-                    <h4>测量标准</h4>
-                    <!-- 列表渲染 -->
-                    <div class="table-con"></div>
-                    <!-- 分页 -->
-                    <!-- <div class="zxf_pagediv"></div> -->
-                    <div id="pagination" class="pagination"></div>
-                </div>
-            </div>
-            <!-- main END -->
-        </div>
-        <!-- center END -->
-        <div class="alert-wrapper" style="display:none">
-            <div class="add-alert" style="display:none">
-                <div class="header">
-                    <h4>编辑</h4>
-                    <b class="close">
-                        <img src="../src/images/close.png" alt="">
-                    </b>
-                </div>
-                <div class="item-inp">
-                    权限：
-                    <select name="" class="quanxian">
-                        <option value="高级">高级</option>
-                    </select>
-                </div>
-                <div class="item-inp">
-                    姓名:
-                    <input class="edit_user-name" type="type">
-                </div>
-                <p style="width:100%;text-align: center;text-decoration: underline;font-size: 12px;color:#38f">默认密码为 <span style="color:#38f"> 123456 </span> </p>
-                <div class="ctrl-wrap">
-                    <span class="add-ok">确认</span>
-                    <span class="close">关闭</span>
-                </div>
-            </div>
-
-            <div class="add-new" style="display:none">
-                <div>
-                    <p>人员姓名:</p>
-                    <input data-id="" class="user-name" type="text">
-                </div>
-                <div>
-                    <p>角色:</p>
-                    <select name="" class="quanxian">
-                        <option value="高级">高级</option>
-                    </select>
-
-                </div>
-                <div>
-                    <p>密码:</p>
-                    <input class="password" type="password" value="">
-                </div>
-                <div class="ctrl-wrap">
-                    <span class="edit-ok">确认</span>
-                    <span class="close">关闭</span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <script src="../src/js/jquery.js"></script>
-    <script src="../src/js/page.js"></script>
-    <script src="../src/js/main.js"></script>
-    <script src="../src/js/Global.js"></script>
-    <script src="../src/js/dropout.js"></script>
-    <script src="../src/js/pagination.js"></script>
-    <script src="../src/js/measure-manage.js"></script>
-</body>
+<!-- 人员管理 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>高速铁路道岔参数管理系统</title>
+    <link rel="stylesheet" href="../src/css/main.css">
+    <link rel="stylesheet" href="../src/css/header.css">
+    <link rel="stylesheet" href="../src/css/nav.css">
+    <link rel="stylesheet" href="../src/css/main-manage.css">
+    <link rel="stylesheet" href="../src/css/page.css">
+    <link rel="stylesheet" href="../src/css/pagination.css">
+</head>
+<body>
+    <div id="wrapper">
+        <!-- header -->
+        <div class="header">
+            <div class="left logo-wrap">
+                <i class="icon-logo"></i>
+                <p>高速铁路道岔参数管理系统</p>
+            </div>
+            <div class="right">
+                <div class="user">
+                    <i class="icon-user"></i>
+                    <p>账户中心</p>
+                </div>
+                <div id="dropout" class="out" id="dropout">
+                    <i class="icon-out"></i>
+                    <p>退出登陆</p>
+                </div>
+            </div>
+        </div>
+        <!-- header END -->
+        <!-- center -->
+        <div class="center">
+            <div class="left-nav">
+                <ul class="wrap">
+                    <li id="shouye"><i class="icon icon-shouye"></i>
+                        <p>首页</p>
+                    </li>
+                    <li id="project"><i class="icon icon-project"></i>
+                        <p>测量项目</p>
+                    </li>
+                    <li id="archives"><i class="icon icon-dangan"></i>
+                        <p>测量档案</p>
+                    </li>
+                    <li id="standard"><i class="icon icon-biaozun"></i>
+                        <p>测量标准</p>
+                    </li>
+                    <li id="count"><i class="icon icon-tongji"></i>
+                        <p>测量统计</p>
+                    </li>
+                    <ul>
+                        <li class="title"><i class="icon icon-guanli"></i>
+                            <p>系统管理</p><i class="icon icon-title"></i>
+                        </li>
+                        <ul class="child-wrap">
+                            <li id="line"><p>线路</p></li>
+                            <li id="site"><p>站点</p></li>
+                            <!-- <li id="jianche"><p>检测数据</p></li> -->
+                            <li id="setup">
+                                <p>站点设置</p>
+                            </li>
+                            <li class="active" id="manage">
+                                <p>人员管理</p>
+                            </li>
+                            <li id="log">
+                                <p>系统日记</p>
+                            </li>
+                        </ul>
+                    </ul>
+                </ul>
+            </div>
+            <!-- main -->
+            <div class="main">
+                <div class="header">
+                    <span class="add-project">新增</span>
+                </div>
+                <div class="table-wrap">
+                    <h4>测量标准</h4>
+                    <!-- 列表渲染 -->
+                    <div class="table-con"></div>
+                    <!-- 分页 -->
+                    <!-- <div class="zxf_pagediv"></div> -->
+                    <div id="pagination" class="pagination"></div>
+                </div>
+            </div>
+            <!-- main END -->
+        </div>
+        <!-- center END -->
+        <div class="alert-wrapper" style="display:none">
+            <div class="add-alert" style="display:none">
+                <div class="header">
+                    <h4>编辑</h4>
+                    <b class="close">
+                        <img src="../src/images/close.png" alt="">
+                    </b>
+                </div>
+                <div class="item-inp">
+                    权限：
+                    <select name="" class="quanxian">
+                        <option value="高级">高级</option>
+                    </select>
+                </div>
+                <div class="item-inp">
+                    姓名:
+                    <input class="edit_user-name" type="type">
+                </div>
+                <p style="width:100%;text-align: center;text-decoration: underline;font-size: 12px;color:#38f">默认密码为 <span style="color:#38f"> 123456 </span> </p>
+                <div class="ctrl-wrap">
+                    <span class="add-ok">确认</span>
+                    <span class="close">关闭</span>
+                </div>
+            </div>
+
+            <div class="add-new" style="display:none">
+                <div>
+                    <p>人员姓名:</p>
+                    <input data-id="" class="user-name" type="text">
+                </div>
+                <div>
+                    <p>角色:</p>
+                    <select name="" class="quanxian">
+                        <option value="高级">高级</option>
+                    </select>
+
+                </div>
+                <div>
+                    <p>密码:</p>
+                    <input class="password" type="password" value="">
+                </div>
+                <div class="ctrl-wrap">
+                    <span class="edit-ok">确认</span>
+                    <span class="close">关闭</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../src/js/jquery.js"></script>
+    <script src="../src/js/page.js"></script>
+    <script src="../src/js/main.js"></script>
+    <script src="../src/js/Global.js"></script>
+    <script src="../src/js/dropout.js"></script>
+    <script src="../src/js/pagination.js"></script>
+    <script src="../src/js/measure-manage.js"></script>
+</body>
 </html>
