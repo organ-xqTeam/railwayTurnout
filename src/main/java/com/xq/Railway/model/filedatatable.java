@@ -93,4 +93,12 @@ public class filedatatable {
     public void setRemarks(String remarks) {
         this.remarks = remarks == null ? null : remarks.trim();
     }
+
+	@Override
+	public String toString() {
+		return "filedatatable [id=" + id + ", originName=" + originName + ", filepath=" + filepath + ", thumb=" + thumb
+				+ ", type=" + type + ", createtime=" + createtime + ", abbreviatedName=" + abbreviatedName
+				+ ", createnameid=" + createnameid + ", remarks=" + remarks + "]";
+	}
+    
 }

@@ -63,4 +63,11 @@ public class turnoutstandard {
     public void setQualityid(String qualityid) {
         this.qualityid = qualityid == null ? null : qualityid.trim();
     }
+
+	@Override
+	public String toString() {
+		return "turnoutstandard [id=" + id + ", turnoutid=" + turnoutid + ", turnoutstandard=" + turnoutstandard
+				+ ", isdelete=" + isdelete + ", qualityid=" + qualityid + "]";
+	}
+    
 }

@@ -433,4 +433,14 @@ public class administrator {
     public void setIsdelete(String isdelete) {
         this.isdelete = isdelete == null ? null : isdelete.trim();
     }
+
+	@Override
+	public String toString() {
+		return "administrator [aid=" + aid + ", aname=" + aname + ", aphonenum=" + aphonenum + ", afoundtime="
+				+ afoundtime + ", aemile=" + aemile + ", arole=" + arole + ", department=" + department + ", lineid="
+				+ lineid + ", linename=" + linename + ", siteid=" + siteid + ", sitename=" + sitename + ", ausername="
+				+ ausername + ", apwd=" + apwd + ", jurisdiction=" + jurisdiction + ", isdelete=" + isdelete + "]";
+	}
+    
+    
 }

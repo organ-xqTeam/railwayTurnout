@@ -28,6 +28,7 @@ public class gaugestandard {
     public String getId() {
         return id;
     }
+    
 
     public void setId(String id) {
         this.id = id == null ? null : id.trim();
@@ -64,4 +65,12 @@ public class gaugestandard {
     public void setIsdelete(String isdelete) {
         this.isdelete = isdelete == null ? null : isdelete.trim();
     }
+
+
+	@Override
+	public String toString() {
+		return "gaugestandard [id=" + id + ", turnoutid=" + turnoutid + ", mileage=" + mileage + ", gauge=" + gauge
+				+ ", isdelete=" + isdelete + "]";
+	}
+    
 }

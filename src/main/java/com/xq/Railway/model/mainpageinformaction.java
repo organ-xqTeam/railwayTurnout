@@ -213,4 +213,12 @@ public class mainpageinformaction {
     public void setIsdelete(String isdelete) {
         this.isdelete = isdelete == null ? null : isdelete.trim();
     }
+
+	@Override
+	public String toString() {
+		return "mainpageinformaction [id=" + id + ", rid=" + rid + ", weather=" + weather + ", weatherid=" + weatherid
+				+ ", geographical=" + geographical + ", projectoverview=" + projectoverview + ", progressconstruction="
+				+ progressconstruction + ", noticeowner=" + noticeowner + ", isdelete=" + isdelete + "]";
+	}
+    
 }

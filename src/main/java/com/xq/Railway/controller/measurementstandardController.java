@@ -1,5 +1,7 @@
 package com.xq.Railway.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,7 +29,7 @@ import net.sf.json.JSONObject;
 @RestController
 @RequestMapping("/measurementstandard")
 public class measurementstandardController {
-
+	private static final Logger LOG = LoggerFactory.getLogger(measurementstandardController.class);
 	@Autowired
 	private MeasurementstandardService imss;
 	
@@ -42,7 +44,13 @@ public class measurementstandardController {
 	@RequestMapping(value = "/insert" , method = RequestMethod.POST)
 	@MethodLog(remark = "新增检测项点信息")
 	public JSONObject insert(@RequestBody measurementstandard m) {
-		JSONObject result = imss.instert(m);
+		JSONObject result = null;
+		try {
+			result = imss.instert(m);
+		} catch (Exception e) {
+			LOG.error(e.getClass().getName() + ":" + e.getMessage());
+			e.printStackTrace();
+		}
 		return result;
 	}
 	
@@ -56,6 +64,7 @@ public class measurementstandardController {
 			r.setResult(jos);
 			r.setStatus("ok");
 		} catch (Exception e) {
+			LOG.error(e.getClass().getName() + ":" + e.getMessage());
 			r.setResult(e.getClass().getName() + ":" + e.getMessage());
 			r.setStatus("error");
 			e.printStackTrace();
@@ -73,6 +82,7 @@ public class measurementstandardController {
 			r.setResult(jos);
 			r.setStatus("ok");
 		} catch (Exception e) {
+			LOG.error(e.getClass().getName() + ":" + e.getMessage());
 			r.setResult(e.getClass().getName() + ":" + e.getMessage());
 			r.setStatus("error");
 			e.printStackTrace();
@@ -90,7 +100,13 @@ public class measurementstandardController {
 	@RequestMapping(value = "/updatebyid" , method = RequestMethod.POST)
 	@MethodLog(remark = "更新项点信息")
 	public int updatebyid(@RequestBody measurementstandard m) {
-		int ma = imss.updatemeasurementstandard(m);
+		int ma = 0;
+		try {
+			ma = imss.updatemeasurementstandard(m);
+		} catch (Exception e) {
+			LOG.error(e.getClass().getName() + ":" + e.getMessage());
+			e.printStackTrace();
+		}
 		return ma;
 	}
 	
@@ -98,21 +114,39 @@ public class measurementstandardController {
 	@RequestMapping(value = "/delete" , method = RequestMethod.GET)
 	@MethodLog(remark = "删除项点")
 	public int deletebyid(String id) {
-		int ma = imss.deletebyid(id);
+		int ma = 0;
+		try {
+			ma = imss.deletebyid(id);
+		} catch (Exception e) {
+			LOG.error(e.getClass().getName() + ":" + e.getMessage());
+			e.printStackTrace();
+		}
 		return ma;
 	}
 	
 	@RequestMapping(value = "/selectAll" , method = RequestMethod.GET)
 	@MethodLog(remark = "移动端查询所有项点")
 	public JSONObject  selectAll(Integer  pageNum,Integer  pageSize) {
-		JSONObject ma = imss.selectAll(pageNum, pageSize);
+		JSONObject ma = null;
+		try {
+			ma = imss.selectAll(pageNum, pageSize);
+		} catch (Exception e) {
+			LOG.error(e.getClass().getName() + ":" + e.getMessage());
+			e.printStackTrace();
+		}
 		return ma;
 	}
 	
 	@RequestMapping(value = "/selectAll1" , method = RequestMethod.GET)
 	@MethodLog(remark = "pc端查询所有项点")
 	public JSONObject  selectAll1(Integer  pageNum,Integer  pageSize) {
-		JSONObject ma = imss.selectAll1(pageNum, pageSize);
+		JSONObject ma = null;
+		try {
+			ma = imss.selectAll1(pageNum, pageSize);
+		} catch (Exception e) {
+			LOG.error(e.getClass().getName() + ":" + e.getMessage());
+			e.printStackTrace();
+		}
 		return ma;
 	}
 	
@@ -125,7 +159,13 @@ public class measurementstandardController {
 	 */
 	@RequestMapping(value = "/selectbyid" , method = RequestMethod.GET)
 	public measurementstandard selectbyid(String rid) {
-		measurementstandard ma = imss.selectbyid(rid);
+		measurementstandard ma = null;
+		try {
+			ma = imss.selectbyid(rid);
+		} catch (Exception e) {
+			LOG.error(e.getClass().getName() + ":" + e.getMessage());
+			e.printStackTrace();
+		}
 		return ma;
 	}
 }

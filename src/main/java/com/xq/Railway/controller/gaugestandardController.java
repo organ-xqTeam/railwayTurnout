@@ -3,6 +3,8 @@ package com.xq.Railway.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,7 +33,7 @@ import net.sf.json.JSONObject;
 @RestController
 @RequestMapping("/gaugestandard")
 public class gaugestandardController {
-	
+	private static final Logger LOG = LoggerFactory.getLogger(gaugestandardController.class);
 	@Autowired
 	private gaugestandardService turnoutser;
 	
@@ -50,6 +52,7 @@ public class gaugestandardController {
 			r.setResult(oj.getString("r"));
 			r.setStatus(oj.getString("s"));
 		} catch (Exception e) {
+			LOG.error(e.getClass().getName() + ":" + e.getMessage());
 			r.setResult(e.getClass().getName() + ":" + e.getMessage());
 			r.setStatus("error");
 			e.printStackTrace();
@@ -71,6 +74,7 @@ public class gaugestandardController {
 			r.setResult(jo.getString("r"));
 			r.setStatus(jo.getString("s"));
 		} catch (Exception e) {
+			LOG.error(e.getClass().getName() + ":" + e.getMessage());
 			r.setResult(e.getClass().getName() + ":" + e.getMessage());
 			r.setStatus("error");
 			e.printStackTrace();
@@ -113,6 +117,7 @@ public class gaugestandardController {
 			r.setResult(userList);
 			r.setStatus("ok");
 		} catch (Exception e) {
+			LOG.error(e.getClass().getName() + ":" + e.getMessage());
 			r.setResult(e.getClass().getName() + ":" + e.getMessage());
 			r.setStatus("error");
 			e.printStackTrace();
@@ -141,6 +146,7 @@ public class gaugestandardController {
 			r.setResult(js.getString("r"));
 			r.setStatus(js.getString("s"));
 		} catch (Exception e) {
+			LOG.error(e.getClass().getName() + ":" + e.getMessage());
 			r.setResult(e.getClass().getName() + ":" + e.getMessage());
 			r.setStatus("error");
 			e.printStackTrace();

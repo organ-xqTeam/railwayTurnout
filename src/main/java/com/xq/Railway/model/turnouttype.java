@@ -61,4 +61,11 @@ public class turnouttype {
     public void setIsdelete(String isdelete) {
         this.isdelete = isdelete == null ? null : isdelete.trim();
     }
+
+	@Override
+	public String toString() {
+		return "turnouttype [id=" + id + ", turnouttypename=" + turnouttypename + ", reamke=" + reamke + ", isdelete="
+				+ isdelete + "]";
+	}
+    
 }

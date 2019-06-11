@@ -147,4 +147,13 @@ public class measurementproject {
     public void setIsdelete(String isdelete) {
         this.isdelete = isdelete == null ? null : isdelete.trim();
     }
+
+	@Override
+	public String toString() {
+		return "measurementproject [id=" + id + ", tid=" + tid + ", lid=" + lid + ", aid=" + aid
+				+ ", turnoutstandardid=" + turnoutstandardid + ", pname=" + pname + ", ptime=" + ptime
+				+ ", warningstatistics=" + warningstatistics + ", datasources=" + datasources + ", distance=" + distance
+				+ ", lAltitude=" + lAltitude + ", rAltitude=" + rAltitude + ", isdelete=" + isdelete + "]";
+	}
+    
 }

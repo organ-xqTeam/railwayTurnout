@@ -107,4 +107,11 @@ public class linesite {
     public void setIsdelete(String isdelete) {
         this.isdelete = isdelete == null ? null : isdelete.trim();
     }
+
+	@Override
+	public String toString() {
+		return "linesite [id=" + id + ", routeid=" + routeid + ", sitename=" + sitename + ", isdelete=" + isdelete
+				+ "]";
+	}
+    
 }

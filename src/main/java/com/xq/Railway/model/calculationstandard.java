@@ -37,6 +37,10 @@ public class calculationstandard {
 	public void setSymbol1(String symbol1) {
 		this.symbol1 = symbol1;
 	}
+	@Override
+	public String toString() {
+		return "calculationstandard [id=" + id + ", calculation=" + calculation + ", symbol1=" + symbol1 + "]";
+	}
 	
 	
     

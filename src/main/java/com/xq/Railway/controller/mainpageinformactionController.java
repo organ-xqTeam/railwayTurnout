@@ -1,5 +1,7 @@
 package com.xq.Railway.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,7 +27,7 @@ import net.sf.json.JSONObject;
 @RestController
 @RequestMapping("/mainpageinformaction")
 public class mainpageinformactionController {
-	
+	private static final Logger LOG = LoggerFactory.getLogger(mainpageinformactionController.class);
 	
 	@Autowired
 	private MainpageinformactionService imis;
@@ -40,7 +42,13 @@ public class mainpageinformactionController {
 	@MethodLog(remark = "新增站点信息")
 	public JSONObject insert(@RequestBody mainpageinformaction m) {
 		
-		JSONObject result = imis.instert(m);
+		JSONObject result = null;
+		try {
+			result = imis.instert(m);
+		} catch (Exception e) {
+			LOG.error(e.getClass().getName() + ":" + e.getMessage());
+			e.printStackTrace();
+		}
 		return result;
 	}
 	/**
@@ -54,7 +62,13 @@ public class mainpageinformactionController {
 	@RequestMapping(value = "/selectbyrid", method = RequestMethod.GET)
 	@MethodLog(remark = "查询站点信息")
 	public JSONObject selectbyid(String rid) {
-		JSONObject ma = imis.selectbyrid(rid);
+		JSONObject ma = null;
+		try {
+			ma = imis.selectbyrid(rid);
+		} catch (Exception e) {
+			LOG.error(e.getClass().getName() + ":" + e.getMessage());
+			e.printStackTrace();
+		}
 		return ma;
 		
 	}
@@ -67,7 +81,13 @@ public class mainpageinformactionController {
 	@RequestMapping(value = "/updatebyid", method = RequestMethod.POST)
 	@MethodLog(remark = "更新站点信息")
 	public int updatebyid(@RequestBody mainpageinformaction m) {
-		int ma = imis.updatemainpageinformaction(m);
+		int ma = 0;
+		try {
+			ma = imis.updatemainpageinformaction(m);
+		} catch (Exception e) {
+			LOG.error(e.getClass().getName() + ":" + e.getMessage());
+			e.printStackTrace();
+		}
 		return ma;
 	}
 	

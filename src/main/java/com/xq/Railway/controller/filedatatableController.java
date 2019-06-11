@@ -1,5 +1,7 @@
 package com.xq.Railway.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,7 +19,7 @@ import net.sf.json.JSONObject;
 @RequestMapping("/filedatatable")
 public class filedatatableController {
 	
-	
+	private static final Logger LOG = LoggerFactory.getLogger(filedatatableController.class);
 	@Autowired
 	private FiledatatableService ifs;
 	/**
@@ -33,7 +35,13 @@ public class filedatatableController {
 	@RequestMapping(value = "/selectbyid", method = RequestMethod.GET)
 	@MethodLog(remark = "根据项目id 查结果")
 	public JSONObject  selectbyid(String id) {
-		JSONObject  ma = ifs.selectbyid(id);
+		JSONObject ma = null;
+		try {
+			ma = ifs.selectbyid(id);
+		} catch (Exception e) {
+			LOG.error(e.getClass().getName() + ":" + e.getMessage());
+			e.printStackTrace();
+		}
 		return ma;
 	}
 	

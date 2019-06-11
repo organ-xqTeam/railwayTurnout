@@ -61,4 +61,11 @@ public class qualitystandard {
     public void setMsg1(String msg1) {
         this.msg1 = msg1 == null ? null : msg1.trim();
     }
+
+	@Override
+	public String toString() {
+		return "qualitystandard [id=" + id + ", identifiernum=" + identifiernum + ", msg=" + msg + ", num=" + num
+				+ ", msg1=" + msg1 + "]";
+	}
+    
 }

@@ -2,6 +2,8 @@ package com.xq.Railway.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -37,7 +39,7 @@ import net.sf.json.JSONObject;
 @RestController
 @RequestMapping("/measurementproject")
 public class measurementprojectController {
-
+	private static final Logger LOG = LoggerFactory.getLogger(measurementprojectController.class);
 	@Autowired
 	private MeasurementprojectService imps;
 
@@ -65,6 +67,7 @@ public class measurementprojectController {
 			r.setResult(result);
 			r.setStatus("ok");
 		} catch (Exception e) {
+			LOG.error(e.getClass().getName() + ":" + e.getMessage());
 			r.setResult(e.getClass().getName() + ":" + e.getMessage());
 			r.setStatus("error");
 			e.printStackTrace();
@@ -102,6 +105,7 @@ public class measurementprojectController {
 			try {
 				object =  StringUtil.fileUpload(files, realPath, ifs);
 			} catch (Exception e) {
+				LOG.error(e.getClass().getName() + ":" + e.getMessage());
 				jsonObject.put("stats", "fail"); 
 				jsonObject.put("code", "500");
 				jsonObject.put("message", e);
@@ -159,6 +163,7 @@ public class measurementprojectController {
 		try {
 			object =  StringUtil.fileUpload(files, realPath, ifs);
 		} catch (Exception e) {
+			LOG.error(e.getClass().getName() + ":" + e.getMessage());
 			jsonObject.put("stats", "fail"); 
 			jsonObject.put("code", "500");
 			jsonObject.put("message", e);
@@ -208,7 +213,13 @@ public class measurementprojectController {
 	@RequestMapping(value = "/selectbyid" , method = RequestMethod.GET)
 	@MethodLog(remark = "查看单个项目")
 	public measurementproject selectbyid(String rid) {
-		measurementproject ma = imps.selectbyid(rid);
+		measurementproject ma = null;
+		try {
+			ma = imps.selectbyid(rid);
+		} catch (Exception e) {
+			LOG.error(e.getClass().getName() + ":" + e.getMessage());
+			e.printStackTrace();
+		}
 		return ma;
 		
 	}
@@ -221,7 +232,13 @@ public class measurementprojectController {
 	@RequestMapping(value = "/updatebyid" , method = RequestMethod.POST)
 	@MethodLog(remark = "更新项目信息")
 	public int updatebyid(@RequestBody measurementproject m) {
-		int ma = imps.updatemeasurementproject(m);
+		int ma = 0;
+		try {
+			ma = imps.updatemeasurementproject(m);
+		} catch (Exception e) {
+			LOG.error(e.getClass().getName() + ":" + e.getMessage());
+			e.printStackTrace();
+		}
 		return ma;
 	}
 	
@@ -229,7 +246,13 @@ public class measurementprojectController {
 	@RequestMapping(value = "/delete" , method = RequestMethod.GET)
 	@MethodLog(remark = "删除项目")
 	public int deletebyid(String id) {
-		int ma = imps.deletebyid(id);
+		int ma = 0;
+		try {
+			ma = imps.deletebyid(id);
+		} catch (Exception e) {
+			LOG.error(e.getClass().getName() + ":" + e.getMessage());
+			e.printStackTrace();
+		}
 		return ma;
 	}
 	
@@ -241,7 +264,13 @@ public class measurementprojectController {
 	@RequestMapping(value = "/selectAll" , method = RequestMethod.GET)
 	@MethodLog(remark = "查询所有项目")
 	public JSONObject  selectAll(Integer  pageNum,Integer  pageSize) {
-		JSONObject ma = imps.selectAll(pageNum, pageSize);
+		JSONObject ma = null;
+		try {
+			ma = imps.selectAll(pageNum, pageSize);
+		} catch (Exception e) {
+			LOG.error(e.getClass().getName() + ":" + e.getMessage());
+			e.printStackTrace();
+		}
 		return ma;
 	}
 	
@@ -256,7 +285,13 @@ public class measurementprojectController {
 	@MethodLog(remark = "查询站点下 所有项目信息")
 	public JSONObject  selectBymid(String mid,String  pageNum,String pageSize) {
 		
-		JSONObject ma = imps.selectBymid(mid, Integer.parseInt(pageNum),Integer.parseInt (pageSize));
+		JSONObject ma = null;
+		try {
+			ma = imps.selectBymid(mid, Integer.parseInt(pageNum),Integer.parseInt (pageSize));
+		} catch (Exception e) {
+			LOG.error(e.getClass().getName() + ":" + e.getMessage());
+			e.printStackTrace();
+		}
 		return ma;
 	}
 	
@@ -269,7 +304,13 @@ public class measurementprojectController {
 	@RequestMapping(value = "/selectByName" , method = RequestMethod.GET)
 	@MethodLog(remark = "项目名查询项目信息")
 	public JSONObject  selectByName(String mName,Integer  pageNum,Integer  pageSize) {
-		JSONObject ma = imps.selectByName(mName, pageNum, pageSize);
+		JSONObject ma = null;
+		try {
+			ma = imps.selectByName(mName, pageNum, pageSize);
+		} catch (Exception e) {
+			LOG.error(e.getClass().getName() + ":" + e.getMessage());
+			e.printStackTrace();
+		}
 		return ma;
 	}
 	
@@ -285,7 +326,13 @@ public class measurementprojectController {
 	@RequestMapping(value = "/selectBy" , method = RequestMethod.GET)
 	@MethodLog(remark = "根据id和项目名查询项目信息")
 	public JSONObject  selectBy(String id,String mName,Integer  pageNum,Integer  pageSize) {
-		JSONObject ma = imps.selectBy(id,mName, pageNum, pageSize);
+		JSONObject ma = null;
+		try {
+			ma = imps.selectBy(id,mName, pageNum, pageSize);
+		} catch (Exception e) {
+			LOG.error(e.getClass().getName() + ":" + e.getMessage());
+			e.printStackTrace();
+		}
 		return ma;
 	}
 	/**
@@ -297,7 +344,13 @@ public class measurementprojectController {
 	
 	@RequestMapping(value = "/selectAllpName" , method = RequestMethod.GET)
 	public JSONObject  selectAllpName(String id) {
-		JSONObject ma = imps.selectAllpName(id);
+		JSONObject ma = null;
+		try {
+			ma = imps.selectAllpName(id);
+		} catch (Exception e) {
+			LOG.error(e.getClass().getName() + ":" + e.getMessage());
+			e.printStackTrace();
+		}
 		return ma;
 	}
 	
@@ -312,7 +365,13 @@ public class measurementprojectController {
 	@RequestMapping(value = "/GetHomeECharts" , method = RequestMethod.GET)
 	@MethodLog(remark = "获取首页 柱状图 id为 站点id")
 	public JSONObject GetHomeECharts(String id) {
-		JSONObject ma = imps.GetHomeECharts(id);
+		JSONObject ma = null;
+		try {
+			ma = imps.GetHomeECharts(id);
+		} catch (Exception e) {
+			LOG.error(e.getClass().getName() + ":" + e.getMessage());
+			e.printStackTrace();
+		}
 		return ma;
 	}
 	/**
@@ -325,7 +384,13 @@ public class measurementprojectController {
 	@RequestMapping(value = "/GetPageECharts" , method = RequestMethod.GET)
 	@MethodLog(remark = "获取统计页面 曲线图 id为 线路id")
 	public JSONObject GetPageECharts(String id) {
-		JSONObject ma = imps.GetPageECharts(id);
+		JSONObject ma = null;
+		try {
+			ma = imps.GetPageECharts(id);
+		} catch (Exception e) {
+			LOG.error(e.getClass().getName() + ":" + e.getMessage());
+			e.printStackTrace();
+		}
 		return ma;
 	}
 	

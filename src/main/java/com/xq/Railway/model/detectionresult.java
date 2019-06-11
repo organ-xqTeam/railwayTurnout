@@ -218,4 +218,12 @@ public class detectionresult {
     public void setIsdelete(String isdelete) {
         this.isdelete = isdelete == null ? null : isdelete.trim();
     }
+
+	@Override
+	public String toString() {
+		return "detectionresult [id=" + id + ", mid=" + mid + ", pname=" + pname + ", standards=" + standards
+				+ ", standardid=" + standardid + ", measureddata=" + measureddata + ", measureddata1=" + measureddata1
+				+ ", measuredresults=" + measuredresults + ", isdelete=" + isdelete + "]";
+	}
+    
 }

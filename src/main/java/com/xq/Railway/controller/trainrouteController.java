@@ -2,6 +2,8 @@ package com.xq.Railway.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +26,7 @@ import net.sf.json.JSONObject;
 @RestController
 @RequestMapping("/trainroute")
 public class trainrouteController {
-
+	private static final Logger LOG = LoggerFactory.getLogger(trainrouteController.class);
 	@Autowired
 	private TrainrouteService its;
 	
@@ -40,7 +42,13 @@ public class trainrouteController {
 	@RequestMapping(value = "/insert" , method = RequestMethod.POST)
 	@MethodLog(remark = "新增线路信息")
 	public JSONObject insert(@RequestBody trainroute m) {
-		JSONObject result = its.instert(m);
+		JSONObject result = null;
+		try {
+			result = its.instert(m);
+		} catch (Exception e) {
+			LOG.error(e.getClass().getName() + ":" + e.getMessage());
+			e.printStackTrace();
+		}
 		return result;
 	}
 	/**】
@@ -53,7 +61,13 @@ public class trainrouteController {
 	 */
 	@RequestMapping(value = "/selectbyid", method = RequestMethod.GET)
 	public trainroute selectbyid(String rid) {
-		trainroute ma = its.selectbyid(rid);
+		trainroute ma = null;
+		try {
+			ma = its.selectbyid(rid);
+		} catch (Exception e) {
+			LOG.error(e.getClass().getName() + ":" + e.getMessage());
+			e.printStackTrace();
+		}
 		return ma;
 		
 	}
@@ -66,14 +80,26 @@ public class trainrouteController {
 	@RequestMapping(value = "/updatebyid", method = RequestMethod.POST)
 	@MethodLog(remark = "更新线路信息")
 	public int updatebyid(@RequestBody trainroute m) {
-		int ma = its.updatetrainroute(m);
+		int ma = 0;
+		try {
+			ma = its.updatetrainroute(m);
+		} catch (Exception e) {
+			LOG.error(e.getClass().getName() + ":" + e.getMessage());
+			e.printStackTrace();
+		}
 		return ma;
 	}
 	
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	@MethodLog(remark = "删除线路")
 	public JSONObject deletebyid(String  id) {
-		JSONObject ma = its.deletebyid(id);
+		JSONObject ma = null;
+		try {
+			ma = its.deletebyid(id);
+		} catch (Exception e) {
+			LOG.error(e.getClass().getName() + ":" + e.getMessage());
+			e.printStackTrace();
+		}
 		return ma;
 	}
 	
@@ -94,6 +120,7 @@ public class trainrouteController {
 		try {
 			jc = json.getString("jurisdiction");
 		} catch (Exception e) {
+			LOG.error(e.getClass().getName() + ":" + e.getMessage());
 			jsonObject.put("state","fail");
 			jsonObject.put("massage","未登录");
 			jsonObject.put("list", "");
@@ -110,7 +137,13 @@ public class trainrouteController {
 	 */
 	@RequestMapping(value = "/selectAlltrainAndline" , method = RequestMethod.GET)
 	public JSONObject selectAlltrainAndline(Integer  pageNum,Integer  pageSize) {
-		JSONObject result = its.selectAlltrainAndline(pageNum,pageSize);
+		JSONObject result = null;
+		try {
+			result = its.selectAlltrainAndline(pageNum,pageSize);
+		} catch (Exception e) {
+			LOG.error(e.getClass().getName() + ":" + e.getMessage());
+			e.printStackTrace();
+		}
 		return result;
 	}
 	
@@ -122,7 +155,13 @@ public class trainrouteController {
 	@RequestMapping(value = "/selectTLForAndroid" , method = RequestMethod.GET)
 	@MethodLog(remark = "查询所有线路并站点信息安卓")
 	public JSONObject selectTLForAndroid() {
-		JSONObject result = its.selectTLForAndroid();
+		JSONObject result = null;
+		try {
+			result = its.selectTLForAndroid();
+		} catch (Exception e) {
+			LOG.error(e.getClass().getName() + ":" + e.getMessage());
+			e.printStackTrace();
+		}
 		return result;
 	}
 	

@@ -1,6 +1,10 @@
 package com.xq.Railway.model;
 
 public class cityid {
+	@Override
+	public String toString() {
+		return "cityid [id=" + id + ", city3=" + city3 + ", city2=" + city2 + ", city1=" + city1 + "]";
+	}
 	private String id;
 	private String city3;
 	private String city2;

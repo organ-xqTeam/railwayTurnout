@@ -72,4 +72,10 @@ public class trainroute {
     public void setIsdelete(String isdelete) {
         this.isdelete = isdelete == null ? null : isdelete.trim();
     }
+
+	@Override
+	public String toString() {
+		return "trainroute [id=" + id + ", routename=" + routename + ", isdelete=" + isdelete + "]";
+	}
+    
 }

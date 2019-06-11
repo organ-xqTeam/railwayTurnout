@@ -1,5 +1,7 @@
 package com.xq.Railway.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,7 +27,7 @@ import net.sf.json.JSONObject;
 @RestController
 @RequestMapping("/city")
 public class cityidController {
-	
+	private static final Logger LOG = LoggerFactory.getLogger(cityidController.class);
 	@Autowired
 	private cityidService cityser;
 	
@@ -42,6 +44,7 @@ public class cityidController {
 			r.setResult(jo.getString("r"));
 			r.setStatus(jo.getString("s"));
 		} catch (Exception e) {
+			LOG.error(e.getClass().getName() + ":" + e.getMessage());
 			r.setResult(e.getClass().getName() + ":" + e.getMessage());
 			r.setStatus("error");
 			e.printStackTrace();
@@ -60,6 +63,7 @@ public class cityidController {
 			r.setResult(js);
 			r.setStatus("ok");
 		} catch (Exception e) {
+			LOG.error(e.getClass().getName() + ":" + e.getMessage());
 			r.setResult(e.getClass().getName() + ":" + e.getMessage());
 			r.setStatus("error");
 			e.printStackTrace();

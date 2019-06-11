@@ -32,6 +32,8 @@ import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -71,7 +73,7 @@ import net.sf.json.JSONObject;
 @RestController
 @RequestMapping("/detectionresult")
 public class detectionresultController {
-
+	private static final Logger LOG = LoggerFactory.getLogger(detectionresultController.class);
 	@Autowired
 	private DetectionresultService ids;
 	
@@ -131,6 +133,7 @@ public class detectionresultController {
 				return object;
 				}
 		}catch (Exception e) {
+			LOG.error(e.getClass().getName() + ":" + e.getMessage());
 			jsonObject.put("stats", "fail");
 			jsonObject.put("code", "500");
 			jsonObject.put("message", e);
@@ -155,6 +158,7 @@ public class detectionresultController {
 			r.setResult(result.getString("r"));
 			r.setStatus(result.getString("s"));
 		} catch (Exception e) {
+			LOG.error(e.getClass().getName() + ":" + e.getMessage());
 			r.setResult(e.getClass().getName() + ":" + e.getMessage());
 			r.setStatus("error");
 			e.printStackTrace();
@@ -175,6 +179,7 @@ public class detectionresultController {
 			r.setResult(result.getString("r"));
 			r.setStatus(result.getString("s"));
 		} catch (Exception e) {
+			LOG.error(e.getClass().getName() + ":" + e.getMessage());
 			r.setResult(e.getClass().getName() + ":" + e.getMessage());
 			r.setStatus("error");
 			e.printStackTrace();
@@ -196,7 +201,13 @@ public class detectionresultController {
 	@RequestMapping(value = "/selectbyridpname", method = RequestMethod.GET)
 	@MethodLog(remark = "根据项目id 查结果")
 	public JSONObject  selectbyid(String rid) {
-		JSONObject  ma = ids.selectbyrid(rid);
+		JSONObject ma = null;
+		try {
+			ma = ids.selectbyrid(rid);
+		} catch (Exception e) {
+			LOG.error(e.getClass().getName() + ":" + e.getMessage());
+			e.printStackTrace();
+		}
 		return ma;
 	}
 	/**
@@ -216,7 +227,13 @@ public class detectionresultController {
 	@RequestMapping(value = "/selectbypname", method = RequestMethod.GET)
 	@MethodLog(remark = "模糊查询 pname  项目rid 移动接口")
 	public JSONObject  selectbypname(String rid,String pname,Integer  pageNum,Integer  pageSize) {
-		JSONObject  ma = ids.selectbypname(rid,pname,  pageNum,  pageSize);
+		JSONObject ma = null;
+		try {
+			ma = ids.selectbypname(rid,pname,  pageNum,  pageSize);
+		} catch (Exception e) {
+			LOG.error(e.getClass().getName() + ":" + e.getMessage());
+			e.printStackTrace();
+		}
 		return ma;
 	}
 	@ApiOperation(value="查询所有", notes="查询所有")
@@ -226,7 +243,13 @@ public class detectionresultController {
 	})
 	@RequestMapping(value = "/selectAll", method = RequestMethod.GET)
 	public List<detectionresult>  selectAll(Integer  pageNum,Integer  pageSize) {
-		List<detectionresult>  ma = ids.selectAll(pageNum,  pageSize);
+		List<detectionresult> ma = null;
+		try {
+			ma = ids.selectAll(pageNum,  pageSize);
+		} catch (Exception e) {
+			LOG.error(e.getClass().getName() + ":" + e.getMessage());
+			e.printStackTrace();
+		}
 		return ma;
 		
 	}
@@ -244,7 +267,13 @@ public class detectionresultController {
 	@RequestMapping(value = "/updatebyid", method = RequestMethod.POST)
 	@MethodLog(remark = "根据id 修改 ")
 	public int updatebyid(@RequestBody detectionresult d) {
-		int ma = ids.updatedetectionresult(d);
+		int ma = 0;
+		try {
+			ma = ids.updatedetectionresult(d);
+		} catch (Exception e) {
+			LOG.error(e.getClass().getName() + ":" + e.getMessage());
+			e.printStackTrace();
+		}
 		return ma;
 	}
 	@ApiOperation(value="根据id 删除结果", notes="根据id 删除detectionresult")
@@ -254,7 +283,13 @@ public class detectionresultController {
 	@RequestMapping(value = "/deletebyid", method = RequestMethod.GET)
 	@MethodLog(remark = "根据id 删除")
 	public JSONObject deletebyid(String id) {
-		JSONObject ma = ids.deletebyid(id);
+		JSONObject ma = null;
+		try {
+			ma = ids.deletebyid(id);
+		} catch (Exception e) {
+			LOG.error(e.getClass().getName() + ":" + e.getMessage());
+			e.printStackTrace();
+		}
 		return ma;
 	}
 	@ApiOperation(value="根据id 到处表格", notes="根据id 到处表格")
@@ -312,6 +347,7 @@ public class detectionresultController {
 			//第六步将生成excel文件保存到指定路径下 
 			wb.write(response.getOutputStream());
 		} catch (Exception e) {
+			LOG.error(e.getClass().getName() + ":" + e.getMessage());
 		}
 	}
 	@ApiOperation(value="下载app", notes="下载app")
@@ -348,7 +384,7 @@ public class detectionresultController {
 			fileInputStream.close();
 			out.close();
 		} catch (Exception e1) {
-			// TODO Auto-generated catch block
+			LOG.error(e1.getClass().getName() + ":" + e1.getMessage());
 			e1.printStackTrace();
 		}
 	}
@@ -391,6 +427,7 @@ public class detectionresultController {
 				return object;
 				}
 		}catch (Exception e) {
+			LOG.error(e.getClass().getName() + ":" + e.getMessage());
 			jsonObject.put("stats", "fail");
 			jsonObject.put("code", "500");
 			jsonObject.put("message", e);
@@ -440,6 +477,7 @@ public class detectionresultController {
 				out.close();
 			}
 		} catch (IOException e) {
+			LOG.error(e.getClass().getName() + ":" + e.getMessage());
 			e.printStackTrace();
 		} finally {
 		}
@@ -465,10 +503,9 @@ public class detectionresultController {
 //			System.out.println(buffImg.getHeight());
 			ImageIO.write(buffImg, "jpg", res.getOutputStream());
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			LOG.error(e.getClass().getName() + ":" + e.getMessage());
 			e.printStackTrace();
 		}
 
@@ -658,6 +695,7 @@ public class detectionresultController {
 			
 			
 		} catch (Exception e) {
+			LOG.error(e.getClass().getName() + ":" + e.getMessage());
 			e.printStackTrace();
 			jsonObject.put("code", 500);
 			jsonObject.put("state", "fail");

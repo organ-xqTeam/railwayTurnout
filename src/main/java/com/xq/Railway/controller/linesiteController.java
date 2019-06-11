@@ -1,5 +1,7 @@
 package com.xq.Railway.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +25,7 @@ import net.sf.json.JSONObject;
 @RestController
 @RequestMapping("/linesite")
 public class linesiteController {
-
+	private static final Logger LOG = LoggerFactory.getLogger(linesiteController.class);
 	@Autowired
 	private LinesiteService ils;
 	
@@ -36,7 +38,13 @@ public class linesiteController {
 	@RequestMapping(value = "/insert" , method = RequestMethod.POST)
 	@MethodLog(remark = "新增站点")
 	public JSONObject insert(@RequestBody linesite m) {
-		JSONObject result = ils.instert(m);
+		JSONObject result = null;
+		try {
+			result = ils.instert(m);
+		} catch (Exception e) {
+			LOG.error(e.getClass().getName() + ":" + e.getMessage());
+			e.printStackTrace();
+		}
 		return result;
 	}
 	
@@ -50,7 +58,13 @@ public class linesiteController {
 	@RequestMapping(value = "/selectAll" , method = RequestMethod.GET)
 	@MethodLog(remark = "查询所有站点")
 	public JSONObject selectAll() {
-		JSONObject result = ils.selectAll();
+		JSONObject result = null;
+		try {
+			result = ils.selectAll();
+		} catch (Exception e) {
+			LOG.error(e.getClass().getName() + ":" + e.getMessage());
+			e.printStackTrace();
+		}
 		return result;
 	}
 	
@@ -67,7 +81,13 @@ public class linesiteController {
 	@RequestMapping(value = "/selectbyrouteid" , method = RequestMethod.GET)
 	@MethodLog(remark = "查询指定线路站点")
 	public JSONObject selectbyrouteid(String routeid,Integer  pageNum,Integer  pageSize) {
-		JSONObject  ma = ils.selectbyrouteid(routeid,  pageNum,  pageSize);
+		JSONObject ma = null;
+		try {
+			ma = ils.selectbyrouteid(routeid,  pageNum,  pageSize);
+		} catch (Exception e) {
+			LOG.error(e.getClass().getName() + ":" + e.getMessage());
+			e.printStackTrace();
+		}
 		return ma;
 	}
 	/**
@@ -81,7 +101,13 @@ public class linesiteController {
 	@RequestMapping(value = "/selectbyid" , method = RequestMethod.GET)
 	@MethodLog(remark = "查看单个站点")
 	public linesite selectbyid(String id) {
-		linesite ma = ils.selectbyid(id);
+		linesite ma = null;
+		try {
+			ma = ils.selectbyid(id);
+		} catch (Exception e) {
+			LOG.error(e.getClass().getName() + ":" + e.getMessage());
+			e.printStackTrace();
+		}
 		return ma;
 	}
 	
@@ -95,7 +121,13 @@ public class linesiteController {
 	@RequestMapping(value = "/updatebyid", method = RequestMethod.POST)
 	@MethodLog(remark = "修改站点")
 	public int updatebyid(@RequestBody linesite m) {
-		int ma = ils.updatelinesite(m);
+		int ma = 0;
+		try {
+			ma = ils.updatelinesite(m);
+		} catch (Exception e) {
+			LOG.error(e.getClass().getName() + ":" + e.getMessage());
+			e.printStackTrace();
+		}
 		return ma;
 	}
 	/**
@@ -108,7 +140,13 @@ public class linesiteController {
 	@MethodLog(remark = "删除站点")
 	public int deletebyid(String id) {
 		
-		int ma = ils.deletebyid(id);
+		int ma = 0;
+		try {
+			ma = ils.deletebyid(id);
+		} catch (Exception e) {
+			LOG.error(e.getClass().getName() + ":" + e.getMessage());
+			e.printStackTrace();
+		}
 		return ma;
 	}
 }
