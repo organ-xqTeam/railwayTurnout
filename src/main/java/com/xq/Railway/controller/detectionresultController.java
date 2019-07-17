@@ -238,8 +238,8 @@ public class detectionresultController {
 	}
 	@ApiOperation(value="查询所有", notes="查询所有")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = "pageNum", value = "页码",  required = true, dataType = "Integer", paramType = "path"),
-		@ApiImplicitParam(name = "pageSize", value = "每页数量",  required = true, dataType = "Integer", paramType = "path")
+		@ApiImplicitParam(name = "pageNum", value = "页码"),
+		@ApiImplicitParam(name = "pageSize", value = "每页数量")
 	})
 	@RequestMapping(value = "/selectAll", method = RequestMethod.GET)
 	public List<detectionresult>  selectAll(Integer  pageNum,Integer  pageSize) {
