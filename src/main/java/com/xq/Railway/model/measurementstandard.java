@@ -14,6 +14,11 @@ import io.swagger.annotations.ApiModelProperty;
 public class measurementstandard {
 	@ApiModelProperty(hidden=true)
     private String id;
+	
+	
+	@ApiModelProperty(value="测量项id" ,name = "dcbh",example="1", position = 0)
+	private String dcbh;//测量项
+	
     @ApiModelProperty(value="测量项名称" ,name = "measurementitem",example="轨距", position = 0)
     private String measurementitem;//测量项
     @ApiModelProperty(value="是否为系统判断项点 0：手动判断 1：机器判断 " ,name = "state",example="0/1", position = 6)
@@ -43,6 +48,17 @@ public class measurementstandard {
 	}
 	public void setId(String id) {
 		this.id = id;
+	}
+	
+	
+	
+	
+	
+	public String getDcbh() {
+		return dcbh;
+	}
+	public void setDcbh(String dcbh) {
+		this.dcbh = dcbh;
 	}
 	public String getMeasurementitem() {
 		return measurementitem;
@@ -115,6 +131,14 @@ public class measurementstandard {
 	}
 	public void setIsdelete(String isdelete) {
 		this.isdelete = isdelete;
+	}
+	@Override
+	public String toString() {
+		return "measurementstandard [id=" + id + ", dcbh=" + dcbh + ", measurementitem=" + measurementitem + ", state="
+				+ state + ", gaugestandardid=" + gaugestandardid + ", ranges=" + ranges + ", standard=" + standard
+				+ ", range1=" + range1 + ", standard1=" + standard1 + ", turnoutstandardid=" + turnoutstandardid
+				+ ", inspectionmethod=" + inspectionmethod + ", managementcategory=" + managementcategory
+				+ ", isdetails=" + isdetails + ", isdelete=" + isdelete + "]";
 	}
 
     

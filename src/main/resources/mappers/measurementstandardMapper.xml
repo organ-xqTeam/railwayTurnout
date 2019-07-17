@@ -3,6 +3,7 @@
 <mapper namespace="com.xq.Railway.dao.measurementstandardMapper" >
   <resultMap id="BaseResultMap" type="com.xq.Railway.model.measurementstandard" >
     <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="dcbh" property="dcbh" jdbcType="VARCHAR" />
     <result column="measurementitem" property="measurementitem" jdbcType="VARCHAR" />
     <result column="state" property="state" jdbcType="VARCHAR" />
     <result column="ranges" property="ranges" jdbcType="VARCHAR" />
@@ -17,7 +18,7 @@
     <result column="isdetails" property="isdetails" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, measurementitem,state,ranges,standard,range1,standard1, isdelete,turnoutstandardid,inspectionmethod,managementcategory,gaugestandardid,isdetails
+    id,dcbh, measurementitem,state,ranges,standard,range1,standard1, isdelete,turnoutstandardid,inspectionmethod,managementcategory,gaugestandardid,isdetails
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
@@ -89,9 +90,9 @@
     where id = #{id,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.xq.Railway.model.measurementstandard" >
-    insert into measurementstandard (id, measurementitem, standard, 
+    insert into measurementstandard (id,dcbh, measurementitem, standard, 
       isdelete,turnoutstandardid,inspectionmethod,managementcategory,gaugestandardid,isdetails)
-    values (#{id,jdbcType=VARCHAR}, #{measurementitem,jdbcType=VARCHAR}, #{standard,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=VARCHAR},#{dcbh,jdbcType=VARCHAR}, #{measurementitem,jdbcType=VARCHAR}, #{standard,jdbcType=VARCHAR}, 
       #{isdelete,jdbcType=VARCHAR},
       #{turnoutstandardid,jdbcType=VARCHAR},
       #{inspectionmethod,jdbcType=VARCHAR},
@@ -105,6 +106,9 @@
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
+      </if>
+      <if test="dcbh != null" >
+        dcbh,
       </if>
       <if test="measurementitem != null" >
         measurementitem,
@@ -147,6 +151,9 @@
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="dcbh != null" >
+        #{dcbh,jdbcType=VARCHAR},
       </if>
       <if test="measurementitem != null" >
         #{measurementitem,jdbcType=VARCHAR},
@@ -192,6 +199,9 @@
     <set >
       <if test="measurementitem != null" >
         measurementitem = #{measurementitem,jdbcType=VARCHAR},
+      </if>
+      <if test="dcbh != null" >
+        dcbh = #{dcbh,jdbcType=VARCHAR},
       </if>
       <if test="standard != null" >
         standard = #{standard,jdbcType=VARCHAR},
