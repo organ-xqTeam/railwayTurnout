@@ -12,6 +12,8 @@ import io.swagger.annotations.ApiModelProperty;
  */
 @ApiModel(description="测量标准-项点标准")
 public class measurementstandard {
+	
+	
 	@ApiModelProperty(hidden=true)
     private String id;
 	
