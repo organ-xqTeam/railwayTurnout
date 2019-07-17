@@ -88,7 +88,23 @@ public class measurementstandardController {
 			e.printStackTrace();
 		}
 		return ResponseEntity.ok(r);
-		
+	}
+	@ApiOperation(value="根据道岔标准ID查询所有测量项", notes="根据道岔标准ID查询所有测量项")
+	@ApiImplicitParam(name = "id", value = "道岔标准ID", required = true, dataType = "String", paramType = "path")
+	@RequestMapping(value = "/turnoutstandard/{id}" , method = RequestMethod.GET)
+	public ResponseEntity<JsonResult> findbyturnoutstandard(@PathVariable(value = "id") String id,Integer pageNum, Integer pageSize){
+		JsonResult r = new JsonResult();
+		try {
+			JSONObject jos = imss.findbyturnoutstandard(id,pageNum,pageSize);
+			r.setResult(jos);
+			r.setStatus("ok");
+		} catch (Exception e) {
+			LOG.error(e.getClass().getName() + ":" + e.getMessage());
+			r.setResult(e.getClass().getName() + ":" + e.getMessage());
+			r.setStatus("error");
+			e.printStackTrace();
+		}
+		return ResponseEntity.ok(r);
 	}
 	
 	

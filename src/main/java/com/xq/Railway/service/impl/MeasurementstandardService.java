@@ -117,4 +117,14 @@ public class MeasurementstandardService {
 		
 	}
 
+
+	public JSONObject findbyturnoutstandard(String id, Integer pageNum, Integer pageSize) {
+		List<measurementstandard> list  = imm.findbyturnoutstandard(id, pageNum*pageSize,  pageSize);
+		List<measurementstandard> listCount  = imm.findbyturnoutstandardAll(id);
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("list", list);
+		jsonObject.put("listCount", listCount.size());
+		return jsonObject;
+	}
+
 }

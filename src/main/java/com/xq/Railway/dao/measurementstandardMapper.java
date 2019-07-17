@@ -31,4 +31,8 @@ public interface measurementstandardMapper {
 	List<measurementstandard> findbyproject(String id, int pageNum, Integer pageSize);
 
 	List<measurementstandard> findbyprojectAll(String id);
+
+	List<measurementstandard> findbyturnoutstandard(String id, int pageNum, Integer pageSize);
+
+	List<measurementstandard> findbyturnoutstandardAll(String id);
 }
