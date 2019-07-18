@@ -3,6 +3,7 @@ package com.xq.Railway.service.impl;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,7 @@ import com.xq.Railway.model.gaugestandard;
 import com.xq.Railway.model.measurementproject;
 import com.xq.Railway.model.measurementstandard;
 import com.xq.Railway.util.DecimalUtil;
+import com.xq.Railway.util.MapTrunPojo;
 import com.xq.Railway.util.algorithm;
 import com.xq.Railway.util.jsonTomodel;
 
@@ -743,24 +745,27 @@ public class DetectionresultService {
 		for (measurementstandard measurementstandard : list) {
 			//项点id
 			
+			Map<String, Object> ma =  MapTrunPojo.object2Map(measurementstandard);
 			List<detectionresult> la = idm.selectbymidpname(id, measurementstandard.getId());
 			
+			int a = 0;
 			
+			for (detectionresult detection : la) {
+				a++;
+			}
 			
-			array.add(la.size());
+			ma.put("s1", a);
+			ma.put("s2", a);
+			ma.put("s3", 0);
 			
-			
-			
-			
+			array.add(ma);
 		}
-		
-		
-		
-		
 		
 
 		jsonObject.put("r", array);
 		jsonObject.put("s", "ok");
 		return jsonObject;
 	}
+	
+	
 }
