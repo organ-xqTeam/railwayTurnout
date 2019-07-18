@@ -59,6 +59,12 @@ public class calculationstandardController {
 		return ResponseEntity.ok(r);
 	}
 	
+	
+	/**
+	 * 
+	 * 获取指定文件夹下，下车数据表格
+	 * @return
+	 */
 	@ApiOperation(value="获取小车文件数据列表", notes="获取小车文件数据列表")
 	@RequestMapping(value = "/car", method = RequestMethod.GET)
 	public ResponseEntity<JsonResult> getCarList (){

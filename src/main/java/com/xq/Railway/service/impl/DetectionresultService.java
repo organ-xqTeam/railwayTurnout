@@ -729,4 +729,38 @@ public class DetectionresultService {
 		}
 		return jo;
 	}
+
+	public JSONObject selsctbymeasurementprojectid(String id) {
+		JSONObject jsonObject = new JSONObject();
+		JSONArray array = new JSONArray();
+		
+		// id 为项目id
+		//获取 项目中对应测量标准
+		measurementproject measurement = impm.selectByPrimaryKey(id);
+//		获取测量标准对应 测量项点
+		List<measurementstandard> list = imm.findbyturnoutstandardAll(measurement.getTurnoutstandardid());
+		
+		for (measurementstandard measurementstandard : list) {
+			//项点id
+			
+			List<detectionresult> la = idm.selectbymidpname(id, measurementstandard.getId());
+			
+			
+			
+			array.add(la.size());
+			
+			
+			
+			
+		}
+		
+		
+		
+		
+		
+
+		jsonObject.put("r", array);
+		jsonObject.put("s", "ok");
+		return jsonObject;
+	}
 }

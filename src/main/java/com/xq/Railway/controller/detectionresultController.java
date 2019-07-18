@@ -86,6 +86,37 @@ public class detectionresultController {
 	@Value("${springurl.fileurl}")
 	private String url;
 	
+	 
+	
+	
+	
+	
+	@ApiOperation(value="根据项目查看监测结果", notes="根据measurementprojectid项目查看监测结果")
+	@ApiImplicitParam(name = "id", value = "项目id")
+	@RequestMapping(value = "/getresultbyprojectid" , method = RequestMethod.POST)
+	@MethodLog(remark = "根据项目查看监测结果")
+	public ResponseEntity<JsonResult> selsctbymeasurementprojectid(String id) {
+		JsonResult r = new JsonResult();
+		try {
+			JSONObject result = ids.selsctbymeasurementprojectid(id);
+			r.setResult(result.getString("r"));
+			r.setStatus(result.getString("s"));
+		} catch (Exception e) {
+			LOG.error(e.getClass().getName() + ":" + e.getMessage());
+			r.setResult(e.getClass().getName() + ":" + e.getMessage());
+			r.setStatus("error");
+			e.printStackTrace();
+		}
+		return ResponseEntity.ok(r);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	/**
 	 * 新增 结果   添加上传文件
 	 * 

@@ -31,7 +31,7 @@ public class filedatatableController {
 	 * @return
 	 */
 	@ApiOperation(value="获取所有项点图片", notes="根据id获取所有项点图片")
-	@ApiImplicitParam(name = "id", value = "项目id", required = true,  dataType = "String", paramType = "path")
+	@ApiImplicitParam(name = "id", value = "项目id")
 	@RequestMapping(value = "/selectbyid", method = RequestMethod.GET)
 	@MethodLog(remark = "根据项目id 查结果")
 	public JSONObject  selectbyid(String id) {

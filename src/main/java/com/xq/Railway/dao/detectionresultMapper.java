@@ -48,6 +48,8 @@ public interface detectionresultMapper {
 
 	List<detectionresult> selectbymidresults(String mid, String string);
 
+	List<detectionresult> selectbymidpname(String id, String id2);
+
 	
 	
 }

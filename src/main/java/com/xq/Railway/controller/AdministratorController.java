@@ -73,8 +73,8 @@ public class AdministratorController {
 	 */
 	@ApiOperation(value = "查询管理员", notes = "分页查询")
 	@ApiImplicitParams({
-			@ApiImplicitParam(name = "pageNum", value = "页码", required = true, dataType = "Integer", paramType = "path"),
-			@ApiImplicitParam(name = "pageSize", value = "每页显示个数", required = true, dataType = "Integer", paramType = "path") 
+			@ApiImplicitParam(name = "pageNum", value = "页码"),
+			@ApiImplicitParam(name = "pageSize", value = "每页显示个数") 
 			})
 	@RequestMapping(value = "/selectAlladmin", method = RequestMethod.GET)
 	@MethodLog(remark = "查询所有管理员")
@@ -102,8 +102,8 @@ public class AdministratorController {
 	 */
 	@ApiOperation(value = "后台管理员登陆", notes = "登陆")
 	@ApiImplicitParams({
-			@ApiImplicitParam(name = "ausername", value = "账户", required = true, dataType = "String", paramType = "path"),
-			@ApiImplicitParam(name = "apwd", value = "密码", required = true, dataType = "String", paramType = "path") 
+			@ApiImplicitParam(name = "ausername", value = "账户"),
+			@ApiImplicitParam(name = "apwd", value = "密码") 
 			})
 	@RequestMapping(value="/adminlogin" , method = RequestMethod.GET)
 	@MethodLog(remark = "登陆")
@@ -129,8 +129,8 @@ public class AdministratorController {
 	 */
 	@ApiOperation(value = "安卓端登陆", notes = "登陆")
 	@ApiImplicitParams({
-			@ApiImplicitParam(name = "ausername", value = "账户", required = true, dataType = "String", paramType = "path"),
-			@ApiImplicitParam(name = "apwd", value = "密码", required = true, dataType = "String", paramType = "path") 
+			@ApiImplicitParam(name = "ausername", value = "账户"),
+			@ApiImplicitParam(name = "apwd", value = "密码") 
 			})
 	@RequestMapping(value= "/login" , method = RequestMethod.GET)
 	@MethodLog(remark = "安卓端登陆")
@@ -164,7 +164,7 @@ public class AdministratorController {
 	
 	@ApiOperation(value = "删除管理员", notes = "删除管理员")
 	@ApiImplicitParams({
-			@ApiImplicitParam(name = "id", value = "管理员ID", required = true, dataType = "String", paramType = "path")
+			@ApiImplicitParam(name = "id", value = "管理员ID")
 			})
 	@RequestMapping(value ="/delete", method = RequestMethod.GET)
 	@MethodLog(remark = "删除管理员")
@@ -200,7 +200,7 @@ public class AdministratorController {
 	 */
 	@ApiOperation(value = "查询管理员", notes = "查询管理员")
 	@ApiImplicitParams({
-			@ApiImplicitParam(name = "aid", value = "管理员ID", required = true, dataType = "String", paramType = "path")
+			@ApiImplicitParam(name = "aid", value = "管理员ID")
 			})
 	@RequestMapping(value = "/selectByAid", method = RequestMethod.GET)
 	public administrator selectByAid(String aid){
