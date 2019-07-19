@@ -62,6 +62,14 @@
 		<!-- <dependency> <groupId>org.projectlombok</groupId> <artifactId>lombok</artifactId> 
 			<version>1.14.4</version> </dependency> -->
 
+
+		<dependency>
+		    <groupId>org.nutz</groupId>
+		    <artifactId>nutz</artifactId>
+		     <version>1.r.68.v20190621</version>
+		</dependency>
+
+		
 		<!--spring boot 整合 mybatis 依赖 -->
 		<dependency>
 			<groupId>org.mybatis.spring.boot</groupId>
