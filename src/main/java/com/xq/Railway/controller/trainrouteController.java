@@ -118,7 +118,8 @@ public class trainrouteController {
 //		String aid = json.getString("aid");//管理员id
 		String jc;
 		try {
-			jc = json.getString("jurisdiction");
+//			jc = json.getString("jurisdiction");
+			jc = "高级";
 		} catch (Exception e) {
 			LOG.error(e.getClass().getName() + ":" + e.getMessage());
 			jsonObject.put("state","fail");
