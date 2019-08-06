@@ -13,7 +13,7 @@
   </sql>
   
   
-  <delete id="remove"  parameterType="java.lang.String">
+  <delete id="remove"  >
   
   	delete from qualitystandard   where id = #{id,jdbcType=VARCHAR}
   

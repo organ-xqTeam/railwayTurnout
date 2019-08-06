@@ -61,7 +61,7 @@ public class qualitystandardService {
 			return jo;
 		}
 		
-		int n = repository.remove(id);
+		int n = repository.deleteByPrimaryKey(id);
 		
 		if (n > 0) {
 			jo.put("r", "");
