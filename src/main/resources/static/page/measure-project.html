@@ -86,6 +86,60 @@
                         </div>
                         <input class="add-btn" type="submit" value="添加">
                     </li>
+                    <li>
+
+                        '<div>\
+                            <i>\
+                                <img src="../src/images/xiamgmumingc.png" alt="">\
+                            </i>\
+                            <span class="project-name" \
+                                data-id="' + res[i].id + '" \
+                                data-tid="' + res[i].tid + '" \
+                                data-lid="' + res[i].lid + '" \
+                                data-pname="' + res[i].pname + '" \
+                                data-ptime="' + res[i].ptime + '" \
+                                data-warningstatistics="' + res[i].warningstatistics + '" \
+                                data-datasources="' + res[i].datasources + '" \
+                                data-isdelete="' + res[i].isdelete + '"><em>' + res[i].pname + '</em><i class="edit-icon"></i></span>\
+                        </div>\
+                        <div>\
+                            <i>\
+                                <img src="../src/images/shijian.png" alt="">\
+                            </i>\
+                            <span>' + res[i].ptime + '</span>\
+                        </div>\
+                        <div>\
+                            <i>\
+                                <img src="../src/images/baojing.png" alt="">\
+                            </i>\
+                            <span>' + res[i].warningstatistics + '</span>\
+                        </div>\
+                        <div>\
+                            <i>\
+                                <img src="../src/images/lg.png" alt="">\
+                            </i>\
+                            <span>' + res[i].lAltitude + '</span>\
+                        </div>\
+                        <div>\
+                            <i>\
+                                <img src="../src/images/rg.png" alt="">\
+                            </i>\
+                            <span>' + res[i].rAltitude + '</span>\
+                        </div>\
+                        <input class="edit-btn" \
+                            data-id="' + res[i].id + '" \
+                            data-tid="' + res[i].tid + '" \
+                            data-lid="' + res[i].lid + '" \
+                            data-pname="' + res[i].pname + '" \
+                            data-ptime="' + res[i].ptime + '" \
+                            data-warningstatistics="' + res[i].warningstatistics + '" \
+                            data-datasources="' + res[i].datasources + '" \
+                            data-isdelete="' + res[i].isdelete + '"\
+                            type="submit" value="修改">\
+                            <img class="delete" data-id="' + res[i].id + '" src="../src/images/shanchu.png" alt="">'
+
+
+                    </li>
                 </ul>
                 <!-- 分页 -->
                 <div id="pagination" class="pagination"></div>
@@ -197,13 +251,12 @@
     </div>
 
 
-
     <script src="../src/js/jquery.js"></script>
     <script src="../src/js/main.js"></script>
     <script src="../src/js/Global.js"></script>
     <script src="../src/js/dropout.js"></script>
     <script src="../src/js/page.js"></script>
-    <script src="../src/js/project-page.js"></script>
+    <!-- <script src="../src/js/project-page.js"></script> -->
     <script src="../src/js/pagination.js"></script>
 </body>
 </html>
