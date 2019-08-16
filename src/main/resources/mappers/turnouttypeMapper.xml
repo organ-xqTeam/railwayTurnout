@@ -30,6 +30,9 @@
       <if test="turnouttypename != null" >
         turnouttypename = #{turnouttypename,jdbcType=VARCHAR},
       </if>
+      <if test="reamke != null" >
+        reamke = #{reamke,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
   

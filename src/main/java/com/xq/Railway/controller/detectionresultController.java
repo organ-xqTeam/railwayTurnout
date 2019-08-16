@@ -93,7 +93,7 @@ public class detectionresultController {
 	
 	@ApiOperation(value="根据项目查看监测结果", notes="根据measurementprojectid项目查看监测结果")
 	@ApiImplicitParam(name = "id", value = "项目id")
-	@RequestMapping(value = "/getresultbyprojectid" , method = RequestMethod.POST)
+	@RequestMapping(value = "/getresultbyprojectid" , method = RequestMethod.GET)
 	@MethodLog(remark = "根据项目查看监测结果")
 	public ResponseEntity<JsonResult> selsctbymeasurementprojectid(String id) {
 		JsonResult r = new JsonResult();
@@ -123,11 +123,11 @@ public class detectionresultController {
 	 * @param m
 	 * @return
 	 */
-	@ApiOperation(value="新增项点测量结果", notes="根据detectionresult对象 新增 测量结果")
-	@ApiImplicitParam(name = "m", value = "详细实体detectionresult", required = true, dataType = "detectionresult")
+//	@ApiOperation(value="新增项点测量结果", notes="根据detectionresult对象 新增 测量结果")
+//	@ApiImplicitParam(name = "m", value = "详细实体detectionresult", required = true, dataType = "detectionresult")
 	@RequestMapping(value = "/insert" , method = RequestMethod.POST)
 	@MethodLog(remark = "新增项点测量结果")
-	public JSONObject insert(@RequestBody  detectionresult m,@RequestParam("file") MultipartFile[] files
+	public JSONObject insert(detectionresult m,@RequestParam("file") MultipartFile[] files
 			,HttpServletRequest request) {
 		JSONObject result = ids.instert(m);
 		
@@ -135,7 +135,7 @@ public class detectionresultController {
 			return result;
 		}
 		JSONObject jsonObject = new JSONObject();
-		String realPath = request.getSession().getServletContext().getRealPath("file/");   
+		String realPath = url;   
 		String fileName = null;
 		List<filedatatable> list = new ArrayList<filedatatable>();
 		try {

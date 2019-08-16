@@ -27,13 +27,14 @@ public class MainpageinformactionService {
 	private linesiteMapper ilm;
 
 	
-	@Autowired
-	private HttpSession session;
+//	@Autowired
+//	private HttpSession session;
 
 	
 	public JSONObject instert(mainpageinformaction mainpageinformaction) {
-		JSONObject json =  (JSONObject) session.getAttribute("login");
-		String aid = json.getString("aid");//管理员id
+//		JSONObject json =  (JSONObject) session.getAttribute("login");
+//		String aid = json.getString("aid");//管理员id
+		String aid = "40";//管理员id
 		JSONObject jsonObject = new JSONObject();
 		String rid = mainpageinformaction.getRid();
 		
@@ -90,13 +91,13 @@ public class MainpageinformactionService {
 	
 	public int updatemainpageinformaction(mainpageinformaction mainpageinformaction) {
 		
-		JSONObject json =  (JSONObject) session.getAttribute("login");
-		String aid;
-		try {
-			aid = json.getString("aid");
-		} catch (Exception e) {
-			return -1;
-		}
+//		JSONObject json =  (JSONObject) session.getAttribute("login");
+		String aid="40";
+//		try {
+//			aid = json.getString("aid");
+//		} catch (Exception e) {
+//			return -1;
+//		}
 		
 		String id =  mainpageinformaction.getId();
 		if ("".equals(id) || id == null) {

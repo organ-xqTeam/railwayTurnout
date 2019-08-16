@@ -105,6 +105,29 @@ public class gaugestandardController {
 	}
 	
 	/**
+	 * 查询一类轨距
+	 * @param id
+	 * @return
+	 */
+	//@ApiOperation(value="获取轨距测量标准详细信息", notes="根据轨距测量标准的id来获取轨距测量标准详细信息")
+	@ApiImplicitParam(name = "id", value = "轨距测量标准ID", required = true, dataType = "String", paramType = "path")
+	@RequestMapping(value = "/selects/{id}", method = RequestMethod.GET)
+	public ResponseEntity<JsonResult> getUsersById (@PathVariable(value = "id") String id){
+		JsonResult r = new JsonResult();
+		try {
+			List<gaugestandard> user = turnoutser.selectByturnoutid(id);
+			r.setResult(user);
+			r.setStatus("ok");
+		} catch (Exception e) {
+			r.setResult(e.getClass().getName() + ":" + e.getMessage());
+			r.setStatus("error");
+			e.printStackTrace();
+		}
+		return ResponseEntity.ok(r);
+	}
+	
+	
+	/**
 	 * 查询道岔列表
 	 * @return
 	 */

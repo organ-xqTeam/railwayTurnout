@@ -749,15 +749,25 @@ public class DetectionresultService {
 			List<detectionresult> la = idm.selectbymidpname(id, measurementstandard.getId());
 			
 			int a = 0;
-			
+			int b = 0;
 			for (detectionresult detection : la) {
-				a++;
+				if ("合格".equals(detection.getMeasuredresults())) {
+					a++;
+				}else {
+					b++;
+				}
 			}
 			
-			ma.put("s1", a);
-			ma.put("s2", a);
-			ma.put("s3", 0);
 			
+			ma.put("allNumber", a+b);
+			ma.put("hegeNumber", a);
+			double ab = 0;
+			if (a != 0) {
+				ab =  a/(a+b);
+			}else {
+				ab = 0;
+			}
+			ma.put("hegelv", ab*100+"%");
 			array.add(ma);
 		}
 		

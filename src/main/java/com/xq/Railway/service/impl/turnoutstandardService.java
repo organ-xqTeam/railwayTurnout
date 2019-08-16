@@ -131,12 +131,12 @@ public class turnoutstandardService {
 			jo.put("s", "error");
 			return jo;
 		}
-		turnoutstandard tt = repository.findbyTurnoutstandard(name);
-		if (tt != null) {
-			jo.put("r", "name is Repetitive");
-			jo.put("s", "error");
-			return jo;
-		}
+//		turnoutstandard tt = repository.findbyTurnoutstandard(name);
+//		if (tt != null) {
+//			jo.put("r", "name is Repetitive");
+//			jo.put("s", "error");
+//			return jo;
+//		}
 		int s = repository.updateByPrimaryKey(u);
 		if (s > 0) {
 			jo.put("r", u.getId());

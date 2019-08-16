@@ -76,6 +76,11 @@ public class gaugestandardService{
 			}
 		
 	}
+
+	public List<gaugestandard> selectByturnoutid(String id) {
+		List<gaugestandard> tt = repository.selectByturnoutid(id);
+		return tt;
+	}
 	
 	
 	

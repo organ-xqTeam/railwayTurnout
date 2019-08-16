@@ -24,12 +24,12 @@ public class turnouttypeService{
 			jo.put("s", "error");
 			return jo;
 		}
-		turnouttype tt = repository.findbyturnouttypename(name);
-		if (tt != null) {
-			jo.put("r", "name is Repetitive");
-			jo.put("s", "error");
-			return jo;
-		}
+//		turnouttype tt = repository.findbyturnouttypename(name);
+//		if (tt != null) {
+//			jo.put("r", "name is Repetitive");
+//			jo.put("s", "error");
+//			return jo;
+//		}
 		
 		user.setId(StringUtil.getRanduuid());
 		int s = repository.insertSelective(user);
@@ -81,12 +81,12 @@ public class turnouttypeService{
 				jo.put("s", "error");
 				return jo;
 			}
-			turnouttype tt = repository.findbyturnouttypename(name);
-			if (tt != null) {
-				jo.put("r", "name is Repetitive");
-				jo.put("s", "error");
-				return jo;
-			}
+//			turnouttype tt = repository.findbyturnouttypename(name);
+//			if (tt != null) {
+//				jo.put("r", "name is Repetitive");
+//				jo.put("s", "error");
+//				return jo;
+//			}
 			int s = repository.update(u);
 			if (s > 0 ) {
 				jo.put("r", u.getId());

@@ -57,19 +57,25 @@ public class measurementstandardController {
 	@ApiOperation(value="根据测量标准ID查询所有测量项", notes="根据测量标准ID查询所有测量项")
 	@ApiImplicitParam(name = "id", value = "测量标准ID", required = true, dataType = "String", paramType = "path")
 	@RequestMapping(value = "/standard/{id}" , method = RequestMethod.GET)
-	public ResponseEntity<JsonResult> findbystandard(@PathVariable(value = "id") String id,Integer pageNum, Integer pageSize){
+	public JSONObject findbystandard(@PathVariable(value = "id") String id,Integer pageNum, Integer pageSize){
 		JsonResult r = new JsonResult();
+		JSONObject object = new JSONObject();
 		try {
 			JSONObject jos = imss.findbystandard(id,pageNum,pageSize);
+			jos.put("code", "200");
+			jos.put("state", "success");
 			r.setResult(jos);
 			r.setStatus("ok");
+			return jos;
 		} catch (Exception e) {
+			object.put("code", "500");
+			object.put("state", "fail");
 			LOG.error(e.getClass().getName() + ":" + e.getMessage());
 			r.setResult(e.getClass().getName() + ":" + e.getMessage());
 			r.setStatus("error");
 			e.printStackTrace();
 		}
-		return ResponseEntity.ok(r);
+		return object;
 		
 	}
 	@ApiOperation(value="根据项目ID查询所有测量项", notes="根据项目ID查询所有测量项")

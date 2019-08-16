@@ -47,7 +47,14 @@ public interface detectionresultMapper {
 	detectionresult selectbysidmid(String mid,String sid);
 
 	List<detectionresult> selectbymidresults(String mid, String string);
-
+	
+	/**
+	 * 
+	 * @param id 项目id
+	 * @param id2 项点id
+	 * @return
+	 */
+	
 	List<detectionresult> selectbymidpname(String id, String id2);
 
 	

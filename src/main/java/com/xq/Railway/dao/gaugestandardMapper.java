@@ -20,4 +20,5 @@ public interface gaugestandardMapper {
 	List<gaugestandard> values();
 
 	List<gaugestandard> selectByturnoutid(String state);
+
 }

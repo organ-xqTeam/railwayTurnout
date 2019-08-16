@@ -19,7 +19,7 @@
   </sql>
   
   <insert id="saveSysLog" parameterType="com.xq.Railway.model.Syslog" >
-    insert into Syslog (optId, loginId, loginName, 
+    insert into syslog (optId, loginId, loginName, 
       ipAddress, methodName, methodRemark, 
       operatingcontent, optDate)
     values (#{optId,jdbcType=VARCHAR}, #{loginId,jdbcType=VARCHAR}, #{loginName,jdbcType=VARCHAR}, 
@@ -30,14 +30,14 @@
   <select id="selectAll" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from Syslog order by optId DESC
+    from syslog order by optId DESC
     LIMIT #{pageNum} ,#{pageSize}
   </select>
   
   <select id="selectAlls" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
-    from Syslog 
+    from syslog 
   </select>
  
   
