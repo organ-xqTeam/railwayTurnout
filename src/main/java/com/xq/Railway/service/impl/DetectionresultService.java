@@ -52,14 +52,18 @@ public class DetectionresultService {
 		if ("".equals(d.getStandardid()) || d.getStandardid() == null ) {
 			flag = false;
 		}
-		detectionresult de = null ;
-		if (flag) {
-			 de  =   idm.selectbysidmid(d.getMid(), d.getStandardid());
+//		detectionresult de = null ;
+//		if (flag) {
+//			 de  =   idm.selectbysidmid(d.getMid(), d.getStandardid());
+//		}
+//		if (de != null) {
+		//	int n1 =  idm.deleteByPrimaryKey(de.getId());
+//		}
+		JSONObject a1 = instertnew(d);
+		int  a = 0;
+		if ("ok".equals(a1.getString("s"))) {
+			a = 1;
 		}
-		if (de != null) {
-			int n1 =  idm.deleteByPrimaryKey(de.getId());
-		}
-		int a = idm.insertSelective(d);
 		int lastid =  idm.selectLastId();
 		
 		
@@ -77,7 +81,7 @@ public class DetectionresultService {
 		}else {
 			jsonObject.put("stats", "fail");
 			jsonObject.put("code", "200");
-			jsonObject.put("message", "");
+			jsonObject.put("message", a1);
 			jsonObject.put("lastid", lastid);
 		}
 		return jsonObject;

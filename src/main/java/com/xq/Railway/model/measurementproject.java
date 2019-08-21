@@ -27,6 +27,8 @@ public class measurementproject {
     private String pname;//项目名
 	@ApiModelProperty(value = "测量时间",example="2019-05-31", position = 5)
     private String ptime;//测量时间
+	@ApiModelProperty(value = "上传文件名",example="", position = 7)
+	private String file;//测量时间
 	@ApiModelProperty(value = "关联项点id",example="id", position = 6)
     private String warningstatistics;//预警统计
 
@@ -41,7 +43,15 @@ public class measurementproject {
     
     
     
-    public String getTurnoutstandardid() {
+    public String getFile() {
+		return file;
+	}
+
+	public void setFile(String file) {
+		this.file = file;
+	}
+
+	public String getTurnoutstandardid() {
 		return turnoutstandardid;
 	}
 
