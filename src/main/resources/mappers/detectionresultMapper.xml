@@ -45,7 +45,7 @@
     select 
     <include refid="Base_Column_List" />
     from detectionresult
-    where   mid = #{id,jdbcType=VARCHAR}  and pname = #{id2,jdbcType=VARCHAR}
+    where   mid = #{id,jdbcType=VARCHAR}  and standardid = #{id2,jdbcType=VARCHAR}
   </select>
   <select id="selectbypname" resultMap="BaseResultMap" parameterType="java.util.Map" >
     select 

@@ -456,7 +456,7 @@ public class DetectionresultService {
 		JSONObject jo = new JSONObject();
 		
 		//查询项点 计算规则
-		measurementstandard measurement = imm.selectByPrimaryKey(m.getPname());
+		measurementstandard measurement = imm.selectByPrimaryKey(m.getStandardid());
 		String state =  measurement.getState();
 		if ("0".equals(state)) {
 			//手动判断
@@ -477,11 +477,16 @@ public class DetectionresultService {
 				//没有详细计算标准--不是轨距
 				String range1 = measurement.getRange1();
 				//结果的 数字
-				BigDecimal b1 = new BigDecimal(measurement.getRanges());
+				BigDecimal b1 = new BigDecimal(m.getMeasureddata());
 				//计算的数字
 				List<BigDecimal> bigDecimals = new ArrayList<BigDecimal>();
 				BigDecimal big = new BigDecimal(measurement.getRanges());
-				BigDecimal big2 = new BigDecimal(measurement.getStandard());
+				BigDecimal big2;
+				if ("".equals(measurement.getStandard()) || measurement.getStandard() == null) {
+					big2 = new BigDecimal(0);
+				}else {
+					big2 = new BigDecimal(measurement.getStandard());
+				}
 				bigDecimals.add(big);
 				bigDecimals.add(big2);
 				String res = algorithm.check(range1, b1, bigDecimals);
@@ -748,10 +753,8 @@ public class DetectionresultService {
 		
 		for (measurementstandard measurementstandard : list) {
 			//项点id
-			
 			Map<String, Object> ma =  MapTrunPojo.object2Map(measurementstandard);
 			List<detectionresult> la = idm.selectbymidpname(id, measurementstandard.getId());
-			
 			int a = 0;
 			int b = 0;
 			for (detectionresult detection : la) {
@@ -761,21 +764,23 @@ public class DetectionresultService {
 					b++;
 				}
 			}
-			
-			
 			ma.put("allNumber", a+b);
 			ma.put("hegeNumber", a);
+			
+			BigDecimal a1 = new BigDecimal(a);
+			BigDecimal b1 = new BigDecimal(a+b);
+			 BigDecimal result5=null;
 			double ab = 0;
 			if (a != 0) {
-				ab =  a/(a+b);
+				result5 = a1.divide(b1,4,BigDecimal.ROUND_HALF_UP);
+//				ab =  a/(a+b);
+				ab = result5.doubleValue();
 			}else {
 				ab = 0;
 			}
 			ma.put("hegelv", ab*100+"%");
 			array.add(ma);
 		}
-		
-
 		jsonObject.put("r", array);
 		jsonObject.put("s", "ok");
 		return jsonObject;
