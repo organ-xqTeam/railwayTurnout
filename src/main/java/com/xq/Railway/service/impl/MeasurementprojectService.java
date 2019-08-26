@@ -122,6 +122,10 @@ public class MeasurementprojectService {
 			
 			for (int i = 1; i < li.size(); i++) {
 				String[] sr = li.get(i);
+//				System.out.println(sr[0]);
+				if (sr.length <  8 ) {
+					break;
+				}
 //				sr[1];//轨枕编号
 //				sr[2];//里程
 //				sr[3];//轨距
@@ -133,10 +137,15 @@ public class MeasurementprojectService {
 				
 				//轨距start
 				//有详细计算标准
-				String measureddata1 = sr[2];
+				String measureddata1 = sr[1];
 				String gauge = "";
+				
+				//通过轨枕编号锁定 计算的
 				for (int i1 = 0; i1 < gaug.size(); i1++) {
-					if (measureddata1.equals(gaug.get(i1).getMileage())) {
+					int as1 = Integer.parseInt(measureddata1);
+					int as2 = Integer.parseInt(gaug.get(i1).getRownum());
+					
+					if (as1 == as2) {
 						gauge = gaug.get(i1).getGauge();
 						break;
 					}
@@ -147,7 +156,7 @@ public class MeasurementprojectService {
 				double a1 = Double.parseDouble(sr[3]);
 				double a2 = Double.parseDouble(gauge);
 				
-				BigDecimal b1 = new BigDecimal((a1-a2));
+				BigDecimal b1 = new BigDecimal((double)(a1-a2));
 				List<BigDecimal> bigDecimals = new ArrayList<BigDecimal>();
 				BigDecimal big = new BigDecimal(m1.getRanges());
 				bigDecimals.add(big);
@@ -157,6 +166,7 @@ public class MeasurementprojectService {
 				re.setStandardid(m1.getId());
 				re.setPname(m1.getMeasurementitem());
 				re.setMeasureddata(sr[3]);
+				re.setMeasureddata1(sr[1]);
 				re.setMeasuredresults(res);
 				int n =  idm.insertSelective(re);
 				//轨距end

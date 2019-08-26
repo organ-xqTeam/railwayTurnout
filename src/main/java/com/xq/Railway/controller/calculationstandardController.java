@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.xq.Railway.logAop.MethodLog;
 import com.xq.Railway.model.JsonResult;
 import com.xq.Railway.service.impl.calculationstandardService;
 
@@ -42,8 +43,10 @@ public class calculationstandardController {
 	private String url;
 	
 	
+	
 	@ApiOperation(value="获取算法列表", notes="获取算法列表")
 	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@MethodLog(remark = "获取算法列表")
 	public ResponseEntity<JsonResult> getUserList (){
 		JsonResult r = new JsonResult();
 		try {
@@ -67,6 +70,7 @@ public class calculationstandardController {
 	 */
 	@ApiOperation(value="获取小车文件数据列表", notes="获取小车文件数据列表")
 	@RequestMapping(value = "/car", method = RequestMethod.GET)
+	@MethodLog(remark = "获取小车文件数据列表")
 	public ResponseEntity<JsonResult> getCarList (){
 		JsonResult r = new JsonResult();
 		try {
@@ -80,10 +84,10 @@ public class calculationstandardController {
 			
 			String [] fileName = file.list();
 			for (int i = 0; i < fileName.length; i++) {
-				if (fileName[i].contains("-")) {
-					if ("railwayVehicleData".equals(fileName[i].split("-")[0]) && fileName[i].endsWith("csv")) {
+				if (fileName[i].contains("all.csv")) {
+//					if ("all".equals(fileName[i].split("-")[0]) && fileName[i].endsWith("csv")) {
 						li.add(fileName[i]);
-					}
+//					}
 				}
 			}
 			r.setResult(li);

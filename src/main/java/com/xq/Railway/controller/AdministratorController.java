@@ -203,6 +203,7 @@ public class AdministratorController {
 			@ApiImplicitParam(name = "aid", value = "管理员ID")
 			})
 	@RequestMapping(value = "/selectByAid", method = RequestMethod.GET)
+	@MethodLog(remark = "查询管理员")
 	public administrator selectByAid(String aid){
 		administrator sela = null;
 		try {

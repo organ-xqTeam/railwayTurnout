@@ -86,11 +86,6 @@ public class detectionresultController {
 	@Value("${springurl.fileurl}")
 	private String url;
 	
-	 
-	
-	
-	
-	
 	@ApiOperation(value="根据项目查看监测结果", notes="根据measurementprojectid项目查看监测结果")
 	@ApiImplicitParam(name = "id", value = "项目id")
 	@RequestMapping(value = "/getresultbyprojectid" , method = RequestMethod.GET)
@@ -273,6 +268,7 @@ public class detectionresultController {
 		@ApiImplicitParam(name = "pageSize", value = "每页数量")
 	})
 	@RequestMapping(value = "/selectAll", method = RequestMethod.GET)
+	@MethodLog(remark = "查询所有-监测结果")
 	public List<detectionresult>  selectAll(Integer  pageNum,Integer  pageSize) {
 		List<detectionresult> ma = null;
 		try {
@@ -282,8 +278,28 @@ public class detectionresultController {
 			e.printStackTrace();
 		}
 		return ma;
-		
 	}
+	@ApiOperation(value="查询结果by项目id和项点id", notes="查询所有")
+	@ApiImplicitParams({
+		@ApiImplicitParam(name = "mid", value = "项目id"),
+		@ApiImplicitParam(name = "starid", value = "项点id")
+	})
+	@RequestMapping(value = "/selectbymidsid", method = RequestMethod.GET)
+	@MethodLog(remark = "查询所有-监测结果")
+	public List<detectionresult>  selectbymidsid(String mid,String starid) {
+		List<detectionresult> ma = null;
+		try {
+			ma = ids.selectbymidsid(mid,starid);
+		} catch (Exception e) {
+			LOG.error(e.getClass().getName() + ":" + e.getMessage());
+			e.printStackTrace();
+		}
+		return ma;
+	}
+	
+	
+	
+	
 	
 	/**
 	 *
@@ -329,6 +345,7 @@ public class detectionresultController {
 		@ApiImplicitParam(name = "filename", value = "导出文件名",  required = true, dataType = "String" ,paramType = "path")
 	})
 	@RequestMapping(value = "/getexcle", method = RequestMethod.GET)
+	@MethodLog(remark = "根据id 到处表格")
 	public void getexcle(HttpServletResponse response,String id,String filename) {//设置响应为下载
 		if (filename == null || "".equals(filename)) {
 			filename = "export";
@@ -386,6 +403,7 @@ public class detectionresultController {
 		@ApiImplicitParam(name = "filename", value = "下载文件文件名",  required = true, dataType = "String" ,paramType = "path")
 	})
 	@RequestMapping(value = "/getApp/{filename}", method = RequestMethod.GET)
+	@MethodLog(remark = "下载app")
 	public void getApp(HttpServletResponse response, @PathVariable String filename) {// 设置响应为下载
 		try {
 //			String fileurl = "D:\\Users\\Desktop\\";
@@ -481,6 +499,7 @@ public class detectionresultController {
 	 * @param fileName
 	 */
 	@RequestMapping(value = "/show/{fileName}", method = RequestMethod.GET)
+	@MethodLog(remark = "显示图片")
 	public void Download(HttpServletResponse res, @PathVariable String fileName) {
 		filedatatable filedatatables = ifs.getfileByid(fileName);
 		String filePath = filedatatables.getFilepath();
@@ -514,6 +533,7 @@ public class detectionresultController {
 		}
 	}
 	@RequestMapping(value = "/showImg/{fileName}", method = RequestMethod.GET)
+	@MethodLog(remark = "显示图片")
 	public void showImg(HttpServletResponse res, @PathVariable String fileName) {
 		String downloadPath = url + fileName + ".jpg";
 		
@@ -544,6 +564,7 @@ public class detectionresultController {
 	
 
 	@RequestMapping(value = "/getSmartCarData", method = RequestMethod.GET)
+	@MethodLog(remark = "实施获取小车数据")
 	public String getSmartCarData(HttpServletRequest request) {
 		String realPath = url;
 //		String realPath = "D:/Users/Desktop/";

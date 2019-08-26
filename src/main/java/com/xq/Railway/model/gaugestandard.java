@@ -21,6 +21,8 @@ public class gaugestandard {
 	
 	@ApiModelProperty(value = "轨距",example="1", position = 2)
     private String gauge;//轨距
+	@ApiModelProperty(value = "轨枕编号",example="1", position = 2)
+	private String rownum;//轨距
 	
     @ApiModelProperty(hidden=true)
     private String isdelete;
@@ -65,6 +67,16 @@ public class gaugestandard {
     public void setIsdelete(String isdelete) {
         this.isdelete = isdelete == null ? null : isdelete.trim();
     }
+
+
+	public String getRownum() {
+		return rownum;
+	}
+
+
+	public void setRownum(String rownum) {
+		this.rownum = rownum;
+	}
 
 
 	@Override

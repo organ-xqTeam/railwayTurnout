@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.xq.Railway.logAop.MethodLog;
 import com.xq.Railway.model.JsonResult;
 import com.xq.Railway.model.turnouttype;
 import com.xq.Railway.service.impl.turnouttypeService;
@@ -46,6 +47,7 @@ public class turnouttypeController {
 	@ApiOperation(value="创建道岔分类", notes="根据turnouttype对象创建分类")
 	@ApiImplicitParam(name = "turnout", value = "详细实体turnouttype", required = true, dataType = "turnouttype")
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
+	@MethodLog(remark = "创建道岔分类")
 	public ResponseEntity<JsonResult> add (@RequestBody turnouttype turnout){
 		JsonResult r = new JsonResult();
 		try {
@@ -68,6 +70,7 @@ public class turnouttypeController {
 	@ApiOperation(value="删除分类", notes="根据分类的id来指定删除分类")
 	@ApiImplicitParam(name = "id", value = "分类ID", required = true, dataType = "String", paramType = "path")
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+	@MethodLog(remark = "删除分类")
 	public ResponseEntity<JsonResult> delete (@PathVariable(value = "id") String id){
 		JsonResult r = new JsonResult();
 		try {
@@ -91,6 +94,7 @@ public class turnouttypeController {
 	@ApiOperation(value="获取道岔分类详细信息", notes="根据道岔的id来获取道岔详细信息")
 	@ApiImplicitParam(name = "id", value = "道岔ID", required = true, dataType = "String", paramType = "path")
 	@RequestMapping(value = "/select/{id}", method = RequestMethod.GET)
+	@MethodLog(remark = "获取道岔分类详细信息")
 	public ResponseEntity<JsonResult> getUserById (@PathVariable(value = "id") String id){
 		JsonResult r = new JsonResult();
 		try {
@@ -112,6 +116,7 @@ public class turnouttypeController {
 	 */
 	@ApiOperation(value="获取道岔列表", notes="获取道岔列表")
 	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@MethodLog(remark = "获取道岔列表")
 	public ResponseEntity<JsonResult> getUserList (){
 		JsonResult r = new JsonResult();
 		try {
@@ -138,6 +143,7 @@ public class turnouttypeController {
 			@ApiImplicitParam(name = "turnout", value = "实体turnout", required = true, dataType = "turnouttype")
 	})
 	@RequestMapping(value = "/save/{id}", method = RequestMethod.POST)
+	@MethodLog(remark = "根据url的id来指定更新道岔分类信息")
 	public ResponseEntity<JsonResult> update (@PathVariable("id") String id, @RequestBody turnouttype turnout){
 		JsonResult r = new JsonResult();
 		try {
@@ -155,6 +161,4 @@ public class turnouttypeController {
 		}
 		return ResponseEntity.ok(r);
 	}
-	
-	
 }

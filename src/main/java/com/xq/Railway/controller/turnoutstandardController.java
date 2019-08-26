@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.xq.Railway.logAop.MethodLog;
 import com.xq.Railway.model.JsonResult;
 import com.xq.Railway.model.turnoutstandard;
 import com.xq.Railway.service.impl.turnoutstandardService;
@@ -46,6 +47,7 @@ public class turnoutstandardController {
 	@ApiOperation(value="创建道岔标准", notes="根据turnouttype对象创建标准")
 	@ApiImplicitParam(name = "turnout", value = "详细实体turnouttype", required = true, dataType = "turnoutstandard")
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
+	@MethodLog(remark = "创建道岔标准")
 	public ResponseEntity<JsonResult> add (@RequestBody turnoutstandard turnout){
 		JsonResult r = new JsonResult();
 		try {
@@ -68,6 +70,7 @@ public class turnoutstandardController {
 	@ApiOperation(value="删除标准", notes="根据标准的id来指定删除标准")
 	@ApiImplicitParam(name = "id", value = "标准ID", required = true, dataType = "String", paramType = "path")
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+	@MethodLog(remark = "删除标准")
 	public ResponseEntity<JsonResult> delete (@PathVariable(value = "id") String id){
 		JsonResult r = new JsonResult();
 		try {
@@ -91,6 +94,7 @@ public class turnoutstandardController {
 	@ApiOperation(value="获取道岔标准详细信息", notes="根据标准的id来获取道岔标准详细信息")
 	@ApiImplicitParam(name = "id", value = "标准ID", required = true, dataType = "String", paramType = "path")
 	@RequestMapping(value = "/select/{id}", method = RequestMethod.GET)
+	@MethodLog(remark = "获取道岔标准详细信息")
 	public ResponseEntity<JsonResult> getUserById (@PathVariable(value = "id") String id){
 		JsonResult r = new JsonResult();
 		try {
@@ -112,6 +116,7 @@ public class turnoutstandardController {
 	 */
 	@ApiOperation(value="获取道岔标准列表", notes="获取道岔标准列表")
 	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@MethodLog(remark = "获取道岔标准列表")
 	public ResponseEntity<JsonResult> getUserList (){
 		JsonResult r = new JsonResult();
 		try {
@@ -137,6 +142,7 @@ public class turnoutstandardController {
 			@ApiImplicitParam(name = "turnout", value = "实体turnoutstandard", required = true, dataType = "turnoutstandard")
 	})
 	@RequestMapping(value = "/save/{id}", method = RequestMethod.POST)
+	@MethodLog(remark = "更新信息")
 	public ResponseEntity<JsonResult> update (@PathVariable("id") String id, @RequestBody turnoutstandard turnout){
 		JsonResult r = new JsonResult();
 		try {

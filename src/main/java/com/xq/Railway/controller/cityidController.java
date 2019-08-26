@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.xq.Railway.logAop.MethodLog;
 import com.xq.Railway.model.JsonResult;
 import com.xq.Railway.service.impl.cityidService;
 import com.xq.Railway.util.postgetUtil;
@@ -37,6 +38,7 @@ public class cityidController {
 	 */
 	@ApiOperation(value="获取城市id列表", notes="获取城市id列表")
 	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@MethodLog(remark = "获取城市id列表")
 	public ResponseEntity<JsonResult> getUserList (){
 		JsonResult r = new JsonResult();
 		try {
@@ -54,6 +56,7 @@ public class cityidController {
 	
 	@ApiOperation(value="获取城市天气", notes="获取城市天气")
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	@MethodLog(remark = "获取城市天气")
 	public ResponseEntity<JsonResult> getUserList1 (@PathVariable(value = "id") String id){
 		JsonResult r = new JsonResult();
 		try {

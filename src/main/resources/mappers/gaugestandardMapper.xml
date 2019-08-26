@@ -6,10 +6,11 @@
     <result column="turnoutid" property="turnoutid" jdbcType="VARCHAR" />
     <result column="mileage" property="mileage" jdbcType="VARCHAR" />
     <result column="gauge" property="gauge" jdbcType="VARCHAR" />
+    <result column="rownum" property="rownum" jdbcType="VARCHAR" />
     <result column="isdelete" property="isdelete" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, turnoutid, mileage, gauge, isdelete
+    id, turnoutid, mileage, gauge,rownum, isdelete
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 

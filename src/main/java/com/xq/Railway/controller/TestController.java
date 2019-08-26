@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.xq.Railway.logAop.MethodLog;
 import com.xq.Railway.model.JsonResult;
 
 import io.swagger.annotations.Api;
@@ -18,6 +20,7 @@ public class TestController {
 	 * 测试
 	 */
 	@RequestMapping(value=  "/Test" , method = RequestMethod.GET)
+	@MethodLog(remark = "测试")
 	public ResponseEntity<JsonResult> Test() {
 		JsonResult r = new JsonResult();
 		

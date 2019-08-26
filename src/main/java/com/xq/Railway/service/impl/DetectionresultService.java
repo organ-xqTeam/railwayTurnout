@@ -13,11 +13,15 @@ import com.xq.Railway.dao.filedatatableMapper;
 import com.xq.Railway.dao.gaugestandardMapper;
 import com.xq.Railway.dao.measurementprojectMapper;
 import com.xq.Railway.dao.measurementstandardMapper;
+import com.xq.Railway.dao.qualitystandardMapper;
+import com.xq.Railway.dao.turnoutstandardMapper;
 import com.xq.Railway.model.detectionresult;
 import com.xq.Railway.model.filedatatable;
 import com.xq.Railway.model.gaugestandard;
 import com.xq.Railway.model.measurementproject;
 import com.xq.Railway.model.measurementstandard;
+import com.xq.Railway.model.qualitystandard;
+import com.xq.Railway.model.turnoutstandard;
 import com.xq.Railway.util.DecimalUtil;
 import com.xq.Railway.util.MapTrunPojo;
 import com.xq.Railway.util.algorithm;
@@ -25,6 +29,7 @@ import com.xq.Railway.util.jsonTomodel;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
+import springfox.documentation.spring.web.json.Json;
 @Service
 public class DetectionresultService {
 	
@@ -38,6 +43,11 @@ public class DetectionresultService {
 	private  measurementprojectMapper impm;
 	@Autowired
 	private  gaugestandardMapper gaugmapper;
+	@Autowired
+	private qualitystandardMapper qualiMapper;
+	
+	@Autowired
+	private turnoutstandardMapper turnoutMapper;
 	
 	@Autowired
 	private filedatatableMapper ifm;
@@ -751,6 +761,12 @@ public class DetectionresultService {
 //		获取测量标准对应 测量项点
 		List<measurementstandard> list = imm.findbyturnoutstandardAll(measurement.getTurnoutstandardid());
 		
+		
+		
+		int[] strA = {0,0}; //合格--不合格
+		int[] strB = {0,0}; 
+		int[] strC = {0,0}; 
+		
 		for (measurementstandard measurementstandard : list) {
 			//项点id
 			Map<String, Object> ma =  MapTrunPojo.object2Map(measurementstandard);
@@ -769,7 +785,7 @@ public class DetectionresultService {
 			
 			BigDecimal a1 = new BigDecimal(a);
 			BigDecimal b1 = new BigDecimal(a+b);
-			 BigDecimal result5=null;
+			BigDecimal result5=null;
 			double ab = 0;
 			if (a != 0) {
 				result5 = a1.divide(b1,4,BigDecimal.ROUND_HALF_UP);
@@ -778,12 +794,89 @@ public class DetectionresultService {
 			}else {
 				ab = 0;
 			}
+			
+			if ("A".equals(measurementstandard.getManagementcategory())) {
+				strA[0] +=a;
+				strA[1] +=b;
+			}else if("B".equals(measurementstandard.getManagementcategory())) {
+				strB[0] +=a;
+				strB[1] +=b;
+			}else if("C".equals(measurementstandard.getManagementcategory().toUpperCase())) {
+				strC[0] +=a;
+				strC[1] +=b;
+			}
 			ma.put("hegelv", ab*100+"%");
 			array.add(ma);
 		}
-		jsonObject.put("r", array);
+		turnoutstandard standre =  turnoutMapper.selectByPrimaryKey(measurement.getTurnoutstandardid());
+		
+		List<qualitystandard> la = qualiMapper.getbyidentifiernum(standre.getQualityid());
+		String qualityconclusion = "通过";
+		for (int i = 0; i < la.size(); i++) {
+			System.out.println(la.get(i).getNum()+"\t"+la.get(i).getMsg1());
+			
+			if (la.get(i).getMsg().contains("A")) {
+				BigDecimal c1 = new BigDecimal(la.get(i).getNum());
+				if (strA[1] != 0) {
+					//有不合格的
+					BigDecimal b1 = new BigDecimal(strA[1]);
+					BigDecimal b2 = new BigDecimal((strA[1]+strA[0]));
+					BigDecimal b3 =  b1.divide(b2,4,BigDecimal.ROUND_HALF_UP);
+					if (b3.doubleValue() > (c1.divide(new BigDecimal(100),4,BigDecimal.ROUND_HALF_UP).doubleValue())) {
+						qualityconclusion = "不通过";
+						break;
+					}
+				}else {
+					//全合格
+				}
+					
+				
+			}else if(la.get(i).getMsg().contains("B")) {
+				BigDecimal c1 = new BigDecimal(la.get(i).getNum());
+				if (strB[1] != 0) {
+					//有不合格的
+					BigDecimal b1 = new BigDecimal(strB[1]);
+					BigDecimal b2 = new BigDecimal((strB[1]+strB[0]));
+					BigDecimal b3 =  b1.divide(b2,4,BigDecimal.ROUND_HALF_UP);
+					if (b3.doubleValue() > (c1.divide(new BigDecimal(100),4,BigDecimal.ROUND_HALF_UP).doubleValue())) {
+						qualityconclusion = "不通过";
+						break;
+					}
+				}else {
+					//全合格
+				}
+			}else if(la.get(i).getMsg().contains("C")) {
+				BigDecimal c1 = new BigDecimal(la.get(i).getNum());
+				if (strC[1] != 0) {
+					//有不合格的
+					BigDecimal b1 = new BigDecimal(strC[1]);
+					BigDecimal b2 = new BigDecimal((strC[1]+strC[0]));
+					BigDecimal b3 =  b1.divide(b2,4,BigDecimal.ROUND_HALF_UP);
+					if (b3.doubleValue() > (c1.divide(new BigDecimal(100),4,BigDecimal.ROUND_HALF_UP).doubleValue())) {
+						qualityconclusion = "不通过";
+						break;
+					}
+				}else {
+					//全合格
+				}
+			}
+		}
+		
+		System.out.println(qualityconclusion);
+//		jsonObject.put("qualityconclusion", );
+		JSONObject object = new JSONObject();
+		object.put("array", array);
+		object.put("qualityconclusion", qualityconclusion);
+		jsonObject.put("r", object);
 		jsonObject.put("s", "ok");
 		return jsonObject;
+	}
+
+	public List<detectionresult> selectbymidsid(String mid, String starid) {
+		// TODO Auto-generated method stub
+//		--
+		List<detectionresult> la = idm.selectbysidmid(mid, starid);
+		return la;
 	}
 	
 	

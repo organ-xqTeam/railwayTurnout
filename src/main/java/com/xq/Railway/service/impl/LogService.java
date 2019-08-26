@@ -124,6 +124,11 @@ public class LogService {
          */
         if("新增管理员".equals(methodRemark)){
             sysLog.setOperatingcontent("账户登陆: 用户名为 " + method_param[0]);
+        }else {
+        	
+        	if (method_param.length > 0) {
+        		 sysLog.setOperatingcontent(method_param[0].toString());
+			}
         }
         
         /**
@@ -133,8 +138,8 @@ public class LogService {
             sysLog.setOperatingcontent("操作参数: " + method_param[0]);
         }
 
-//        dao.saveSysLog(sysLog);
-      //  System.out.println("日志实体："+sysLog.toString());
+        dao.saveSysLog(sysLog);
+//        System.out.println("日志实体："+sysLog.toString());
         return object;
 
     }

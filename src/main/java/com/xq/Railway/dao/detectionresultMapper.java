@@ -44,7 +44,7 @@ public interface detectionresultMapper {
 	
 	
 	
-	detectionresult selectbysidmid(String mid,String sid);
+	List<detectionresult> selectbysidmid(String mid,String sid);
 
 	List<detectionresult> selectbymidresults(String mid, String string);
 	

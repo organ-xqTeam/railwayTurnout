@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.xq.Railway.logAop.MethodLog;
 import com.xq.Railway.model.JsonResult;
 import com.xq.Railway.model.qualitystandard;
 import com.xq.Railway.service.impl.qualitystandardService;
@@ -46,6 +47,7 @@ public class qualitystandardController {
 	@ApiOperation(value="创建质量分析标准", notes="根据turnouttype对象创建分类")
 	@ApiImplicitParam(name = "quality", value = "详细实体qualitystandard", required = true, dataType = "qualitystandard")
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
+	@MethodLog(remark = "创建质量分析标准")
 	public ResponseEntity<JsonResult> add (@RequestBody qualitystandard quality){
 		JsonResult r = new JsonResult();
 		try {
@@ -68,6 +70,7 @@ public class qualitystandardController {
 	@ApiOperation(value="删除质量分析标准", notes="根据分类的id来指定删除质量分析标准")
 	@ApiImplicitParam(name = "id", value = "分类ID", required = true, dataType = "String", paramType = "path")
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+	@MethodLog(remark = "删除质量分析标准")
 	public ResponseEntity<JsonResult> delete (@PathVariable(value = "id") String id){
 		JsonResult r = new JsonResult();
 		try {
@@ -91,6 +94,7 @@ public class qualitystandardController {
 	@ApiOperation(value="获取质量分析标准详细信息", notes="根据道岔的id来获取质量分析标准")
 	@ApiImplicitParam(name = "id", value = "质量分析标准ID", required = true, dataType = "Integer", paramType = "path")
 	@RequestMapping(value = "/select/{id}", method = RequestMethod.GET)
+	@MethodLog(remark = "获取质量分析标准详细信息")
 	public ResponseEntity<JsonResult> getUserById (@PathVariable(value = "id") String id){
 		JsonResult r = new JsonResult();
 		try {
@@ -109,6 +113,7 @@ public class qualitystandardController {
 	@ApiOperation(value="获取类型下质量分析标准", notes="根据道岔的identifiernum来获取质量分析标准")
 	@ApiImplicitParam(name = "id", value = "质量分析标准identifiernum", required = true, dataType = "String", paramType = "path")
 	@RequestMapping(value = "/identifiernum/{id}", method = RequestMethod.GET)
+	@MethodLog(remark = "获取类型下质量分析标准")
 	public ResponseEntity<JsonResult> getUserByidentifiernum (@PathVariable(value = "id") String id){
 		JsonResult r = new JsonResult();
 		try {
@@ -132,6 +137,7 @@ public class qualitystandardController {
 	 */
 	@ApiOperation(value="获取质量分析标准列表", notes="获取质量分析标准列表")
 	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@MethodLog(remark = "获取质量分析标准列表")
 	public ResponseEntity<JsonResult> getUserList (){
 		JsonResult r = new JsonResult();
 		try {
@@ -152,6 +158,7 @@ public class qualitystandardController {
 	 */
 	@ApiOperation(value="获取质量分析标准分类", notes="获取质量分析标准分类")
 	@RequestMapping(value = "/findidentifiernum", method = RequestMethod.GET)
+	@MethodLog(remark = "获取质量分析标准分类")
 	public ResponseEntity<JsonResult> getlevel (){
 		JsonResult r = new JsonResult();
 		try {
@@ -180,6 +187,7 @@ public class qualitystandardController {
 			@ApiImplicitParam(name = "quality", value = "实体quality", required = true, dataType = "qualitystandard")
 	})
 	@RequestMapping(value = "/save/{id}", method = RequestMethod.POST)
+	@MethodLog(remark = "更新质量分析标准")
 	public ResponseEntity<JsonResult> update (@PathVariable("id") String id, @RequestBody qualitystandard quality){
 		JsonResult r = new JsonResult();
 		try {

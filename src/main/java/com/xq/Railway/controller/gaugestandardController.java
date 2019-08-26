@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.xq.Railway.logAop.MethodLog;
 import com.xq.Railway.model.JsonResult;
 import com.xq.Railway.model.gaugestandard;
 import com.xq.Railway.service.impl.gaugestandardService;
@@ -45,6 +46,7 @@ public class gaugestandardController {
 	@ApiOperation(value="创建轨距测量标准", notes="根据gaugestandard对象创建轨距测量标准")
 	@ApiImplicitParam(name = "turnout", value = "详细实体gaugestandard", required = true, dataType = "gaugestandard")
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
+	@MethodLog(remark = "创建轨距测量标准")
 	public ResponseEntity<JsonResult> add (@RequestBody gaugestandard turnout){
 		JsonResult r = new JsonResult();
 		try {
@@ -67,6 +69,7 @@ public class gaugestandardController {
 	@ApiOperation(value="删除轨距测量标准", notes="根据轨距测量标准的id来指定删除轨距测量标准")
 	@ApiImplicitParam(name = "id", value = "轨距测量标准ID", required = true, dataType = "String", paramType = "path")
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+	@MethodLog(remark = "删除轨距测量标准")
 	public ResponseEntity<JsonResult> delete (@PathVariable(value = "id") String id){
 		JsonResult r = new JsonResult();
 		try {
@@ -90,6 +93,7 @@ public class gaugestandardController {
 	@ApiOperation(value="获取轨距测量标准详细信息", notes="根据轨距测量标准的id来获取轨距测量标准详细信息")
 	@ApiImplicitParam(name = "id", value = "轨距测量标准ID", required = true, dataType = "String", paramType = "path")
 	@RequestMapping(value = "/select/{id}", method = RequestMethod.GET)
+	@MethodLog(remark = "获取轨距测量标准详细信息")
 	public ResponseEntity<JsonResult> getUserById (@PathVariable(value = "id") String id){
 		JsonResult r = new JsonResult();
 		try {
@@ -112,6 +116,7 @@ public class gaugestandardController {
 	//@ApiOperation(value="获取轨距测量标准详细信息", notes="根据轨距测量标准的id来获取轨距测量标准详细信息")
 	@ApiImplicitParam(name = "id", value = "轨距测量标准ID", required = true, dataType = "String", paramType = "path")
 	@RequestMapping(value = "/selects/{id}", method = RequestMethod.GET)
+	@MethodLog(remark = "获取轨距测量标准详细信息")
 	public ResponseEntity<JsonResult> getUsersById (@PathVariable(value = "id") String id){
 		JsonResult r = new JsonResult();
 		try {
@@ -133,6 +138,7 @@ public class gaugestandardController {
 	 */
 	@ApiOperation(value="获取轨距测量标准列表", notes="获取轨距测量标准列表")
 	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@MethodLog(remark = "获取轨距测量标准列表")
 	public ResponseEntity<JsonResult> getUserList (){
 		JsonResult r = new JsonResult();
 		try {
@@ -159,6 +165,7 @@ public class gaugestandardController {
 			@ApiImplicitParam(name = "turnout", value = "实体gaugestandard", required = true, dataType = "gaugestandard")
 	})
 	@RequestMapping(value = "/save/{id}", method = RequestMethod.POST)
+	@MethodLog(remark = "根据url的id来指定更新轨距测量标准信息")
 	public ResponseEntity<JsonResult> update (@PathVariable("id") String id, @RequestBody gaugestandard turnout){
 		JsonResult r = new JsonResult();
 		try {
