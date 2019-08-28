@@ -32,14 +32,14 @@
     select 
      <include refid="Base_Column_List" /> 
     <!--  measurementitem,state,range,standard,range1,standard1, isdelete -->
-    from measurementstandard  limit #{pageNum} ,#{pageSize};
+    from measurementstandard where state != 1 limit #{pageNum} ,#{pageSize};
   </select>
   
   <select id="findbystandard" resultMap="BaseResultMap" parameterType="java.util.Map" >
     select 
      <include refid="Base_Column_List" /> 
     <!--  measurementitem,state,range,standard,range1,standard1, isdelete -->
-    from measurementstandard where  turnoutstandardid = #{id} limit #{pageNum} ,#{pageSize};
+    from measurementstandard where state != 1 and turnoutstandardid = #{id} limit #{pageNum} ,#{pageSize};
   </select>
   
   
@@ -48,7 +48,7 @@
     select 
      <include refid="Base_Column_List" /> 
     <!--  measurementitem,state,range,standard,range1,standard1, isdelete -->
-    from measurementstandard where  turnoutstandardid = #{id} 
+    from measurementstandard where state != 1 and turnoutstandardid = #{id} 
   </select>
   <select id="findbystandardAll1" resultMap="BaseResultMap" parameterType="java.util.Map" >
     select 
