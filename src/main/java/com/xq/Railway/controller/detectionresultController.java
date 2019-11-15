@@ -564,7 +564,7 @@ public class detectionresultController {
 	
 
 	@RequestMapping(value = "/getSmartCarData", method = RequestMethod.GET)
-	@MethodLog(remark = "实施获取小车数据")
+//	@MethodLog(remark = "实施获取小车数据")
 	public String getSmartCarData(HttpServletRequest request) {
 		String realPath = url;
 //		String realPath = "D:/Users/Desktop/";
