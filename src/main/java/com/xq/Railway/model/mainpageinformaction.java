@@ -27,6 +27,11 @@ public class mainpageinformaction {
     private String progressconstruction;//施工进展
 
     private String noticeowner;//业主通知
+    
+    
+    private String aid;
+    
+    
     @ApiModelProperty(hidden=true)
     private String isdelete;
 
@@ -44,6 +49,14 @@ public class mainpageinformaction {
 
 	public void setWeatherid(String weatherid) {
 		this.weatherid = weatherid;
+	}
+
+	public String getAid() {
+		return aid;
+	}
+
+	public void setAid(String aid) {
+		this.aid = aid;
 	}
 
 	/**

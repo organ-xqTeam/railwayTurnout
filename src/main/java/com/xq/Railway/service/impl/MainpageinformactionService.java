@@ -1,7 +1,5 @@
 package com.xq.Railway.service.impl;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,20 +32,33 @@ public class MainpageinformactionService {
 	public JSONObject instert(mainpageinformaction mainpageinformaction) {
 //		JSONObject json =  (JSONObject) session.getAttribute("login");
 //		String aid = json.getString("aid");//管理员id
-		String aid = "40";//管理员id
+		String aid = mainpageinformaction.getAid();//管理员id
+		
+		
+		
 		JSONObject jsonObject = new JSONObject();
 		String rid = mainpageinformaction.getRid();
 		
+		if ("".equals(aid) || aid == null) {
+			jsonObject.put("stats", "fail");
+			jsonObject.put("code", "200");
+			jsonObject.put("message", "aid 不能为空");
+			return jsonObject;
+		}
 		if ("".equals(rid) || rid == null) {
 			jsonObject.put("stats", "fail");
 			jsonObject.put("code", "200");
 			jsonObject.put("message", "站点信息不能为空");
 			return jsonObject;
 		}
-		
-		
+		mainpageinformaction aol = imm.selectByPrimaryKeyrid(mainpageinformaction.getRid());
+		if (aol != null) {
+			jsonObject.put("stats", "fail");
+			jsonObject.put("code", "500");
+			jsonObject.put("message", "站点设置重复");
+			return jsonObject;
+		}
 		linesite line =  ilm.selectByPrimaryKey(mainpageinformaction.getRid());
-		
 		if (line == null) {
 			jsonObject.put("stats", "fail");
 			jsonObject.put("code", "500");
@@ -92,7 +103,12 @@ public class MainpageinformactionService {
 	public int updatemainpageinformaction(mainpageinformaction mainpageinformaction) {
 		
 //		JSONObject json =  (JSONObject) session.getAttribute("login");
-		String aid="40";
+		String aid=mainpageinformaction.getAid();
+		
+		
+		if ("".equals(aid) || aid == null) {
+			return -1;
+		}
 //		try {
 //			aid = json.getString("aid");
 //		} catch (Exception e) {

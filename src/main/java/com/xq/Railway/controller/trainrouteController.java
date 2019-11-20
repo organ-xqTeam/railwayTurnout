@@ -30,8 +30,8 @@ public class trainrouteController {
 	@Autowired
 	private TrainrouteService its;
 	
-	@Autowired
-	private HttpServletRequest request;
+//	@Autowired
+//	private HttpServletRequest request;
 	
 	/**
 	 * 新增 线路
@@ -114,7 +114,7 @@ public class trainrouteController {
 	@MethodLog(remark = "查询所有线路")
 	public JSONObject selectAll(Integer  pageNum,Integer  pageSize) {
 		JSONObject jsonObject = new JSONObject();
-		JSONObject json =  (JSONObject) request.getSession().getAttribute("login");
+//		JSONObject json =  (JSONObject) request.getSession().getAttribute("login");
 //		String aid = json.getString("aid");//管理员id
 		String jc;
 		try {

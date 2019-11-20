@@ -22,8 +22,8 @@ public class LinesiteService{
 	@Autowired
 	private administratorMapper iam;
 	
-	@Autowired
-	private HttpServletRequest request;
+//	@Autowired
+//	private HttpServletRequest request;
 	
 	
 	public JSONObject instert(linesite l) {

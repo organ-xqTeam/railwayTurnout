@@ -29,7 +29,6 @@ import com.xq.Railway.util.jsonTomodel;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
-import springfox.documentation.spring.web.json.Json;
 @Service
 public class DetectionresultService {
 	
@@ -467,12 +466,16 @@ public class DetectionresultService {
 		
 		//查询项点 计算规则
 		measurementstandard measurement = imm.selectByPrimaryKey(m.getStandardid());
-		String state =  measurement.getState();
+		String state = "0";
+		if (measurement != null) {
+			 state =  measurement.getState();
+		}
+		
 		if ("0".equals(state)) {
 			//手动判断
 			
 			int n =  idm.insertSelective(m);
-			if (n> 0 ) {
+			if (n > 0) {
 				jo.put("r", n);
 				jo.put("s", "ok");
 				return jo;
@@ -770,6 +773,8 @@ public class DetectionresultService {
 		for (measurementstandard measurementstandard : list) {
 			//项点id
 			Map<String, Object> ma =  MapTrunPojo.object2Map(measurementstandard);
+			System.out.println(id);
+			System.out.println(ma.toString());
 			List<detectionresult> la = idm.selectbymidpname(id, measurementstandard.getId());
 			int a = 0;
 			int b = 0;
