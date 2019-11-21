@@ -40,6 +40,10 @@ public class detectionresult {
     private String measuredresults;//结果
     @ApiModelProperty(hidden=true)
     private String isdelete;
+    
+    
+    @ApiModelProperty(value="图片id" ,name = "measuredresults",example="", position = 6)
+    private String imgs;//结果
 
     public String getId() {
         return id;
@@ -63,6 +67,14 @@ public class detectionresult {
 
 	public void setMeasureddata1(String measureddata1) {
 		this.measureddata1 = measureddata1;
+	}
+
+	public String getImgs() {
+		return imgs;
+	}
+
+	public void setImgs(String imgs) {
+		this.imgs = imgs;
 	}
 
 	/**

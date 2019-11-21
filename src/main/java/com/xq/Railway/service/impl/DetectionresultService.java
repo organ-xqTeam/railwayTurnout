@@ -878,10 +878,22 @@ public class DetectionresultService {
 	}
 
 	public List<detectionresult> selectbymidsid(String mid, String starid) {
-		// TODO Auto-generated method stub
-//		--
 		List<detectionresult> la = idm.selectbysidmid(mid, starid);
-		return la;
+		
+		List<detectionresult> l = new ArrayList<detectionresult>();
+		
+		for (int i = 0; i < la.size(); i++) {
+			detectionresult d1 = la.get(i);
+			List<filedatatable> ls =  ifm.getfileByid(Integer.parseInt(d1.getId()));
+			StringBuffer buffer = new StringBuffer();
+			for (int j = 0; j < ls.size(); j++) {
+				buffer.append(ls.get(j).getId()+",");
+			}
+			d1.setImgs(buffer.toString());
+			l.add(d1);
+		}
+		
+		return l;
 	}
 	
 	
