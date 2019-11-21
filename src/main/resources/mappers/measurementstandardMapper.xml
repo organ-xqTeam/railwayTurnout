@@ -15,10 +15,11 @@
     <result column="inspectionmethod" property="inspectionmethod" jdbcType="VARCHAR" />
     <result column="managementcategory" property="managementcategory" jdbcType="VARCHAR" />
     <result column="gaugestandardid" property="gaugestandardid" jdbcType="VARCHAR" />
+    <result column="demandname" property="demandname" jdbcType="VARCHAR" />
     <result column="isdetails" property="isdetails" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id,dcbh, measurementitem,state,ranges,standard,range1,standard1, isdelete,turnoutstandardid,inspectionmethod,managementcategory,gaugestandardid,isdetails
+    id,dcbh, measurementitem,state,ranges,standard,range1,standard1,demandname, isdelete,turnoutstandardid,inspectionmethod,managementcategory,gaugestandardid,isdetails
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
@@ -96,14 +97,15 @@
   </delete>
   <insert id="insert" parameterType="com.xq.Railway.model.measurementstandard" >
     insert into measurementstandard (id,dcbh, measurementitem, standard, 
-      isdelete,turnoutstandardid,inspectionmethod,managementcategory,gaugestandardid,isdetails)
+      isdelete,turnoutstandardid,inspectionmethod,managementcategory,gaugestandardid,isdetails,demandname)
     values (#{id,jdbcType=VARCHAR},#{dcbh,jdbcType=VARCHAR}, #{measurementitem,jdbcType=VARCHAR}, #{standard,jdbcType=VARCHAR}, 
       #{isdelete,jdbcType=VARCHAR},
       #{turnoutstandardid,jdbcType=VARCHAR},
       #{inspectionmethod,jdbcType=VARCHAR},
       #{managementcategory,jdbcType=VARCHAR},
       #{gaugestandardid,jdbcType=VARCHAR},
-      #{isdetails,jdbcType=VARCHAR}
+      #{isdetails,jdbcType=VARCHAR},
+      #{demandname,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.xq.Railway.model.measurementstandard" >
@@ -152,6 +154,9 @@
       <if test="isdetails != null" >
         isdetails,
       </if>
+      <if test="demandname != null" >
+        demandname,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -197,6 +202,9 @@
       <if test="isdetails != null" >
         #{isdetails,jdbcType=VARCHAR},
       </if>
+      <if test="demandname != null" >
+        #{demandname,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.xq.Railway.model.measurementstandard" >
@@ -231,6 +239,9 @@
       </if>
       <if test="isdelete != null" >
         isdelete = #{isdelete,jdbcType=VARCHAR},
+      </if>
+      <if test="demandname != null" >
+        demandname = #{demandname,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}

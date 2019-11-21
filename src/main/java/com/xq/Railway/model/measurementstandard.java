@@ -43,6 +43,8 @@ public class measurementstandard {
     private String managementcategory;//管理类别
     @ApiModelProperty(value="是否有详细标准 0：没有 1：有" ,name = "isdetails",example="0/1", position = 4)
     private String isdetails;//管理类别
+    @ApiModelProperty(value="要求" ,name = "demandname",example="name", position = 10)
+    private String demandname;//综合检查标准或要求
     @ApiModelProperty(hidden=true)
     private String isdelete;
 	public String getId() {
@@ -56,6 +58,12 @@ public class measurementstandard {
 	
 	
 	
+	public String getDemandname() {
+		return demandname;
+	}
+	public void setDemandname(String demandname) {
+		this.demandname = demandname;
+	}
 	public String getDcbh() {
 		return dcbh;
 	}

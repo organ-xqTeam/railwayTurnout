@@ -167,8 +167,8 @@ public class detectionresultController {
 			return jsonObject;
 		}
 	
-		jsonObject.put("stats", "fail");
-		jsonObject.put("code", "500");
+		jsonObject.put("stats", "success");
+		jsonObject.put("code", "200");
 		jsonObject.put("message", "");
 		jsonObject.put("result", result);
 		return jsonObject;
@@ -560,6 +560,39 @@ public class detectionresultController {
 			e.printStackTrace();
 		}
 
+	}
+	@RequestMapping(value = "/showImgid/{fileName}", method = RequestMethod.GET)
+	@MethodLog(remark = "显示图片")
+	public void showImgid(HttpServletResponse res, @PathVariable String fileName) {
+		
+		filedatatable filedatatables = ifs.getfileByid(fileName);
+		String filePath = filedatatables.getThumb();
+		
+		String downloadPath = url +filePath;
+		
+		File file = new File(downloadPath);
+		System.out.println(file.exists());
+		if (!file.exists()) {
+			return;
+		}
+		
+		res.setContentType("image/jpeg");
+//		res.setDateHeader("expries", -1);
+//		res.setHeader("Cache-Control", "no-cache");
+//		res.setHeader("Pragma", "no-cache");
+		BufferedImage buffImg;
+		
+		try {
+			buffImg = toBufferedImage(Toolkit.getDefaultToolkit().getImage(downloadPath));
+//			System.out.println(buffImg.getHeight());
+			ImageIO.write(buffImg, "jpg", res.getOutputStream());
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			LOG.error(e.getClass().getName() + ":" + e.getMessage());
+			e.printStackTrace();
+		}
+		
 	}
 	
 
