@@ -62,7 +62,7 @@ public class AdministratorService  {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		a.setIsdelete("0");
 		int n =  iam.insertSelective(a);
 		if (n > 0) {
 			jsonObject.put("stats", "success");
