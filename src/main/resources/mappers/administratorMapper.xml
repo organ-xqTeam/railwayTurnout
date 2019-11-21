@@ -26,42 +26,42 @@
     select 
     <include refid="Base_Column_List" />
     from administrator
-    where aid = #{aid,jdbcType=VARCHAR}
+    where aid = #{aid,jdbcType=VARCHAR} and isdelete != 1
   </select>
   <select id="selectusername" resultMap="BaseResultMap" parameterType="java.lang.String" >
     
     select 
      <include refid="Base_Column_List" />
     from administrator
-    where ausername = #{ausername,jdbcType=VARCHAR}
+    where ausername = #{ausername,jdbcType=VARCHAR} and isdelete != 1
   </select>
   <select id="selectAllsid" resultMap="BaseResultMap" parameterType="java.lang.String" >
     
     select 
      <include refid="Base_Column_List" />
     from administrator
-    where siteid = #{id,jdbcType=VARCHAR}
+    where siteid = #{id,jdbcType=VARCHAR} and isdelete != 1
   </select>
   
   <select id="selectusernamepwd" resultMap="BaseResultMap" parameterType="java.util.HashMap" >
     select 
     <include refid="Base_Column_List" />
     from administrator
-    where ausername = #{username,jdbcType=VARCHAR} and apwd = #{pwd,jdbcType=VARCHAR}
+    where ausername = #{username,jdbcType=VARCHAR} and apwd = #{pwd,jdbcType=VARCHAR} and isdelete != 1
   </select>
   
   <select id="selectAll" resultMap="BaseResultMap" parameterType="java.util.HashMap" >
     
     select 
      <include refid="Base_Column_List" />
-    from administrator  where jurisdiction != 100 limit #{pageNum},#{pageSize};
+    from administrator  where jurisdiction != 100 and isdelete != 1 limit #{pageNum},#{pageSize};
   </select>
   
   <select id="selectAlls" resultMap="BaseResultMap" parameterType="java.util.HashMap" >
     
     select 
      <include refid="Base_Column_List" />
-    from administrator  where jurisdiction != 100 
+    from administrator  where jurisdiction != 100 and isdelete != 1
   </select>
   
   

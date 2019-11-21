@@ -229,8 +229,14 @@ public class AdministratorService  {
 	}
 
 	public int DeleteAdmin(String id) {
-		int a =  iam.deleteByPrimaryKey(id);
-		return a;
+//		int a =  iam.deleteByPrimaryKey(id);
+		
+		administrator a = new administrator();
+		a.setAid(id);
+		a.setIsdelete("1");
+		int n = iam.updateByPrimaryKeySelective(a);
+		
+		return n;
 	}
 
 	
