@@ -76,6 +76,7 @@ public class MeasurementprojectService {
 		measurementstandard m2 = null;//水平
 		measurementstandard m3 = null;//高低
 		measurementstandard m4 = null;//方向
+		measurementstandard m5 = null;//方向
 		
 //		String str1 = "";//轨距
 //		String strid1 = "";//轨距 项点id
@@ -101,6 +102,10 @@ public class MeasurementprojectService {
 //				strid3 = measurementstandard.getId();
 			} else if("4".equals(measurementstandard.getDcbh())) {
 				m4 = measurementstandard;
+//				str4 = measurementstandard.getRanges();
+//				strid4 = measurementstandard.getId();
+			}else if("5".equals(measurementstandard.getDcbh())) {
+				m5 = measurementstandard;
 //				str4 = measurementstandard.getRanges();
 //				strid4 = measurementstandard.getId();
 			}else {
@@ -231,6 +236,32 @@ public class MeasurementprojectService {
 				re.setMeasuredresults(res);
 				n =  idm.insertSelective(re);
 				//方向end
+				
+				
+				if (sr.length > 9) {
+					
+					//扭曲start
+					//没有详细计算标准--不是轨距
+					range1 = m5.getRange1();
+					//结果的 数字
+					b1 = new BigDecimal(sr[9]);
+					//计算的数字
+					bigDecimals = new ArrayList<BigDecimal>();
+					big = new BigDecimal(m5.getRanges());
+//				big2 = new BigDecimal(m4.getStandard());
+					bigDecimals.add(big);
+//				bigDecimals.add(big2);
+					res = algorithm.check(range1, b1, bigDecimals);
+					re.setMid(aid+"");//项目id
+					re.setStandardid(m5.getId());
+					re.setPname(m5.getMeasurementitem());
+					re.setMeasureddata(sr[9]);
+					re.setMeasuredresults(res);
+					n =  idm.insertSelective(re);
+					//扭曲end
+				}
+				
+				
 			}
 		}
 		
